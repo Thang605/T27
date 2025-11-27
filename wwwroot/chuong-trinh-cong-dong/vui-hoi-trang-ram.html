@@ -1,0 +1,419 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vui Hội Trăng Rằm - T27</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .training-hero {
+            padding: 180px 60px 80px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .training-hero h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .training-hero .subtitle {
+            font-size: 1.5em;
+            color: var(--accent-gold);
+            margin-bottom: 30px;
+        }
+
+        .training-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 60px;
+        }
+
+        .session-header {
+            padding: 30px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .session-number {
+            font-size: 3em;
+            font-weight: 700;
+            color: var(--accent-gold);
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .session-header-content h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .session-header-content .session-date {
+            font-size: 1.1em;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .session-description {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+            background: var(--gray-light);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 5px solid var(--primary-orange);
+        }
+
+        .session-topics {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .session-topics h2 {
+            font-size: 2em;
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+        }
+
+        .topic-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .topic-list li {
+            padding: 20px 0;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .topic-list li:last-child {
+            border-bottom: none;
+        }
+
+        .topic-icon {
+            font-size: 1.5em;
+            color: var(--primary-orange);
+        }
+
+        .topic-text {
+            flex: 1;
+        }
+
+        .topic-text strong {
+            color: var(--primary-blue);
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .session-gallery {
+            margin-top: 40px;
+        }
+
+        .session-gallery h2 {
+            font-size: 2em;
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,45,77,0.95), transparent);
+            color: var(--white);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .caption {
+            transform: translateY(0);
+        }
+
+        .session-highlight {
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--accent-gold) 100%);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .session-highlight h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .session-highlight p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--primary-orange);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 40px;
+        }
+
+        .back-button:hover {
+            background: var(--primary-blue);
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .session-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .training-hero h1 {
+                font-size: 2em;
+            }
+
+            .training-content {
+                padding: 40px 20px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-container">
+                <img src="../images/logo-t27.png" alt="T27 Logo" class="logo-image" onerror="this.src='../images/logo-t27.svg'">
+                <div class="logo-tagline">Cái tâm mọi công trình</div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html#home">Trang chủ</a></li>
+                <li><a href="../index.html#about">Giới thiệu</a></li>
+                <li><a href="../index.html#projects">Dự án</a></li>
+                <li><a href="../index.html#experts">Đội ngũ chuyên gia</a></li>
+                <li><a href="../index.html#bim">BIM</a></li>
+                <li><a href="../index.html#events">Sự kiện</a></li>
+                <li><a href="../index.html#recruitment">Tuyển dụng</a></li>
+                <li><a href="../index.html#contact">Liên hệ</a></li>
+                <li><a href="../index-en.html" style="background: var(--primary-orange); border-radius: 5px;">🇬🇧 EN</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contact Bar -->
+    <div class="contact-bar">
+        <div class="contact-bar-content">
+            <div class="contact-item">
+                <strong>📞 Hotline:</strong> 058.2210226 | 0913.431.515
+            </div>
+            <div class="contact-item">
+                <strong>✉ Email:</strong> t27_vn@yahoo.com
+            </div>
+            <div class="contact-item">
+                <strong>📍 Địa chỉ:</strong> Nha Trang, Khánh Hòa | Quy Nhơn, Bình Định
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="training-content">
+        <div class="session-header">
+            <div class="session-number">01</div>
+            <div class="session-header-content">
+                <h1>Vui Hội Trăng Rằm – Trung Thu 2025 cùng T27</h1>
+                <div class="session-date">
+                    <span>📅</span>
+                    <span>Tháng 9/2025</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="session-description">
+            <p style="font-size: 1.3em; margin-bottom: 20px; color: var(--primary-orange); font-weight: 600;">
+                Một mùa trăng tròn nữa lại về! 🍂
+            </p>
+            <p style="margin-bottom: 15px;">
+                Công đoàn Công ty Cổ phần Tư vấn T27 tổ chức chương trình <strong>"Vui Hội Trăng Rằm – Trung Thu 2025"</strong> 
+                dành cho con em cán bộ, nhân viên tại <strong>Văn phòng Khảo sát Thí nghiệm – Khu đô thị Mỹ Gia</strong>.
+            </p>
+            <p style="font-style: italic; color: var(--primary-blue);">
+                🎉 Cùng nhau thắp lên những nụ cười, những chiếc đèn lồng lung linh và tình cảm ấm áp của đại gia đình T27.
+            </p>
+        </div>
+
+        <!-- Topics -->
+        <div class="session-topics">
+            <h2>🎯 Hoạt Động Chính</h2>
+            <ul class="topic-list">
+                <li>
+                    <span class="topic-icon">🏢</span>
+                    <div class="topic-text">
+                        <strong>Địa Điểm Tổ Chức</strong>
+                        Văn phòng Khảo sát Thí nghiệm – Khu đô thị Mỹ Gia, 
+                        nơi diễn ra chương trình với không gian ấm cúng và tràn đầy niềm vui.
+                    </div>
+                </li>
+                <li>
+                    <span class="topic-icon">🎪</span>
+                    <div class="topic-text">
+                        <strong>Tiệc Trung Thu Truyền Thống</strong>
+                        Tổ chức bữa tiệc ấm cúng với bánh trung thu, trái cây và các món ăn truyền thống, 
+                        tạo không gian sum họp cho các em nhỏ và gia đình CBNV.
+                    </div>
+                </li>
+                <li>
+                    <span class="topic-icon">🎮</span>
+                    <div class="topic-text">
+                        <strong>Trò Chơi Dân Gian</strong>
+                        Phá cỗ, rước đèn, múa lân và các trò chơi dân gian hấp dẫn như 
+                        đập niêu, bịt mắt bắt dê, tạo không khí vui tươi sôi động.
+                    </div>
+                </li>
+                <li>
+                    <span class="topic-icon">🎁</span>
+                    <div class="topic-text">
+                        <strong>Tặng Quà và Lồng Đèn</strong>
+                        Mỗi em nhỏ đều nhận được lồng đèn lung linh và phần quà ý nghĩa, 
+                        gửi gắm tình cảm yêu thương từ gia đình T27.
+                    </div>
+                </li>
+                <li>
+                    <span class="topic-icon">🤝</span>
+                    <div class="topic-text">
+                        <strong>Gắn Kết Nội Bộ</strong>
+                        Chương trình là cơ hội để các gia đình CBNV gặp gỡ, giao lưu, 
+                        tăng cường tinh thần đoàn kết và gắn bó trong công ty.
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Gallery -->
+        <div class="session-gallery">
+            <h2>📸 Hình Ảnh Chương Trình</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="../images/chuong-trinh-cong-dong/1.Vui Hội Trăng Rằm – Trung Thu 2025 cùng T27/1.jpg" alt="Trung Thu T27" 
+                         onerror="this.src='https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=600&h=400&fit=crop'">
+                    <div class="caption">
+                        <p>Các em nhỏ vui chơi trong không khí Trung Thu</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="../images/chuong-trinh-cong-dong/1.Vui Hội Trăng Rằm – Trung Thu 2025 cùng T27/1.jpg" alt="Phá cỗ Trung Thu" 
+                         onerror="this.src='https://images.unsplash.com/photo-1569003339405-ea396a5a8a90?w=600&h=400&fit=crop'">
+                    <div class="caption">
+                        <p>Phá cỗ truyền thống và rước đèn</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="../images/chuong-trinh-cong-dong/1.Vui Hội Trăng Rằm – Trung Thu 2025 cùng T27/1.jpg" alt="Tặng quà Trung Thu" 
+                         onerror="this.src='https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&h=400&fit=crop'">
+                    <div class="caption">
+                        <p>Trao tặng lồng đèn và quà cho các em</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="../images/chuong-trinh-cong-dong/1.Vui Hội Trăng Rằm – Trung Thu 2025 cùng T27/1.jpg" alt="Gia đình T27" 
+                         onerror="this.src='https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600&h=400&fit=crop'">
+                    <div class="caption">
+                        <p>Gia đình T27 sum vầy tại Khu đô thị Mỹ Gia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Highlight -->
+        <div class="session-highlight">
+            <h2>💖 Ý Nghĩa Chương Trình</h2>
+            <p>
+                Chương trình Vui Hội Trăng Rằm không chỉ mang đến niềm vui cho các em nhỏ mà còn thể hiện 
+                tinh thần quan tâm, chăm lo của T27 đến đời sống tinh thần của CBNV và gia đình. 
+                Với không gian tổ chức tại Văn phòng Khảo sát Thí nghiệm – Khu đô thị Mỹ Gia, 
+                chương trình tạo nên bản sắc văn hóa doanh nghiệp đầy nhân văn và ấm áp, 
+                thắp lên những nụ cười và tình cảm gắn bó trong đại gia đình T27.
+            </p>
+        </div>
+
+        <!-- Back Button -->
+        <div style="text-align: center;">
+            <a href="../chuong-trinh-cong-dong.html" class="back-button">
+                ← Quay lại danh sách chương trình
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <img src="../images/logo-t27.png" alt="T27 Logo" class="footer-logo-image" onerror="this.src='../images/logo-t27.svg'">
+        <p class="footer-tagline" style="color: var(--primary-orange) !important;">Cái tâm mọi công trình</p>
+        <p>&copy; 2025 Công Ty Cổ Phần Tư Vấn T27. All rights reserved.</p>
+        <p>Tư vấn thiết kế | Khảo sát - Địa hình Địa chất | Giám sát thi công | Quản lý dự án</p>
+    </footer>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Đội Ngũ Chuyên Gia - T27 Công Ty Cổ Phần Tư Vấn</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Insights-style Hero used for consistency with Tin tức */
+        .insights-hero {
+            background: linear-gradient(135deg, #1e5366 0%, #0d4a5f 100%);
+            padding: 160px 20px 80px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .insights-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><path d="M0,300 Q300,200 600,300 T1200,300 L1200,600 L0,600 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+            opacity: 0.2;
+        }
+
+        .insights-hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .insights-hero h1 {
+            font-size: 3.5em;
+            color: white;
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        /* Height Adjustment Slider */
+        .height-adjuster {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 9999;
+            min-width: 250px;
+        }
+
+        .height-adjuster h4 {
+            margin: 0 0 10px 0;
+            color: #0088cc;
+            font-size: 0.9em;
+        }
+
+        .height-adjuster input[type="range"] {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .height-adjuster .value-display {
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #0088cc;
+            margin: 10px 0;
+        }
+
+        .height-adjuster button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .height-adjuster .copy-btn {
+            background: #0088cc;
+            color: white;
+        }
+
+        .height-adjuster .copy-btn:hover {
+            background: #006ba1;
+        }
+
+        .height-adjuster .close-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .height-adjuster .close-btn:hover {
+            background: #c0392b;
+        }
+
+        /* Filter Section - White Background with Blue Button */
+        .filter-section {
+            background: white;
+            padding: 30px 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .filter-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-select,
+        .search-input {
+            padding: 14px 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.95em;
+            background: white;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .filter-select {
+            min-width: 200px;
+            appearance: none;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8"><path fill="%23666" d="M0 0l6 8 6-8z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
+            cursor: pointer;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .filter-select:hover,
+        .search-input:focus {
+            border-color: #0d4a5f;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(13, 74, 95, 0.1);
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .submit-btn,
+        .clear-btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.95em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: capitalize;
+            font-family: inherit;
+        }
+
+        .submit-btn {
+            background: #0088cc;
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background: #006ba1;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
+        }
+
+        .clear-btn {
+            background: transparent;
+            color: #0088cc;
+            border: none;
+            text-decoration: underline;
+            padding: 14px 20px;
+        }
+
+        .clear-btn:hover {
+            color: #006ba1;
+        }
+
+        /* Experts Grid - 3 Column Layout */
+        .experts-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 50px 20px 80px;
+            background: #f8f9fa;
+        }
+
+        .experts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+        }
+
+        /* Expert Card - Clean Design */
+        .expert-card {
+            background: white;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .expert-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .expert-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 260px;
+            overflow: hidden;
+            background: #f0f0f0;
+        }
+
+        .expert-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .expert-card:hover .expert-image {
+            transform: scale(1.05);
+        }
+
+        /* Featured Badge - Bottom Left with Blue Background */
+        .featured-badge {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            background: #0088cc;
+            color: white;
+            padding: 6px 14px;
+            font-size: 0.7em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 10;
+        }
+
+        /* Expert Content */
+        .expert-content {
+            padding: 28px 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .expert-name {
+            font-size: 1.25em;
+            color: #0088cc;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            font-weight: 600;
+            min-height: 55px;
+        }
+
+        .expert-title {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .expert-specialties {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.6;
+            margin-bottom: 18px;
+            flex: 1;
+        }
+
+        .view-more {
+            color: #0088cc;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+            font-size: 0.9em;
+        }
+
+        .view-more:hover {
+            color: #006ba1;
+            gap: 10px;
+        }
+
+        .view-more::after {
+            content: '→';
+            font-size: 1.2em;
+        }
+
+        /* Results Count - Hidden for cleaner look */
+        .results-info {
+            display: none;
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 80px 20px;
+            display: none;
+            background: white;
+            border-radius: 8px;
+            margin: 20px;
+        }
+
+        .no-results.show {
+            display: block;
+        }
+
+        .no-results-icon {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            opacity: 0.3;
+        }
+
+        .no-results h3 {
+            font-size: 1.8em;
+            color: #0088cc;
+            margin-bottom: 12px;
+        }
+
+        .no-results p {
+            font-size: 1em;
+            color: #666;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .experts-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+            
+            .filter-select {
+                min-width: 180px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .insights-hero {
+                padding: 140px 20px 60px;
+            }
+
+            .insights-hero h1 {
+                font-size: 2.5em;
+            }
+
+            .filter-section {
+                padding: 20px 15px;
+            }
+
+            .filter-container {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .filter-select,
+            .search-input,
+            .submit-btn,
+            .clear-btn {
+                width: 100%;
+            }
+            
+            .filter-select {
+                min-width: 100%;
+            }
+            
+            .experts-container {
+                padding: 30px 15px 60px;
+            }
+
+            .experts-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .expert-image-wrapper {
+                height: 240px;
+            }
+            
+            /* Contact bar responsive */
+            .contact-bar-content {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+            
+            .contact-item {
+                font-size: 0.85em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .filter-section {
+                padding: 15px 10px;
+            }
+            
+            .filter-select,
+            .search-input {
+                padding: 12px 16px;
+                font-size: 0.9em;
+            }
+            
+            .submit-btn,
+            .clear-btn {
+                padding: 12px 20px;
+                font-size: 0.9em;
+            }
+
+            .expert-image-wrapper {
+                height: 200px;
+            }
+
+            .expert-content {
+                padding: 20px 18px;
+            }
+
+            .expert-name {
+                font-size: 1.15em;
+                min-height: auto;
+            }
+
+            .expert-title {
+                font-size: 0.85em;
+            }
+
+            .expert-specialties {
+                font-size: 0.85em;
+            }
+
+            .featured-badge {
+                padding: 5px 10px;
+                font-size: 0.65em;
+                bottom: 10px;
+                left: 10px;
+            }
+
+            .no-results {
+                padding: 60px 15px;
+            }
+
+            .no-results-icon {
+                font-size: 2.5em;
+            }
+
+            .no-results h3 {
+                font-size: 1.4em;
+            }
+
+            /* Contact bar for very small screens */
+            .contact-item {
+                font-size: 0.8em;
+                padding: 3px 0;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .expert-name {
+                font-size: 1.1em;
+            }
+            
+            .contact-item strong {
+                display: block;
+                margin-bottom: 2px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-container" style="text-decoration: none; color: inherit;">
+                <img src="images/logo-t27.png" alt="T27 Logo" class="logo-image" onerror="this.src='images/logo-t27.svg'">
+                <div class="logo-tagline">Cái tâm mọi công trình</div>
+            </a>
+            
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="gioi-thieu.html">Giới thiệu</a></li>
+                <li><a href="du-an.html">Dự án</a></li>
+                <li><a href="doi-ngu-chuyen-gia.html" style="color: var(--primary-orange);">Đội ngũ chuyên gia</a></li>
+                <li><a href="cong-nghe-so.html">Công nghệ số</a></li>
+                <li><a href="tin-tuc.html">Tin tức</a></li>
+                <li><a href="chinh-sach.html">Chính sách</a></li>
+                <li><a href="lien-he.html">Liên hệ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contact Bar -->
+    <div class="contact-bar">
+        <div class="contact-bar-content">
+            <div class="contact-item">
+                <strong>📞 Hotline:</strong> 058.2210226 | 0913.431.515
+            </div>
+            <div class="contact-item">
+                <strong>✉ Email:</strong> t27_vn@yahoo.com
+            </div>
+            <div class="contact-item">
+                <strong>📍 Địa chỉ:</strong> Nha Trang, Khánh Hòa | Quy Nhơn, Bình Định
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section (use same style as insights) -->
+    <div class="insights-hero" id="heroSection">
+        <div class="insights-hero-content">
+            <h1>Đội ngũ chuyên gia</h1>
+        </div>
+    </div>
+
+    <!-- Height Adjustment Slider - HIDDEN -->
+    <div class="height-adjuster" id="heightAdjuster">
+        <h4>⚙️ Điều chỉnh chiều cao Hero</h4>
+        <input type="range" id="heroHeightSlider" min="100" max="400" value="240" step="10">
+        <div class="value-display">
+            Padding: <span id="paddingValue">160px 20px 80px</span>
+        </div>
+        <button class="copy-btn" onclick="copyHeightValue()">📋 Copy giá trị</button>
+        <button class="close-btn" onclick="closeAdjuster()">✕ Đóng</button>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="filter-section">
+        <div class="filter-container">
+            <select class="filter-select" id="expertiseFilter">
+                <option value="">Filter by Expertise</option>
+                <option value="khao-sat-thiet-ke">Khảo sát thiết kế</option>
+                <option value="bim">BIM & Công nghệ số</option>
+                <option value="giam-sat">Tư vấn giám sát</option>
+                <option value="kiem-dinh">Kiểm định</option>
+                <option value="lua-chon-nha-thau">Lựa chọn nhà thầu</option>
+            </select>
+
+            <select class="filter-select" id="specialtyFilter">
+                <option value="">Filter by Specialty</option>
+                <option value="giao-thong">Giao thông</option>
+                <option value="cau-duong">Cầu đường</option>
+                <option value="xay-dung">Xây dựng dân dụng</option>
+                <option value="ha-tang">Hạ tầng kỹ thuật</option>
+                <option value="kien-truc">Kiến trúc</option>
+                <option value="ket-cau">Kết cấu</option>
+                <option value="dia-chat">Địa chất công trình</option>
+            </select>
+
+            <select class="filter-select" id="levelFilter">
+                <option value="">Filter by Level</option>
+                <option value="hang-1">Hạng I</option>
+                <option value="hang-2">Hạng II</option>
+                <option value="thac-si">Thạc sĩ</option>
+                <option value="tien-si">Tiến sĩ</option>
+            </select>
+
+            <input type="text" class="search-input" id="searchInput" placeholder="Search Experts ...">
+
+            <button class="submit-btn" onclick="filterExperts()">Submit</button>
+            <button class="clear-btn" onclick="clearFilters()">Clear All</button>
+        </div>
+    </div>
+
+    <!-- Experts Container -->
+    <div class="experts-container">
+        <!-- Results Info - Hidden -->
+        <div class="results-info">
+            <div class="results-count">
+                Showing <span class="number" id="resultsCount">15</span> experts
+            </div>
+        </div>
+
+        <!-- Experts Grid -->
+        <div class="experts-grid" id="expertsGrid">
+            <!-- Expert Card 1 - Featured -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="cau-duong" data-level="hang-1 thac-si">
+                <div class="expert-image-wrapper">
+                    <img src="images/experts/expert-1.jpg" alt="ThS. KTS. Nguyễn Thanh Tuấn" class="expert-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%231e5366%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EChuyên gia%3C/text%3E%3C/svg%3E'">
+                    <span class="featured-badge">FEATURED</span>
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">ThS. KTS. Nguyễn Thanh Tuấn</h3>
+                    <p class="expert-title">Trưởng Phòng Thiết Kế Cầu & Công trình Đặc biệt</p>
+                    <p class="expert-specialties">Chứng chỉ hành nghề Thiết kế Hạng I • 18 năm kinh nghiệm thiết kế cầu dây văng, cầu treo, cầu vượt, hầm chui</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card 2 - Featured -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="giao-thong ha-tang" data-level="hang-1">
+                <div class="expert-image-wrapper">
+                    <img src="images/experts/expert-2.jpg" alt="KS. Trần Minh Hải" class="expert-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%232d6a7f%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EChuyên gia%3C/text%3E%3C/svg%3E'">
+                    <span class="featured-badge">FEATURED</span>
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">KS. Trần Minh Hải</h3>
+                    <p class="expert-title">Trưởng Phòng Thiết Kế Đường & Hạ infrastructure Kỹ thuật</p>
+                    <p class="expert-specialties">Chứng chỉ hành nghề Thiết kế Hạng I • 15 năm thiết kế đường bộ và hạ tầng đô thị</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card 3 - Featured -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="kien-truc" data-level="hang-1">
+                <div class="expert-image-wrapper">
+                    <img src="images/experts/expert-3.jpg" alt="KS. Lê Thị Phương Anh" class="expert-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23004E89%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EChuyên gia%3C/text%3E%3C/svg%3E'">
+                    <span class="featured-badge">FEATURED</span>
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">KS. Lê Thị Phương Anh</h3>
+                    <p class="expert-title">Phó Phòng Thiết Kế Kiến trúc & Công trình Dân dụng</p>
+                    <p class="expert-specialties">Chứng chỉ hành nghề Thiết kế Kiến trúc Hạng I • 12 năm thiết kế kiến trúc và quy hoạch</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card 4 - Featured -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="ket-cau xay-dung" data-level="hang-2">
+                <div class="expert-image-wrapper">
+                    <img src="images/experts/expert-4.jpg" alt="KS. Phạm Quốc Hưng" class="expert-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23FF6B35%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EChuyên gia%3C/text%3E%3C/svg%3E'">
+                    <span class="featured-badge">FEATURED</span>
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">KS. Phạm Quốc Hưng</h3>
+                    <p class="expert-title">Chuyên viên Thiết kế Nền móng & Kết cấu</p>
+                    <p class="expert-specialties">Chứng chỉ hành nghề Thiết kế Kết cấu Hạng II • 10 năm thiết kế kết cấu công trình</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card 5 -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="dia-chat" data-level="hang-1">
+                <div class="expert-image-wrapper">
+                    <img src="images/experts/expert-5.jpg" alt="KS. Võ Thị Mai" class="expert-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%230077B6%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EChuyên gia%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">KS. Võ Thị Mai</h3>
+                    <p class="expert-title">Chuyên viên Khảo sát Địa hình - Địa chất</p>
+                    <p class="expert-specialties">Chứng chỉ Khảo sát Địa chất Công trình Hạng I • 14 năm khảo sát địa hình, địa chất</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card 6 -->
+            <div class="expert-card" data-expertise="bim" data-specialty="bim" data-level="hang-1">
+                <div class="expert-image-wrapper">
+                    <img src="images/experts/expert-6.jpg" alt="KS. Đặng Văn Nam" class="expert-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23FFB41F%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EChuyên gia%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">KS. Đặng Văn Nam</h3>
+                    <p class="expert-title">Trưởng Phòng BIM & Công nghệ số</p>
+                    <p class="expert-specialties">BIM Manager • 10 năm kinh nghiệm mô hình hóa BIM và quản lý dự án số</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card 7 -->
+            <div class="expert-card" data-expertise="giam-sat" data-specialty="giao-thong" data-level="hang-1">
+                <div class="expert-image-wrapper">
+                    <img src="images/experts/expert-7.jpg" alt="KS. Hoàng Minh Tuấn" class="expert-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%231e5366%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EChuyên gia%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">KS. Hoàng Minh Tuấn</h3>
+                    <p class="expert-title">Trưởng Phòng Tư vấn Giám sát</p>
+                    <p class="expert-specialties">Chứng chỉ hành nghề Giám sát Hạng I • 16 năm giám sát thi công công trình giao thông</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card 8 -->
+            <div class="expert-card" data-expertise="giam-sat" data-specialty="xay-dung" data-level="hang-1">
+                <div class="expert-image-wrapper">
+                    <img src="images/experts/expert-8.jpg" alt="KS. Ngô Thị Lan" class="expert-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23004E89%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EChuyên gia%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">KS. Ngô Thị Lan</h3>
+                    <p class="expert-title">Phó Phòng Giám sát Xây dựng Dân dụng</p>
+                    <p class="expert-specialties">Chứng chỉ hành nghề Giám sát Hạng I • 13 năm giám sát công trình dân dụng và công nghiệp</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card 9 -->
+            <div class="expert-card" data-expertise="kiem-dinh" data-specialty="xay-dung" data-level="hang-1">
+                <div class="expert-image-wrapper">
+                    <img src="images/experts/expert-9.jpg" alt="KS. Phan Đức Minh" class="expert-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23002D4D%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EChuyên gia%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">KS. Phan Đức Minh</h3>
+                    <p class="expert-title">Trưởng Phòng Kiểm định Chất lượng Công trình</p>
+                    <p class="expert-specialties">Chứng chỉ hành nghề Kiểm định Hạng I • 17 năm kinh nghiệm kiểm định công trình xây dựng</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card 10 -->
+            <div class="expert-card" data-expertise="lua-chon-nha-thau" data-specialty="giao-thong xay-dung" data-level="hang-1">
+                <div class="expert-image-wrapper">
+                    <img src="images/experts/expert-10.jpg" alt="KS. Lý Hoàng Phúc" class="expert-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23FF6B35%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EChuyên gia%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">KS. Lý Hoàng Phúc</h3>
+                    <p class="expert-title">Chuyên viên Tư vấn Đấu thầu & Quản lý Hợp đồng</p>
+                    <p class="expert-specialties">Chứng chỉ hành nghề Đấu thầu Hạng I • 12 năm tư vấn lựa chọn nhà thầu xây dựng</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card 11 -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="ha-tang" data-level="hang-2">
+                <div class="expert-image-wrapper">
+                    <img src="images/experts/expert-11.jpg" alt="KS. Trương Văn Bình" class="expert-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%230077B6%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EChuyên gia%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">KS. Trương Văn Bình</h3>
+                    <p class="expert-title">Chuyên viên Thiết kế Cấp thoát nước</p>
+                    <p class="expert-specialties">Chứng chỉ hành nghề Thiết kế Hạng II • 11 năm thiết kế hệ thống cấp thoát nước</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card 12 -->
+            <div class="expert-card" data-expertise="bim" data-specialty="bim kien-truc" data-level="hang-2">
+                <div class="expert-image-wrapper">
+                    <img src="images/experts/expert-12.jpg" alt="KS. Vũ Thị Hương" class="expert-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23FFB41F%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EChuyên gia%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">KS. Vũ Thị Hương</h3>
+                    <p class="expert-title">BIM Coordinator</p>
+                    <p class="expert-specialties">BIM Specialist • 8 năm kinh nghiệm mô hình hóa BIM Architecture</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card 13 -->
+            <div class="expert-card" data-expertise="giam-sat" data-specialty="ha-tang" data-level="hang-2">
+                <div class="expert-image-wrapper">
+                    <img src="images/experts/expert-13.jpg" alt="KS. Bùi Quang Huy" class="expert-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%231e5366%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EChuyên gia%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">KS. Bùi Quang Huy</h3>
+                    <p class="expert-title">Chuyên viên Giám sát Hạ infrastructure Kỹ thuật</p>
+                    <p class="expert-specialties">Chứng chỉ hành nghề Giám sát Hạng II • 9 năm giám sát thi công hạ tầng</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card 14 -->
+            <div class="expert-card" data-expertise="kiem-dinh" data-specialty="cau-duong" data-level="hang-1">
+                <div class="expert-image-wrapper">
+                    <img src="images/experts/expert-14.jpg" alt="KS. Đỗ Văn Thắng" class="expert-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23004E89%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EChuyên gia%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">KS. Đỗ Văn Thắng</h3>
+                    <p class="expert-title">Chuyên viên Kiểm định Cầu & Công trình Giao thông</p>
+                    <p class="expert-specialties">Chứng chỉ hành nghề Kiểm định Hạng I • 14 năm kiểm định cầu và công trình giao thông</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card 15 -->
+            <div class="expert-card" data-expertise="lua-chon-nha-thau" data-specialty="ha-tang" data-level="hang-2">
+                <div class="expert-image-wrapper">
+                    <img src="images/experts/expert-15.jpg" alt="KS. Cao Thị Ngọc" class="expert-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23002D4D%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EChuyên gia%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">KS. Cao Thị Ngọc</h3>
+                    <p class="expert-title">Chuyên viên Tư vấn Đấu thầu</p>
+                    <p class="expert-specialties">Chứng chỉ hành nghề Đấu thầu Hạng II • 10 năm tư vấn lập hồ sơ mời thầu</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Results Message -->
+        <div class="no-results" id="noResults">
+            <div class="no-results-icon">🔍</div>
+            <h3>No experts found</h3>
+            <p>Try adjusting your filters or search terms</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <img src="images/logo-t27.png" alt="T27 Logo" class="footer-logo-image" onerror="this.src='images/logo-t27.svg'">
+        <p class="footer-tagline" style="color: var(--primary-orange) !important;">Cái tâm mọi công trình</p>
+        <p>&copy; 2025 Công Ty Cổ Phần Tư Vấn T27. All rights reserved.</p>
+        <p>Tư vấn thiết kế | Khảo sát - Địa hình Địa chất | Giám sát thi công | Quản lý dự án</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Height adjuster functionality
+        const slider = document.getElementById('heroHeightSlider');
+        const heroSection = document.getElementById('heroSection');
+        const paddingValue = document.getElementById('paddingValue');
+
+        slider.addEventListener('input', function() {
+            const topPadding = parseInt(this.value);
+            const bottomPadding = Math.round(topPadding / 2);
+            const padding = `${topPadding}px 20px ${bottomPadding}px`;
+            heroSection.style.padding = padding;
+            paddingValue.textContent = padding;
+        });
+
+        // Initialize slider with current padding value
+        window.addEventListener('DOMContentLoaded', function() {
+            const currentPadding = window.getComputedStyle(heroSection).paddingTop;
+            const currentValue = parseInt(currentPadding);
+            slider.value = currentValue;
+            const bottomValue = Math.round(currentValue / 2);
+            document.getElementById('paddingValue').textContent = `${currentValue}px 20px ${bottomValue}px`;
+        });
+
+        function copyHeightValue() {
+            const value = paddingValue.textContent;
+            navigator.clipboard.writeText(value).then(() => {
+                alert('Đã copy giá trị: ' + value);
+            });
+        }
+
+        function closeAdjuster() {
+            document.getElementById('heightAdjuster').style.display = 'none';
+        }
+
+        // Filter experts
+        function filterExperts() {
+            const expertiseFilter = document.getElementById('expertiseFilter').value.toLowerCase();
+            const specialtyFilter = document.getElementById('specialtyFilter').value.toLowerCase();
+            const levelFilter = document.getElementById('levelFilter').value.toLowerCase();
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const expertCards = document.querySelectorAll('.expert-card');
+            let visibleCount = 0;
+
+            expertCards.forEach(card => {
+                const expertise = card.dataset.expertise || '';
+                const specialty = card.dataset.specialty || '';
+                const level = card.dataset.level || '';
+                const name = card.querySelector('.expert-name').textContent.toLowerCase();
+                const title = card.querySelector('.expert-title').textContent.toLowerCase();
+
+                const matchesExpertise = !expertiseFilter || expertise === expertiseFilter;
+                const matchesSpecialty = !specialtyFilter || specialty.includes(specialtyFilter);
+                const matchesLevel = !levelFilter || level.includes(levelFilter);
+                const matchesSearch = !searchInput || name.includes(searchInput) || title.includes(searchInput);
+
+                if (matchesExpertise && matchesSpecialty && matchesLevel && matchesSearch) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Update results count
+            document.getElementById('resultsCount').textContent = visibleCount;
+
+            // Show/hide no results message
+            const noResults = document.getElementById('noResults');
+            if (visibleCount === 0) {
+                noResults.classList.add('show');
+            } else {
+                noResults.classList.remove('show');
+            }
+        }
+
+        // Clear all filters
+        function clearFilters() {
+            document.getElementById('expertiseFilter').value = '';
+            document.getElementById('specialtyFilter').value = '';
+            document.getElementById('levelFilter').value = '';
+            document.getElementById('searchInput').value = '';
+            filterExperts();
+        }
+
+        // Search on Enter key
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                filterExperts();
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 100) {
+                    navbar.style.boxShadow = '0 5px 25px rgba(0,0,0,0.2)';
+                } else {
+                    navbar.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+                }
+            });
+        });
+
+        // Toggle mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('open');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close mobile menu on nav link click
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('open');
+                hamburger.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

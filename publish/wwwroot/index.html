@@ -1,0 +1,876 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>T27 - Công Ty Cổ Phần Tư Vấn T27</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Hero Section - Full Screen Impact with Video Background */
+        .hero-main {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #1a1a1a;
+        }
+
+        /* YouTube Video Background */
+        .hero-video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .hero-video-container iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 100vh;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        /* Scale video to cover screen on all sizes */
+        @media (min-aspect-ratio: 16/9) {
+            .hero-video-container iframe {
+                height: 56.25vw; /* 16:9 aspect ratio */
+            }
+        }
+        @media (max-aspect-ratio: 16/9) {
+            .hero-video-container iframe {
+                width: 177.78vh; /* 16:9 aspect ratio */
+            }
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            display: none; /* Hidden when video is available */
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 45, 77, 0.75) 0%, rgba(0, 78, 137, 0.65) 100%);
+            z-index: 2;
+        }
+
+        .hero-content-main {
+            position: relative;
+            z-index: 3;
+            max-width: 1400px;
+            padding: 0 60px;
+            color: white;
+            text-align: left;
+        }
+
+        .hero-content-main h1 {
+            font-size: 5em;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            color: white;
+            text-shadow: 2px 4px 12px rgba(0,0,0,0.5);
+        }
+
+        .hero-tagline {
+            font-size: 2em;
+            color: var(--primary-orange);
+            font-weight: 500;
+            margin-bottom: 30px;
+            font-style: italic;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .hero-description {
+            font-size: 1.3em;
+            max-width: 700px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--primary-orange);
+            color: white;
+            padding: 18px 45px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary:hover {
+            background: #d46a1f;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(230, 126, 34, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 18px 45px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-decoration: none;
+            border: 2px solid white;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-blue);
+        }
+
+        /* Stats Banner */
+        .stats-banner-main {
+            background: linear-gradient(135deg, #002D4D 0%, #004E89 100%);
+            padding: 80px 20px;
+            position: relative;
+        }
+
+        .stats-grid-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 60px;
+        }
+
+        .stat-item-main {
+            text-align: center;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 4.5em;
+            font-weight: 700;
+            color: var(--primary-orange);
+            margin-bottom: 15px;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1.2em;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        /* Featured Projects Carousel */
+        .featured-projects {
+            padding: 100px 20px;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 70px;
+        }
+
+        .section-header h2 {
+            font-size: 3em;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            font-size: 1.2em;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .projects-carousel {
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 60px;
+            scrollbar-width: none;
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .project-card-featured {
+            flex: 0 0 450px;
+            background: white;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .project-card-featured:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+
+        .project-image-featured {
+            width: 100%;
+            height: 320px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-image-featured img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card-featured:hover .project-image-featured img {
+            transform: scale(1.1);
+        }
+
+        .project-category-tag {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--primary-orange);
+            color: white;
+            padding: 8px 20px;
+            font-size: 0.85em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 10;
+        }
+
+        .project-content-featured {
+            padding: 35px;
+        }
+
+        .project-content-featured h3 {
+            font-size: 1.5em;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            line-height: 1.3;
+            font-weight: 600;
+        }
+
+        .project-location-featured {
+            color: #888;
+            font-size: 0.95em;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .project-description-featured {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-size: 0.95em;
+        }
+
+        .project-link-featured {
+            color: var(--primary-blue);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .project-link-featured:hover {
+            color: var(--primary-orange);
+            gap: 15px;
+        }
+
+        /* Services Grid */
+        .services-section {
+            padding: 100px 20px;
+            background: #f8f9fa;
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 50px 35px;
+            border-radius: 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            text-align: center;
+            border-top: 4px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            border-top-color: var(--primary-orange);
+        }
+
+        .service-icon {
+            font-size: 3.5em;
+            margin-bottom: 25px;
+            color: var(--primary-blue);
+        }
+
+        .service-card h3 {
+            font-size: 1.4em;
+            color: var(--primary-blue);
+            margin-bottom: 18px;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 0.95em;
+        }
+
+        /* Employee Owned Banner */
+        .employee-banner {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #002D4D 100%);
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .employee-banner h2 {
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .employee-banner p {
+            font-size: 1.3em;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.7;
+            opacity: 0.95;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 100px 20px;
+            background: white;
+        }
+
+        .team-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .team-member {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-8px);
+        }
+
+        .team-photo {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border-radius: 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .team-member h3 {
+            font-size: 1.3em;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .team-member .position {
+            color: var(--primary-orange);
+            font-size: 0.95em;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .team-member .contact {
+            color: #666;
+            font-size: 0.85em;
+            margin: 5px 0;
+        }
+
+        /* CTA Fixed Button */
+        .cta-fixed {
+            position: fixed;
+            right: 40px;
+            bottom: 40px;
+            background: var(--primary-orange);
+            color: white;
+            padding: 18px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(230, 126, 34, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+
+        .cta-fixed:hover {
+            background: #d46a1f;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(230, 126, 34, 0.5);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-content-main h1 {
+                font-size: 2.5em;
+            }
+
+            .hero-tagline {
+                font-size: 1.3em;
+            }
+
+            .hero-description {
+                font-size: 1em;
+            }
+
+            .hero-video-container iframe {
+                width: 300%;
+                left: 50%;
+            }
+
+            .stats-grid-main {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .stat-number {
+                font-size: 3em;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .section-header h2 {
+                font-size: 2em;
+            }
+
+            .cta-fixed {
+                right: 20px;
+                bottom: 20px;
+                padding: 15px 25px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-main {
+                height: auto;
+                min-height: 600px;
+            }
+
+            .hero-content-main {
+                padding: 0 20px;
+            }
+
+            .hero-content-main h1 {
+                font-size: 2em;
+            }
+
+            .stats-grid-main {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card-featured {
+                flex: 0 0 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-container" style="text-decoration: none;">
+                <img src="images/logo-t27.png" alt="T27 Logo" class="logo-image" onerror="this.src='images/logo-t27.svg'">
+                <div class="logo-tagline">Cái tâm mọi công trình</div>
+            </a>
+            
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" style="color: var(--primary-orange);">Trang chủ</a></li>
+                <li><a href="gioi-thieu.html">Giới thiệu</a></li>
+                <li><a href="du-an.html">Dự án</a></li>
+                <li><a href="doi-ngu-chuyen-gia.html">Đội ngũ chuyên gia</a></li>
+                <li><a href="cong-nghe-so.html">Công nghệ số</a></li>
+                <li><a href="tin-tuc.html">Tin tức</a></li>
+                <li><a href="chinh-sach.html">Chính sách</a></li>
+                <li><a href="lien-he.html">Liên hệ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Full Screen with Video Background -->
+    <section class="hero-main">
+        <!-- YouTube Video Background -->
+        <div class="hero-video-container">
+            <!-- Video ID from: https://www.youtube.com/watch?v=CMBd4tJUx1g -->
+            <iframe src="https://www.youtube.com/embed/CMBd4tJUx1g?autoplay=1&mute=1&loop=1&playlist=CMBd4tJUx1g&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
+                    frameborder="0"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen>
+            </iframe>
+        </div>
+        
+        <!-- Fallback background image if video doesn't load -->
+        <img src="images/Hình nền công ty/1.jpg" alt="T27 Engineering" class="hero-background"
+             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%221920%22 height=%221080%22%3E%3Crect fill=%22%231e5366%22 width=%221920%22 height=%221080%22/%3E%3C/svg%3E'">
+        
+        <div class="hero-overlay"></div>
+        <div class="hero-content-main">
+            <h1>Công ty cổ phần tư vấn T27</h1>
+            <p class="hero-tagline">Cái tâm mọi công trình</p>
+            <p class="hero-description">
+                T27 là đơn vị tư vấn hàng đầu với hơn 19 năm kinh nghiệm trong lĩnh vực thiết kế, 
+                khảo sát, giám sát và quản lý dự án xây dựng tại Việt Nam.
+            </p>
+            <div class="hero-buttons">
+                <a href="du-an.html" class="btn-primary">CÁC DỰ ÁN ĐÃ LÀM ▸</a>
+                <a href="lien-he.html" class="btn-secondary">LIÊN HỆ VỚI CHÚNG TÔI ▸</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Banner -->
+    <section class="stats-banner-main">
+        <div class="stats-grid-main">
+            <div class="stat-item-main">
+                <div class="stat-number">19+</div>
+                <div class="stat-label">Năm Kinh Nghiệm</div>
+            </div>
+            <div class="stat-item-main">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Dự Án Hoàn Thành</div>
+            </div>
+            <div class="stat-item-main">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Khách Hàng Tin Tưởng</div>
+            </div>
+            <div class="stat-item-main">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Đội Ngũ Chuyên Gia</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects Carousel -->
+    <section class="featured-projects">
+        <div class="section-header">
+            <h2>Dự Án Tiêu Biểu</h2>
+            <p>Những công trình được thực hiện với tâm huyết và chuyên môn cao, góp phần phát triển hạ tầng Việt Nam</p>
+        </div>
+
+        <div class="projects-carousel">
+            <div class="carousel-track">
+                <!-- Project 1 -->
+                <div class="project-card-featured">
+                    <div class="project-image-featured">
+                        <span class="project-category-tag">GIAO THÔNG</span>
+                        <img src="images/projects/project-1.jpg" alt="Đường giao thông nội bộ"
+                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22450%22 height=%22320%22%3E%3Crect fill=%22%231e5366%22 width=%22450%22 height=%22320%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EGiao Thông%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="project-content-featured">
+                        <h3>Đường giao thông nội bộ khu đô thị mới</h3>
+                        <p class="project-location-featured">📍 Nha Trang, Khánh Hòa</p>
+                        <p class="project-description-featured">
+                            Thiết kế và tư vấn xây dựng hệ thống đường giao thông nội bộ với tổng chiều dài 5.2km, 
+                            bao gồm đường chính rộng 24m và các đường nhánh 12m-16m.
+                        </p>
+                        <a href="du-an.html" class="project-link-featured">Xem chi tiết →</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card-featured">
+                    <div class="project-image-featured">
+                        <span class="project-category-tag">CÔNG TRÌNH THỦY</span>
+                        <img src="images/projects/project-2.jpg" alt="Hệ thống thủy lợi"
+                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22450%22 height=%22320%22%3E%3Crect fill=%22%232d6a7f%22 width=%22450%22 height=%22320%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3ECông Trình Thủy%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="project-content-featured">
+                        <h3>Hệ thống đập tràn và kênh mương thủy lợi</h3>
+                        <p class="project-location-featured">📍 Quy Nhơn, Bình Định</p>
+                        <p class="project-description-featured">
+                            Khảo sát thiết kế hệ thống thủy lợi phục vụ tưới tiêu cho 2,500 ha đất canh tác, 
+                            bao gồm đập tràn dài 180m và hệ thống kênh mương 12km.
+                        </p>
+                        <a href="du-an.html" class="project-link-featured">Xem chi tiết →</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card-featured">
+                    <div class="project-image-featured">
+                        <span class="project-category-tag">HẠ TẦNG KỸ THUẬT</span>
+                        <img src="images/projects/project-3.jpg" alt="Hệ thống cấp thoát nước"
+                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22450%22 height=%22320%22%3E%3Crect fill=%22%23004E89%22 width=%22450%22 height=%22320%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EHạ Tầng KT%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="project-content-featured">
+                        <h3>Hệ thống cấp thoát nước và xử lý nước thải</h3>
+                        <p class="project-location-featured">📍 Nha Trang, Khánh Hòa</p>
+                        <p class="project-description-featured">
+                            Thiết kế hệ thống cấp thoát nước tổng hợp cho khu công nghiệp với công suất 
+                            cấp nước 10,000 m³/ngày và xử lý nước thải 8,000 m³/ngày.
+                        </p>
+                        <a href="du-an.html" class="project-link-featured">Xem chi tiết →</a>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card-featured">
+                    <div class="project-image-featured">
+                        <span class="project-category-tag">XÂY DỰNG DÂN DỤNG</span>
+                        <img src="images/projects/project-4.jpg" alt="Tổ hợp thương mại"
+                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22450%22 height=%22320%22%3E%3Crect fill=%22%23FF6B35%22 width=%22450%22 height=%22320%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EXây Dựng DD%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="project-content-featured">
+                        <h3>Tổ hợp thương mại và văn phòng cao tầng</h3>
+                        <p class="project-location-featured">📍 Nha Trang, Khánh Hòa</p>
+                        <p class="project-description-featured">
+                            Thiết kế kiến trúc và kết cấu công trình 25 tầng nổi + 3 tầng hầm, 
+                            diện tích sàn xây dựng 45,000 m², tổng mức đầu tư 450 tỷ đồng.
+                        </p>
+                        <a href="du-an.html" class="project-link-featured">Xem chi tiết →</a>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card-featured">
+                    <div class="project-image-featured">
+                        <span class="project-category-tag">BIM</span>
+                        <img src="images/projects/project-5.jpg" alt="Mô hình BIM"
+                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22450%22 height=%22320%22%3E%3Crect fill=%22%230077B6%22 width=%22450%22 height=%22320%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EBIM 3D%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="project-content-featured">
+                        <h3>Mô hình BIM 3D cho khu đô thị thông minh</h3>
+                        <p class="project-location-featured">📍 Quy Nhơn, Bình Định</p>
+                        <p class="project-description-featured">
+                            Xây dựng mô hình BIM 3D chi tiết cho khu đô thị diện tích 150 ha, 
+                            tích hợp đầy đủ thông tin kiến trúc, kết cấu và hạ tầng kỹ thuật.
+                        </p>
+                        <a href="cong-nghe-so.html" class="project-link-featured">Xem chi tiết →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="section-header">
+            <h2>Lĩnh Vực Hoạt Động</h2>
+            <p>Cung cấp giải pháp toàn diện từ khảo sát, thiết kế đến giám sát và quản lý dự án</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🔍</div>
+                <h3>Khảo Sát & Đánh Giá</h3>
+                <p>Khảo sát địa hình, địa chất, thủy văn công trình với thiết bị hiện đại và đội ngũ chuyên gia giàu kinh nghiệm.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🏗️</div>
+                <h3>Thiết Kế Công Trình</h3>
+                <p>Thiết kế công trình giao thông, xây dựng, hạ tầng kỹ thuật và công trình thủy theo tiêu chuẩn quốc tế.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">💻</div>
+                <h3>Mô Hình BIM</h3>
+                <p>Lập mô hình BIM, đào tạo và chuyển giao mô hình thông tin trong xây dựng cho đối tác.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">👷</div>
+                <h3>Giám Sát Thi Công</h3>
+                <p>Tư vấn giám sát thi công xây dựng, đảm bảo chất lượng, tiến độ và an toàn lao động.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">✅</div>
+                <h3>Kiểm Định Chất Lượng</h3>
+                <p>Kiểm tra, kiểm định và nghiệm thu công trình trước khi đưa vào sử dụng theo quy chuẩn Việt Nam.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📋</div>
+                <h3>Quản Lý Dự Án</h3>
+                <p>Thẩm tra, thẩm định, lập hồ sơ mời thầu và đánh giá hồ sơ dự thầu chuyên nghiệp.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Employee Owned Banner -->
+    <section class="employee-banner">
+        <h2>🏆 Công Ty Cổ Phần - Đội Ngũ Kỹ Sư Giàu Kinh Nghiệm</h2>
+        <p>
+            T27 tự hào là công ty cổ phần với đội ngũ kỹ sư, chuyên gia giàu kinh nghiệm, 
+            tận tâm và chuyên nghiệp. Chúng tôi không chỉ làm việc vì dự án, mà còn đầu tư 
+            tâm huyết vào từng công trình như chính sự nghiệp của mình.
+        </p>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="section-header">
+            <h2>Đội Ngũ Lãnh Đạo</h2>
+            <p>Những con người dày dạn kinh nghiệm, dẫn dắt T27 phát triển bền vững</p>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="images/leaders/tgd.jpg" alt="Tổng Giám Đốc" class="team-photo"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23004E89%22 width=%22300%22 height=%22300%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2260%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ETGĐ%3C/text%3E%3C/svg%3E'">
+                <h3>Đỗ Văn Phong</h3>
+                <p class="position">Tổng Giám Đốc</p>
+                <p class="contact">📧 ceo@t27.com.vn</p>
+                <p class="contact">📞 0913.431.515</p>
+            </div>
+
+            <div class="team-member">
+                <img src="images/leaders/gd-kt.jpg" alt="Giám Đốc Kỹ Thuật" class="team-photo"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23004E89%22 width=%22300%22 height=%22300%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2260%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EGĐ%3C/text%3E%3C/svg%3E'">
+                <h3>Nguyễn Văn A</h3>
+                <p class="position">Giám Đốc Kỹ Thuật</p>
+                <p class="contact">📧 tech@t27.com.vn</p>
+                <p class="contact">📞 058.2210226</p>
+            </div>
+
+            <div class="team-member">
+                <img src="images/leaders/gd-kd.jpg" alt="Giám Đốc Kinh Doanh" class="team-photo"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23004E89%22 width=%22300%22 height=%22300%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2260%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EGĐ%3C/text%3E%3C/svg%3E'">
+                <h3>Trần Thị B</h3>
+                <p class="position">Giám Đốc Kinh Doanh</p>
+                <p class="contact">📧 sales@t27.com.vn</p>
+                <p class="contact">📞 0913.431.516</p>
+            </div>
+
+            <div class="team-member">
+                <img src="images/leaders/gd-hc.jpg" alt="Giám Đốc Hành Chính" class="team-photo"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23004E89%22 width=%22300%22 height=%22300%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2260%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EGĐ%3C/text%3E%3C/svg%3E'">
+                <h3>Lê Văn C</h3>
+                <p class="position">Giám Đốc Hành Chính</p>
+                <p class="contact">📧 admin@t27.com.vn</p>
+                <p class="contact">📞 058.2210227</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fixed CTA Button -->
+    <a href="lien-he.html" class="cta-fixed">💬 Liên hệ tư vấn miễn phí</a>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <img src="images/logo-t27.png" alt="T27 Logo" class="footer-logo-image" onerror="this.src='images/logo-t27.svg'">
+        <p class="footer-tagline" style="color: var(--primary-orange) !important;">Cái tâm mọi công trình</p>
+        <p>&copy; 2025 Công Ty Cổ Phần Tư Vấn T27. All rights reserved.</p>
+        <p>Tư vấn thiết kế | Khảo sát - Địa hình Địa chất | Giám sát thi công | Quản lý dự án</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Smooth scroll for carousel
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselTrack = document.querySelector('.carousel-track');
+            
+            // Smooth navbar shadow on scroll
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    navbar.style.boxShadow = '0 5px 25px rgba(0,0,0,0.2)';
+                } else {
+                    navbar.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+                }
+            });
+
+            // Handle video fallback
+            const videoContainer = document.querySelector('.hero-video-container');
+            const fallbackImage = document.querySelector('.hero-background');
+            const iframe = videoContainer.querySelector('iframe');
+            
+            // If video fails to load, show fallback image
+            iframe.addEventListener('error', function() {
+                videoContainer.style.display = 'none';
+                fallbackImage.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>

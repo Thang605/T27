@@ -1,0 +1,697 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dự án Nút giao Ngọc Hồi - T27 Công Ty Cổ Phần Tư Vấn</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .insights-hero {
+            background: linear-gradient(135deg, #1e5366 0%, #0d4a5f 100%);
+            padding: 160px 20px 80px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .insights-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><path d="M0,300 Q300,200 600,300 T1200,300 L1200,600 L0,600 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+            opacity: 0.2;
+        }
+
+        .insights-hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .insights-hero h1 {
+            font-size: 3.5em;
+            color: white;
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        /* Keep existing project styles */
+        .project-meta-header {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            color: white;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95em;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 600;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-5px);
+        }
+
+        .project-detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+            background: #f8f9fa;
+        }
+
+        /* Project Overview Box */
+        .project-overview-box {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .overview-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .overview-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .overview-content h2 {
+            color: #0088cc;
+            font-size: 2em;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #0088cc;
+        }
+
+        .overview-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .overview-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .overview-list li:last-child {
+            border-bottom: none;
+        }
+
+        .overview-label {
+            color: #0088cc;
+            font-weight: 600;
+            font-size: 1em;
+        }
+
+        .overview-value {
+            color: #666;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        .contract-link {
+            color: #0088cc;
+            text-decoration: none;
+            font-style: italic;
+        }
+
+        .contract-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Tabs Section */
+        .tabs-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .tabs-section h2 {
+            color: #0088cc;
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .tabs-nav {
+            display: flex;
+            gap: 10px;
+            border-bottom: 2px solid #e0e0e0;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 15px 30px;
+            background: transparent;
+            border: none;
+            color: #666;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            position: relative;
+            top: 2px;
+        }
+
+        .tab-btn:hover {
+            color: #0088cc;
+        }
+
+        .tab-btn.active {
+            color: #0088cc;
+            border-bottom-color: #0088cc;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-content h3 {
+            color: #0088cc;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            margin-top: 25px;
+        }
+
+        .tab-content h3:first-child {
+            margin-top: 0;
+        }
+
+        .tab-content p, .tab-content ul {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1em;
+        }
+
+        .tab-content ul {
+            padding-left: 20px;
+        }
+
+        .tab-content ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Project Images Gallery */
+        .images-gallery {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .images-gallery h2 {
+            color: #0088cc;
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            padding: 15px;
+            font-size: 0.9em;
+        }
+
+        /* Video Section */
+        .video-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .video-section h2 {
+            color: #0088cc;
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .insights-hero {
+                padding: 140px 20px 60px;
+            }
+
+            .insights-hero h1 {
+                font-size: 2.5em;
+            }
+
+            .project-overview-box {
+                grid-template-columns: 1fr;
+                padding: 25px 20px;
+            }
+
+            .tabs-section {
+                padding: 25px 20px;
+            }
+
+            .tab-btn {
+                padding: 12px 20px;
+                font-size: 0.9em;
+            }
+
+            .images-gallery {
+                padding: 25px 20px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-section {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-container" style="text-decoration: none; color: inherit;">
+                <img src="images/logo-t27.png" alt="T27 Logo" class="logo-image" onerror="this.src='images/logo-t27.svg'">
+                <div class="logo-tagline">Cái tâm mọi công trình</div>
+            </a>
+            
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="gioi-thieu.html">Giới thiệu</a></li>
+                <li><a href="du-an.html" style="color: var(--primary-orange);">Dự án</a></li>
+                <li><a href="doi-ngu-chuyen-gia.html">Đội ngũ chuyên gia</a></li>
+                <li><a href="cong-nghe-so.html">Công nghệ số</a></li>
+                <li><a href="su-kien.html">Sự kiện</a></li>
+                <li><a href="tin-tuc.html">Tin tức</a></li>
+                <li><a href="chinh-sach.html">Chính sách</a></li>
+                <li><a href="lien-he.html">Liên hệ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contact Bar -->
+    <div class="contact-bar">
+        <div class="contact-bar-content">
+            <div class="contact-item">
+                <strong>📞 Hotline:</strong> 058.2210226 | 0913.431.515
+            </div>
+            <div class="contact-item">
+                <strong>✉ Email:</strong> t27_vn@yahoo.com
+            </div>
+            <div class="contact-item">
+                <strong>📍 Địa chỉ:</strong> Nha Trang, Khánh Hòa | Quy Nhơn, Bình Định
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section (now using insights-hero style) -->
+    <div class="insights-hero">
+        <div class="insights-hero-content">
+            <a href="du-an.html" class="back-btn">← Quay lại danh sách dự án</a>
+            <h1>Dự án Nút giao Ngọc Hồi</h1>
+            <p class="subtitle">(Bài mẫu dự án)</p>
+            <div class="project-meta-header">
+                <div class="meta-item">
+                    <span>👤</span>
+                    <span>ADMIN</span>
+                </div>
+                <div class="meta-item">
+                    <span>📅</span>
+                    <span>14 THÁNG MƯỜI MỘT, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <span>📁</span>
+                    <span>CHƯA PHÂN LOẠI</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Detail Container -->
+    <div class="project-detail-container">
+        <!-- Project Overview Box -->
+        <div class="project-overview-box">
+            <div class="overview-image">
+                <img src="images/projects/ngoc-hoi-main.jpg" alt="Dự án Nút giao Ngọc Hồi"
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22500%22 height=%22400%22%3E%3Crect fill=%22%231e5366%22 width=%22500%22 height=%22400%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ENút giao Ngọc Hồi%3C/text%3E%3C/svg%3E'">
+            </div>
+            <div class="overview-content">
+                <h2>TỔNG QUAN DỰ ÁN</h2>
+                <ul class="overview-list">
+                    <li>
+                        <span class="overview-label">📍 Địa điểm:</span>
+                        <span class="overview-value">phường Nha Trang - tỉnh Khánh Hòa</span>
+                    </li>
+                    <li>
+                        <span class="overview-label">🏗️ Loại, cấp công trình:</span>
+                        <span class="overview-value">công trình giao thông Cấp II</span>
+                    </li>
+                    <li>
+                        <span class="overview-label">💰 Tổng mức đầu tư:</span>
+                        <span class="overview-value">1350 tỷ đồng</span>
+                    </li>
+                    <li>
+                        <span class="overview-label">🏢 Chủ đầu tư:</span>
+                        <span class="overview-value">Công Ty Cổ Phần Tập đoàn Phúc Sơn</span>
+                    </li>
+                    <li>
+                        <span class="overview-label">📋 Hợp đồng:</span>
+                        <span class="overview-value">
+                            <a href="#" class="contract-link">Số 22/2016/HĐKT-T27</a>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Tabs Section -->
+        <div class="tabs-section">
+            <h2>THÔNG TIN CHI TIẾT DỰ ÁN</h2>
+            <div class="tabs-nav">
+                <button class="tab-btn active" onclick="openTab(event, 'tab1')">Mục tiêu & Lợi ích</button>
+                <button class="tab-btn" onclick="openTab(event, 'tab2')">Điểm nổi bật</button>
+                <button class="tab-btn" onclick="openTab(event, 'tab3')">Tiến độ & Kết quả</button>
+                <button class="tab-btn" onclick="openTab(event, 'tab4')">Số chuyên gia tham gia</button>
+                <button class="tab-btn" onclick="openTab(event, 'tab5')">Thời gian thiết kế</button>
+            </div>
+
+            <!-- Tab 1: Mục tiêu & Lợi ích -->
+            <div id="tab1" class="tab-content active">
+                <h3>Giải quyết ùn tắc giao thông</h3>
+                <p>Xóa bỏ điểm giao cắt giữa đường sắt Bắc-Nam và đường 23 tháng 10, khu vực thường xuyên ùn ứ giao thông vào giờ cao điểm</p>
+
+                <h3>Kết nối giao thông vùng</h3>
+                <p>Tạo tuyến đi giao thông mới từ hướng Bắc-Nam không qua trung tâm thành phố, kết nối khu vực phía Tây TP Nha Trang với đường 23 tháng 10</p>
+
+                <h3>Phát triển kinh tế-xã hội</h3>
+                <p>Tạo động lực phát triển kinh tế-xã hội cho TP Nha Trang và các khu vực lân cận, là điểm kết nối quan trọng với đường Vành đai 2</p>
+
+                <h3>Nâng cao an toàn giao thông</h3>
+                <p>Phân luồng giao thông hiệu quả, giảm tai nạn tại khu vực giao cắt đường sắt</p>
+            </div>
+
+            <!-- Tab 2: Điểm nổi bật -->
+            <div id="tab2" class="tab-content">
+                <h3>Thiết kế hiện đại</h3>
+                <p>Nút giao được thiết kế theo mô hình giao thông hiện đại với nhiều tầng, kết hợp cầu vượt và hầm chui, đảm bảo giao thông thông suốt 24/7.</p>
+
+                <h3>Công nghệ thi công tiên tiến</h3>
+                <p>Áp dụng công nghệ BIM 3D trong thiết kế và quản lý thi công, đảm bảo độ chính xác cao và tối ưu hóa tiến độ.</p>
+
+                <h3>Thân thiện môi trường</h3>
+                <p>Tích hợp hệ thống thoát nước hiện đại, cảnh quan xanh và chiếu sáng tiết kiệm năng lượng.</p>
+
+                <h3>Kết nối đa phương</h3>
+                <p>Kết nối trực tiếp với 4 hướng giao thông chính, tạo điều kiện thuận lợi cho việc di chuyển trong và ngoài thành phố.</p>
+            </div>
+
+            <!-- Tab 3: Tiến độ & Kết quả -->
+            <div id="tab3" class="tab-content">
+                <h3>Giai đoạn chuẩn bị (2016-2017)</h3>
+                <ul>
+                    <li>Hoàn thành khảo sát địa hình, địa chất</li>
+                    <li>Lập báo cáo nghiên cứu khả thi và được phê duyệt</li>
+                    <li>Thiết kế kỹ thuật và bản vẽ thi công</li>
+                </ul>
+
+                <h3>Giai đoạn thi công (2018-2020)</h3>
+                <ul>
+                    <li>Khởi công xây dựng: Quý 1/2018</li>
+                    <li>Hoàn thành phần móng và kết cấu chính: Quý 4/2019</li>
+                    <li>Hoàn thiện công trình: Quý 2/2020</li>
+                </ul>
+
+                <h3>Nghiệm thu và đưa vào sử dụng (2020)</h3>
+                <ul>
+                    <li>Nghiệm thu công trình: 06/2020</li>
+                    <li>Đưa vào khai thác: 08/2020</li>
+                    <li>Đạt tiêu chuẩn kỹ thuật quốc gia</li>
+                </ul>
+
+                <h3>Kết quả đạt được</h3>
+                <ul>
+                    <li>Giảm 70% thời gian di chuyển qua khu vực</li>
+                    <li>Cải thiện đáng kể an toàn giao thông</li>
+                    <li>Đạt giải thưởng công trình chất lượng cao năm 2020</li>
+                </ul>
+            </div>
+
+            <!-- Tab 4: Số chuyên gia tham gia -->
+            <div id="tab4" class="tab-content">
+                <h3>Đội ngũ thiết kế</h3>
+                <ul>
+                    <li><strong>Tổng số:</strong> 25 chuyên gia</li>
+                    <li><strong>Kỹ sư trưởng:</strong> 3 người (15+ năm kinh nghiệm)</li>
+                    <li><strong>Kỹ sư thiết kế:</strong> 12 người</li>
+                    <li><strong>Chuyên viên BIM:</strong> 4 người</li>
+                    <li><strong>Chuyên viên khảo sát:</strong> 6 người</li>
+                </ul>
+
+                <h3>Đội ngũ giám sát</h3>
+                <ul>
+                    <li><strong>Tổng số:</strong> 15 chuyên gia</li>
+                    <li><strong>Giám sát trưởng:</strong> 1 người</li>
+                    <li><strong>Giám sát chuyên ngành:</strong> 8 người</li>
+                    <li><strong>Giám sát hiện trường:</strong> 6 người</li>
+                </ul>
+
+                <h3>Tư vấn chuyên môn</h3>
+                <ul>
+                    <li>3 chuyên gia quốc tế về thiết kế nút giao</li>
+                    <li>2 giáo sư tư vấn về kết cấu</li>
+                    <li>5 chuyên gia về giao thông đô thị</li>
+                </ul>
+            </div>
+
+            <!-- Tab 5: Thời gian thiết kế -->
+            <div id="tab5" class="tab-content">
+                <h3>Giai đoạn 1: Khảo sát và nghiên cứu (6 tháng)</h3>
+                <ul>
+                    <li><strong>Tháng 1-2:</strong> Khảo sát địa hình, địa chất, thủy văn</li>
+                    <li><strong>Tháng 3-4:</strong> Điều tra giao thông và phân tích nhu cầu</li>
+                    <li><strong>Tháng 5-6:</strong> Nghiên cứu phương án và báo cáo khả thi</li>
+                </ul>
+
+                <h3>Giai đoạn 2: Thiết kế kỹ thuật (8 tháng)</h3>
+                <ul>
+                    <li><strong>Tháng 7-9:</strong> Thiết kế sơ bộ các phương án</li>
+                    <li><strong>Tháng 10-12:</strong> Thiết kế kỹ thuật chi tiết</li>
+                    <li><strong>Tháng 1-2 (năm sau):</strong> Xây dựng mô hình BIM 3D</li>
+                </ul>
+
+                <h3>Giai đoạn 3: Thiết kế bản vẽ thi công (4 tháng)</h3>
+                <ul>
+                    <li><strong>Tháng 3-4:</strong> Thiết kế bản vẽ thi công chi tiết</li>
+                    <li><strong>Tháng 5:</strong> Lập dự toán và khối lượng công việc</li>
+                    <li><strong>Tháng 6:</strong> Thẩm tra và hoàn thiện hồ sơ</li>
+                </ul>
+
+                <h3>Tổng thời gian thiết kế: 18 tháng</h3>
+                <p>Từ tháng 01/2016 đến tháng 06/2017</p>
+            </div>
+        </div>
+
+        <!-- Images Gallery -->
+        <div class="images-gallery">
+            <h2>📷 Một số hình ảnh về dự án</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/projects/ngoc-hoi-1.jpg" alt="Hình ảnh 1"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22250%22%3E%3Crect fill=%22%231e5366%22 width=%22400%22 height=%22250%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EToàn cảnh nút giao%3C/text%3E%3C/svg%3E'">
+                    <div class="gallery-caption">Toàn cảnh nút giao Ngọc Hồi</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/projects/ngoc-hoi-2.jpg" alt="Hình ảnh 2"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22250%22%3E%3Crect fill=%22%232d6a7f%22 width=%22400%22 height=%22250%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ECầu vượt chính%3C/text%3E%3C/svg%3E'">
+                    <div class="gallery-caption">Cầu vượt chính kết nối hai hướng</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/projects/ngoc-hoi-3.jpg" alt="Hình ảnh 3"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22250%22%3E%3Crect fill=%22%23004E89%22 width=%22400%22 height=%22250%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EGiao thông ban đêm%3C/text%3E%3C/svg%3E'">
+                    <div class="gallery-caption">Hệ thống chiếu sáng hiện đại</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Section -->
+        <div class="video-section">
+            <h2>🎥 Video dự án</h2>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <img src="images/logo-t27.png" alt="T27 Logo" class="footer-logo-image" onerror="this.src='images/logo-t27.svg'">
+        <p class="footer-tagline" style="color: var(--primary-orange) !important;">Cái tâm mọi công trình</p>
+        <p>&copy; 2025 Công Ty Cổ Phần Tư Vấn T27. All rights reserved.</p>
+        <p>Tư vấn thiết kế | Khảo sát - Địa hình Địa chất | Giám sát thi công | Quản lý dự án</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Tab switching function
+        function openTab(evt, tabName) {
+            // Hide all tab contents
+            var tabContents = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+
+            // Remove active class from all buttons
+            var tabBtns = document.getElementsByClassName("tab-btn");
+            for (var i = 0; i < tabBtns.length; i++) {
+                tabBtns[i].classList.remove("active");
+            }
+
+            // Show current tab and add active class to button
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Navbar scroll effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 100) {
+                    navbar.style.boxShadow = '0 5px 25px rgba(0,0,0,0.2)';
+                } else {
+                    navbar.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+                }
+            });
+        });
+
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('open');
+        });
+    </script>
+</body>
+
+</html>

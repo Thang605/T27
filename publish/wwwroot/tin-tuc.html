@@ -1,0 +1,1004 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tin tức - T27 Công Ty Cổ Phần Tư Vấn</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Hero Section - Smaller, Left Aligned */
+        .insights-hero {
+            background: linear-gradient(135deg, #1e5366 0%, #0d4a5f 100%);
+            padding: 160px 20px 80px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .insights-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><path d="M0,300 Q300,200 600,300 T1200,300 L1200,600 L0,600 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+            opacity: 0.2;
+        }
+
+        .insights-hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .insights-hero h1 {
+            font-size: 3.5em;
+            color: white;
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        /* Filter Section - White Background */
+        .filter-section-insights {
+            background: white;
+            padding: 30px 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .filter-container-insights {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-select-insights,
+        .search-input-insights {
+            padding: 14px 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.95em;
+            background: white;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .filter-select-insights {
+            min-width: 200px;
+            appearance: none;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8"><path fill="%23666" d="M0 0l6 8 6-8z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
+            cursor: pointer;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .filter-select-insights:hover,
+        .search-input-insights:focus {
+            border-color: #0d4a5f;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(13, 74, 95, 0.1);
+        }
+
+        .search-input-insights {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .submit-btn-insights,
+        .clear-btn-insights {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.95em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: capitalize;
+            font-family: inherit;
+        }
+
+        .submit-btn-insights {
+            background: #0088cc;
+            color: white;
+        }
+
+        .submit-btn-insights:hover {
+            background: #006ba1;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
+        }
+
+        .clear-btn-insights {
+            background: transparent;
+            color: #0088cc;
+            border: none;
+            text-decoration: underline;
+            padding: 14px 20px;
+        }
+
+        .clear-btn-insights:hover {
+            color: #006ba1;
+        }
+
+        /* Insights Grid - 3 Column Layout */
+        .insights-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 50px 20px 80px;
+            background: #f8f9fa;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+        }
+
+        /* Insight Card */
+        .insight-card {
+            background: white;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .insight-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        /* Card with People Images */
+        .insight-image-people {
+            position: relative;
+            width: 100%;
+            height: 260px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1e5366 0%, #4facfe 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+        }
+
+        .person-image {
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .insight-card:hover .person-image {
+            transform: scale(1.03);
+        }
+
+        /* Card with Single Image */
+        .insight-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 260px;
+            overflow: hidden;
+            background: #f0f0f0;
+        }
+
+        .insight-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .insight-card:hover .insight-image {
+            transform: scale(1.05);
+        }
+
+        /* Category Badge - Bottom Left */
+        .category-badge {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            background: #0088cc;
+            color: white;
+            padding: 6px 14px;
+            font-size: 0.7em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 10;
+        }
+
+        /* People Names Overlay */
+        .people-names {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 136, 204, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .person-name {
+            color: white;
+            font-size: 0.9em;
+            font-weight: 600;
+            text-align: center;
+            flex: 1;
+        }
+
+        .person-title {
+            display: block;
+            font-size: 0.75em;
+            opacity: 0.9;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        /* Card Content */
+        .insight-content {
+            padding: 28px 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .insight-title {
+            font-size: 1.25em;
+            color: #0088cc;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            font-weight: 600;
+            min-height: 55px;
+        }
+
+        .insight-meta {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 12px;
+            font-weight: 400;
+        }
+
+        .insight-excerpt {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.6;
+            margin-bottom: 18px;
+            flex: 1;
+            display: none; /* Hide excerpt for cleaner look like SRF */
+        }
+
+        .read-more {
+            color: #0088cc;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+            font-size: 0.9em;
+            display: none; /* Hide read more for cleaner look */
+        }
+
+        .read-more:hover {
+            color: #006ba1;
+            gap: 10px;
+        }
+
+        .read-more::after {
+            content: '→';
+            font-size: 1.2em;
+        }
+
+        /* Tags */
+        .insight-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #f0f0f0;
+            color: #666;
+            border-radius: 3px;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        /* No Results */
+        .no-results-insights {
+            text-align: center;
+            padding: 80px 20px;
+            display: none;
+            background: white;
+            border-radius: 8px;
+            margin: 20px;
+        }
+
+        .no-results-insights.show {
+            display: block;
+        }
+
+        .no-results-icon-insights {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            opacity: 0.3;
+        }
+
+        .no-results-insights h3 {
+            font-size: 1.8em;
+            color: #0088cc;
+            margin-bottom: 12px;
+        }
+
+        .no-results-insights p {
+            font-size: 1em;
+            color: #666;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .insights-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .insights-hero {
+                padding: 140px 20px 60px;
+            }
+
+            .insights-hero h1 {
+                font-size: 2.5em;
+            }
+
+            .filter-container-insights {
+                flex-direction: column;
+            }
+
+            .filter-select-insights,
+            .search-input-insights,
+            .submit-btn-insights,
+            .clear-btn-insights {
+                width: 100%;
+            }
+
+            .insights-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .person-name {
+                font-size: 0.8em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .insights-hero h1 {
+                font-size: 2em;
+            }
+
+            .insight-image-people,
+            .insight-image-wrapper {
+                height: 200px;
+            }
+
+            .insight-content {
+                padding: 20px 18px;
+            }
+
+            .insight-title {
+                font-size: 1.15em;
+                min-height: auto;
+            }
+
+            .people-names {
+                padding: 10px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-container" style="text-decoration: none; color: inherit;">
+                <img src="images/logo-t27.png" alt="T27 Logo" class="logo-image" onerror="this.src='images/logo-t27.svg'">
+                <div class="logo-tagline">Cái tâm mọi công trình</div>
+            </a>
+            
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="gioi-thieu.html">Giới thiệu</a></li>
+                <li><a href="du-an.html">Dự án</a></li>
+                <li><a href="doi-ngu-chuyen-gia.html">Đội ngũ chuyên gia</a></li>
+                <li><a href="cong-nghe-so.html">Công nghệ số</a></li>
+                <li><a href="tin-tuc.html" style="color: var(--primary-orange);">Tin tức</a></li>
+                <li><a href="chinh-sach.html">Chính sách</a></li>
+                <li><a href="lien-he.html">Liên hệ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="insights-hero">
+        <div class="insights-hero-content">
+            <h1>Tin tức</h1>
+        </div>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="filter-section-insights">
+        <div class="filter-container-insights">
+            <select class="filter-select-insights" id="categoryFilter">
+                <option value="">Tất cả danh mục</option>
+                <option value="nhan-su">Nhân sự</option>
+                <option value="du-an">Dự án</option>
+                <option value="cong-nghe">Công nghệ</option>
+                <option value="cong-dong">Cộng đồng</option>
+                <option value="nghien-cuu">Nghiên cứu</option>
+                <option value="dao-tao">Khóa Đào Tạo Kỹ Thuật</option>
+                <option value="chuong-trinh-cong-dong">Chương Trình Cộng Đồng</option>
+            </select>
+
+            <input type="text" class="search-input-insights" id="searchInsights" placeholder="Tìm kiếm tin tức ...">
+
+            <button class="submit-btn-insights" onclick="filterInsights()">Tìm kiếm</button>
+            <button class="clear-btn-insights" onclick="clearInsightsFilters()">Xóa bộ lọc</button>
+        </div>
+    </div>
+
+    <!-- Insights Container -->
+    <div class="insights-container">
+        <!-- Insights Grid -->
+        <div class="insights-grid" id="insightsGrid">
+            <!-- Card 1 - People Announcement -->
+            <div class="insight-card" data-category="nhan-su">
+                <div class="insight-image-people">
+                    <img src="images/leaders/person1.jpg" alt="Nguyễn Văn A" class="person-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22280%22%3E%3Crect fill=%22%231e5366%22 width=%22200%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2240%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EN.A%3C/text%3E%3C/svg%3E'">
+                    <img src="images/leaders/person2.jpg" alt="Trần Thị B" class="person-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22280%22%3E%3Crect fill=%22%234facfe%22 width=%22200%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2240%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ET.B%3C/text%3E%3C/svg%3E'">
+                    <div class="people-names">
+                        <div class="person-name">
+                            Nguyễn<br>Văn A
+                        </div>
+                        <div class="person-name">
+                            Trần<br>Thị B
+                        </div>
+                    </div>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">T27 công bố thăng chức Giám đốc Dự án mới</h3>
+                    <p class="insight-meta">20 tháng 11, 2025</p>
+                    <div class="insight-tags">
+                        <span class="tag">Nhân sự</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 - Trail Project -->
+            <div class="insight-card" data-category="du-an">
+                <div class="insight-image-wrapper">
+                    <img src="images/projects/trail.jpg" alt="Hệ thống đường mòn" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%238FBC8F%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EĐường mòn%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">DỰ ÁN</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Hoàn thành giai đoạn cuối hệ thống đường mòn xanh</h3>
+                    <p class="insight-meta">31 tháng 10, 2025</p>
+                    <div class="insight-tags">
+                        <span class="tag">Nha Trang</span>
+                        <span class="tag">Tin tức dự án</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 - Community Project -->
+            <div class="insight-card" data-category="cong-dong">
+                <div class="insight-image-wrapper">
+                    <img src="images/projects/pathways.jpg" alt="Kết nối cộng đồng" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%2387CEEB%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ECộng đồng%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">CỘNG ĐỒNG</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Kết nối và xây dựng: Dự án kết nối cộng đồng</h3>
+                    <p class="insight-meta">18 tháng 9, 2025</p>
+                    <div class="insight-tags">
+                        <span class="tag">Quy Nhơn</span>
+                        <span class="tag">Lãnh đạo tư duy</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 - Technology -->
+            <div class="insight-card" data-category="cong-nghe">
+                <div class="insight-image-wrapper">
+                    <img src="images/insights/bim-tech.jpg" alt="Công nghệ BIM" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%230077B6%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ECông nghệ BIM%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">CÔNG NGHỆ</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Ứng dụng BIM 3D trong thiết kế và thi công</h3>
+                    <p class="insight-meta">25 tháng 8, 2025</p>
+                    <div class="insight-tags">
+                        <span class="tag">BIM</span>
+                        <span class="tag">Công nghệ</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 - Research -->
+            <div class="insight-card" data-category="nghien-cuu">
+                <div class="insight-image-wrapper">
+                    <img src="images/insights/research.jpg" alt="Nghiên cứu" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23FF6B35%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ENghiên cứu%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">NGHIÊN CỨU</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Nghiên cứu giải pháp xanh trong xây dựng hạ tầng</h3>
+                    <p class="insight-meta">15 tháng 7, 2025</p>
+                    <div class="insight-tags">
+                        <span class="tag">Nghiên cứu</span>
+                        <span class="tag">Bền vững</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 - Projects -->
+            <div class="insight-card" data-category="du-an">
+                <div class="insight-image-wrapper">
+                    <img src="images/projects/urban.jpg" alt="Phát triển đô thị" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23004E89%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EĐô thị%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">DỰ ÁN</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Dự án phát triển đô thị thông minh tại Nha Trang</h3>
+                    <p class="insight-meta">10 tháng 6, 2025</p>
+                    <div class="insight-tags">
+                        <span class="tag">Nha Trang</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 7 - Community -->
+            <div class="insight-card" data-category="cong-dong">
+                <div class="insight-image-wrapper">
+                    <img src="images/insights/charity.jpg" alt="Từ thiện" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23FFB41F%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ETừ thiện%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">CỘNG ĐỒNG</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Chương trình từ thiện xây cầu cho vùng khó khăn</h3>
+                    <p class="insight-meta">20 tháng 5, 2025</p>
+                    <div class="insight-tags">
+                        <span class="tag">Từ thiện</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 8 - Technology -->
+            <div class="insight-card" data-category="cong-nghe">
+                <div class="insight-image-wrapper">
+                    <img src="images/insights/drone.jpg" alt="Drone" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%232d6a7f%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EDrone%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">CÔNG NGHỆ</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Ứng dụng UAV/Drone trong khảo sát địa hình</h3>
+                    <p class="insight-meta">15 tháng 4, 2025</p>
+                    <div class="insight-tags">
+                        <span class="tag">Drone</span>
+                        <span class="tag">Khảo sát</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 9 - Leadership -->
+            <div class="insight-card" data-category="nhan-su">
+                <div class="insight-image-wrapper">
+                    <img src="images/insights/award.jpg" alt="Giải thưởng" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23FFD700%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EGiải thưởng%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">NHÂN SỰ</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">T27 nhận giải thưởng Doanh nghiệp tiêu biểu 2025</h3>
+                    <p class="insight-meta">10 tháng 3, 2025</p>
+                    <div class="insight-tags">
+                        <span class="tag">Giải thưởng</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEW TRAINING COURSES -->
+            
+            <!-- Card 10 - Training: Báo Cáo Kỹ Thuật Nội Bộ -->
+            <div class="insight-card" data-category="dao-tao">
+                <div class="insight-image-wrapper">
+                    <img src="images/training/technical-report.jpg" alt="Báo cáo kỹ thuật" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%231e5366%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EBáo cáo kỹ thuật%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">ĐÀO TẠO</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Báo Cáo Kỹ Thuật Nội Bộ</h3>
+                    <p class="insight-meta">Năm 2024</p>
+                    <div class="insight-tags">
+                        <span class="tag">Kỹ thuật</span>
+                        <span class="tag">Nâng cầu</span>
+                        <span class="tag">An toàn</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 11 - Training: Hội thảo STSC 2025 -->
+            <div class="insight-card" data-category="dao-tao">
+                <div class="insight-image-wrapper">
+                    <img src="images/training/stsc-2025.jpg" alt="Hội thảo STSC 2025" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%230077B6%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ESTSC 2025%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">ĐÀO TẠO</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Hội thảo Ứng dụng Khoa học, Kỹ thuật và Công nghệ STSC 2025</h3>
+                    <p class="insight-meta">Năm 2025 - Nha Trang</p>
+                    <div class="insight-tags">
+                        <span class="tag">Hội thảo</span>
+                        <span class="tag">Khoa học</span>
+                        <span class="tag">Bền vững</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 12 - Training: Ứng dụng BIM -->
+            <div class="insight-card" data-category="dao-tao">
+                <div class="insight-image-wrapper">
+                    <img src="images/training/bim-application.jpg" alt="Ứng dụng BIM" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%2300A86B%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EỨng dụng BIM%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">ĐÀO TẠO</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Ứng dụng BIM – Nâng tầm chất lượng công trình</h3>
+                    <p class="insight-meta">Năm 2025</p>
+                    <div class="insight-tags">
+                        <span class="tag">BIM</span>
+                        <span class="tag">Công nghệ</span>
+                        <span class="tag">Đào tạo</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEW COMMUNITY PROGRAMS -->
+            
+            <!-- Card 13 - Community: Vui Hội Trăng Rằm -->
+            <div class="insight-card" data-category="chuong-trinh-cong-dong">
+                <div class="insight-image-wrapper">
+                    <img src="images/community/mid-autumn.jpg" alt="Trung Thu" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23FFB41F%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ETrung Thu%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">CỘNG ĐỒNG</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Vui Hội Trăng Rằm – Trung Thu 2025 cùng T27</h3>
+                    <p class="insight-meta">Tháng 9, 2025</p>
+                    <div class="insight-tags">
+                        <span class="tag">Trung Thu</span>
+                        <span class="tag">Thiếu nhi</span>
+                        <span class="tag">Văn hóa</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 14 - Community: Ngày Quốc tế Phụ nữ 8/3 -->
+            <div class="insight-card" data-category="chuong-trinh-cong-dong">
+                <div class="insight-image-wrapper">
+                    <img src="images/community/womens-day.jpg" alt="Ngày Phụ nữ 8/3" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23FF69B4%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3E8/3%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">CỘNG ĐỒNG</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Kỷ niệm Ngày Quốc tế Phụ nữ 8/3 năm 2025</h3>
+                    <p class="insight-meta">08 tháng 3, 2025</p>
+                    <div class="insight-tags">
+                        <span class="tag">Phụ nữ</span>
+                        <span class="tag">Tri ân</span>
+                        <span class="tag">8/3</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 15 - Community: Giải bóng đá KDPM -->
+            <div class="insight-card" data-category="chuong-trinh-cong-dong">
+                <div class="insight-image-wrapper">
+                    <img src="images/community/football.jpg" alt="Giải bóng đá KDPM" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%2300A86B%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2240%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3E⚽%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">CỘNG ĐỒNG</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Giải bóng đá KDPM mở rộng năm 2025</h3>
+                    <p class="insight-meta">Năm 2025</p>
+                    <div class="insight-tags">
+                        <span class="tag">Thể thao</span>
+                        <span class="tag">Bóng đá</span>
+                        <span class="tag">Giao lưu</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ORIGINAL CARDS CONTINUE -->
+
+            <!-- Card 16 - Training Course BIM (Original) -->
+            <div class="insight-card" data-category="dao-tao">
+                <div class="insight-image-wrapper">
+                    <img src="images/training/bim-course.jpg" alt="Khóa đào tạo BIM" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%2300A86B%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EĐào tạo BIM%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">ĐÀO TẠO</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Khóa đào tạo BIM 3D nâng cao cho kỹ sư xây dựng</h3>
+                    <p class="insight-meta">28 tháng 2, 2025</p>
+                    <div class="insight-tags">
+                        <span class="tag">BIM</span>
+                        <span class="tag">Đào tạo</span>
+                        <span class="tag">Kỹ thuật</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 17 - Training Course AutoCAD -->
+            <div class="insight-card" data-category="dao-tao">
+                <div class="insight-image-wrapper">
+                    <img src="images/training/autocad.jpg" alt="Khóa AutoCAD" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23E83E3E%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EAutoCAD%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">ĐÀO TẠO</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Khóa học AutoCAD Civil 3D cho công trình giao thông</h3>
+                    <p class="insight-meta">15 tháng 2, 2025</p>
+                    <div class="insight-tags">
+                        <span class="tag">AutoCAD</span>
+                        <span class="tag">Civil 3D</span>
+                        <span class="tag">Giao thông</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 18 - Training Course Surveying -->
+            <div class="insight-card" data-category="dao-tao">
+                <div class="insight-image-wrapper">
+                    <img src="images/training/surveying.jpg" alt="Khóa khảo sát" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23FF8C00%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EKhảo sát%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">ĐÀO TẠO</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Đào tạo kỹ thuật khảo sát địa hình bằng UAV/Drone</h3>
+                    <p class="insight-meta">5 tháng 2, 2025</p>
+                    <div class="insight-tags">
+                        <span class="tag">Khảo sát</span>
+                        <span class="tag">Drone</span>
+                        <span class="tag">Địa hình</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 19 - Community Program - School Building -->
+            <div class="insight-card" data-category="chuong-trinh-cong-dong">
+                <div class="insight-image-wrapper">
+                    <img src="images/community/school.jpg" alt="Xây trường học" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%234A90E2%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ETrường học%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">CỘNG ĐỒNG</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Chương trình xây dựng trường học vùng cao 2025</h3>
+                    <p class="insight-meta">25 tháng 1, 2025</p>
+                    <div class="insight-tags">
+                        <span class="tag">Giáo dục</span>
+                        <span class="tag">Vùng cao</span>
+                        <span class="tag">Từ thiện</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 20 - Community Program - Bridge -->
+            <div class="insight-card" data-category="chuong-trinh-cong-dong">
+                <div class="insight-image-wrapper">
+                    <img src="images/community/bridge.jpg" alt="Xây cầu" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%2350C878%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ECầu dân sinh%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">CỘNG ĐỒNG</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Khánh thành 5 cây cầu dân sinh tại Bình Định và Phú Yên</h3>
+                    <p class="insight-meta">18 tháng 1, 2025</p>
+                    <div class="insight-tags">
+                        <span class="tag">Cầu dân sinh</span>
+                        <span class="tag">Bình Định</span>
+                        <span class="tag">Phú Yên</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 21 - Community Program - Water Supply -->
+            <div class="insight-card" data-category="chuong-trinh-cong-dong">
+                <div class="insight-image-wrapper">
+                    <img src="images/community/water.jpg" alt="Nước sạch" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%2300BFFF%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ENước sạch%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">CỘNG ĐỒNG</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Dự án cung cấp nước sạch cho 1,000 hộ dân vùng khó khăn</h3>
+                    <p class="insight-meta">8 tháng 1, 2025</p>
+                    <div class="insight-tags">
+                        <span class="tag">Nước sạch</span>
+                        <span class="tag">Y tế</span>
+                        <span class="tag">Cộng đồng</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 22 - Training Course - Project Management -->
+            <div class="insight-card" data-category="dao-tao">
+                <div class="insight-image-wrapper">
+                    <img src="images/training/pm.jpg" alt="Quản lý dự án" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%237B68EE%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EQuản lý DA%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">ĐÀO TẠO</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Khóa học quản lý dự án xây dựng theo chuẩn PMI</h3>
+                    <p class="insight-meta">22 tháng 12, 2024</p>
+                    <div class="insight-tags">
+                        <span class="tag">Quản lý</span>
+                        <span class="tag">PMI</span>
+                        <span class="tag">Dự án</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 23 - Community Program - Scholarship -->
+            <div class="insight-card" data-category="chuong-trinh-cong-dong">
+                <div class="insight-image-wrapper">
+                    <img src="images/community/scholarship.jpg" alt="Học bổng" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23FFD700%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EHọc bổng%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">CỘNG ĐỒNG</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Trao 100 suất học bổng cho sinh viên ngành xây dựng</h3>
+                    <p class="insight-meta">15 tháng 12, 2024</p>
+                    <div class="insight-tags">
+                        <span class="tag">Học bổng</span>
+                        <span class="tag">Sinh viên</span>
+                        <span class="tag">Giáo dục</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 24 - Training Course - Safety -->
+            <div class="insight-card" data-category="dao-tao">
+                <div class="insight-image-wrapper">
+                    <img src="images/training/safety.jpg" alt="An toàn lao động" class="insight-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23DC143C%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EAn toàn%3C/text%3E%3C/svg%3E'">
+                    <span class="category-badge">ĐÀO TẠO</span>
+                </div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Đào tạo an toàn lao động trong thi công xây dựng</h3>
+                    <p class="insight-meta">8 tháng 12, 2024</p>
+                    <div class="insight-tags">
+                        <span class="tag">An toàn</span>
+                        <span class="tag">Thi công</span>
+                        <span class="tag">PCCC</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- No Results Message -->
+        <div class="no-results-insights" id="noResultsInsights">
+            <div class="no-results-icon-insights">🔍</div>
+            <h3>Không tìm thấy tin tức</h3>
+            <p>Hãy thử điều chỉnh bộ lọc hoặc từ khóa tìm kiếm</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <img src="images/logo-t27.png" alt="T27 Logo" class="footer-logo-image" onerror="this.src='images/logo-t27.svg'">
+        <p class="footer-tagline" style="color: var(--primary-orange) !important;">Cái tâm mọi công trình</p>
+        <p>&copy; 2025 Công Ty Cổ Phần Tư Vấn T27. All rights reserved.</p>
+        <p>Tư vấn thiết kế | Khảo sát - Địa hình Địa chất | Giám sát thi công | Quản lý dự án</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Filter insights
+        function filterInsights() {
+            const categoryFilter = document.getElementById('categoryFilter').value.toLowerCase();
+            const searchInput = document.getElementById('searchInsights').value.toLowerCase();
+            const insightCards = document.querySelectorAll('.insight-card');
+            let visibleCount = 0;
+
+            insightCards.forEach(card => {
+                const category = card.dataset.category || '';
+                const title = card.querySelector('.insight-title').textContent.toLowerCase();
+
+                const matchesCategory = !categoryFilter || category === categoryFilter;
+                const matchesSearch = !searchInput || title.includes(searchInput);
+
+                if (matchesCategory && matchesSearch) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show/hide no results message
+            const noResults = document.getElementById('noResultsInsights');
+            if (visibleCount === 0) {
+                noResults.classList.add('show');
+            } else {
+                noResults.classList.remove('show');
+            }
+        }
+
+        // Clear all filters
+        function clearInsightsFilters() {
+            document.getElementById('categoryFilter').value = '';
+            document.getElementById('searchInsights').value = '';
+            filterInsights();
+        }
+
+        // Search on Enter key
+        document.getElementById('searchInsights').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                filterInsights();
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 100) {
+                    navbar.style.boxShadow = '0 5px 25px rgba(0,0,0,0.2)';
+                } else {
+                    navbar.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+                }
+            });
+
+            // Hamburger menu toggle
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+</html>

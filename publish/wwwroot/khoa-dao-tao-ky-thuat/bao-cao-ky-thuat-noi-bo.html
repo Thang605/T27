@@ -1,0 +1,381 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo Cáo Kỹ Thuật Nội Bộ - T27</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .training-hero {
+            padding: 180px 60px 80px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .training-hero h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .training-hero .subtitle {
+            font-size: 1.5em;
+            color: var(--accent-gold);
+            margin-bottom: 30px;
+        }
+
+        .training-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 60px;
+        }
+
+        .session-header {
+            padding: 30px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .session-number {
+            font-size: 3em;
+            font-weight: 700;
+            color: var(--accent-gold);
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .session-header-content h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .session-header-content .session-date {
+            font-size: 1.1em;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .session-description {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+            background: var(--gray-light);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 5px solid var(--primary-orange);
+        }
+
+        .session-topics {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .session-topics h2 {
+            font-size: 2em;
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+        }
+
+        .topic-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .topic-list li {
+            padding: 20px 0;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .topic-list li:last-child {
+            border-bottom: none;
+        }
+
+        .topic-icon {
+            font-size: 1.5em;
+            color: var(--primary-orange);
+        }
+
+        .topic-text {
+            flex: 1;
+        }
+
+        .topic-text strong {
+            color: var(--primary-blue);
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .session-gallery {
+            margin-top: 40px;
+        }
+
+        .session-gallery h2 {
+            font-size: 2em;
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,45,77,0.95), transparent);
+            color: var(--white);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .caption {
+            transform: translateY(0);
+        }
+
+        .session-highlight {
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--accent-gold) 100%);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .session-highlight h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .session-highlight p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--primary-orange);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 40px;
+        }
+
+        .back-button:hover {
+            background: var(--primary-blue);
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .session-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .training-hero h1 {
+                font-size: 2em;
+            }
+
+            .training-content {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo-container" style="text-decoration: none; color: inherit;">
+                <img src="../images/logo-t27.png" alt="T27 Logo" class="logo-image" onerror="this.src='../images/logo-t27.svg'">
+                <div class="logo-tagline">Cái tâm mọi công trình</div>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html#home">Trang chủ</a></li>
+                <li><a href="../index.html#about">Giới thiệu</a></li>
+                <li><a href="../index.html#projects">Dự án</a></li>
+                <li><a href="../index.html#experts">Đội ngũ chuyên gia</a></li>
+                <li><a href="../index.html#bim">BIM</a></li>
+                <li><a href="../index.html#events">Sự kiện</a></li>
+                <li><a href="../index.html#recruitment">Tuyển dụng</a></li>
+                <li><a href="../index.html#contact">Liên hệ</a></li>
+                <li><a href="../index-en.html" style="background: var(--primary-orange); border-radius: 5px;">🇬🇧 EN</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contact Bar -->
+    <div class="contact-bar">
+        <div class="contact-bar-content">
+            <div class="contact-item">
+                <strong>📞 Hotline:</strong> 058.2210226 | 0913.431.515
+            </div>
+            <div class="contact-item">
+                <strong>✉ Email:</strong> t27_vn@yahoo.com
+            </div>
+            <div class="contact-item">
+                <strong>📍 Địa chỉ:</strong> Nha Trang, Khánh Hòa | Quy Nhơn, Bình Định
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="training-content">
+        <div class="session-header">
+            <div class="session-number">01</div>
+            <div class="session-header-content">
+                <h1>Báo Cáo Kỹ Thuật Nội Bộ</h1>
+                <div class="session-date">
+                    <span>📅</span>
+                    <span>Năm 2024</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="session-description">
+            Buổi làm việc diễn ra trong không khí nghiêm túc, tập trung và sáng tạo, 
+            thể hiện tinh thần học hỏi – đổi mới không ngừng của đội ngũ kỹ sư T27 
+            trên hành trình mang đến giải pháp kỹ thuật an toàn và hiệu quả cho hạ tầng giao thông Việt Nam.
+        </div>
+
+        <!-- Topics -->
+        <div class="session-topics">
+            <h2>📋 Nội Dung Trọng Tâm</h2>
+            <ul class="topic-list">
+                <li>
+                    <span class="topic-icon">1️⃣</span>
+                    <div class="topic-text">
+                        <strong>Giới Thiệu Giải Pháp Nâng Cầu</strong>
+                        Trình bày chi tiết về công nghệ và phương pháp nâng cầu hiện đại, 
+                        đảm bảo an toàn kết cấu và tối ưu hóa chi phí thi công.
+                    </div>
+                </li>
+                <li>
+                    <span class="topic-icon">2️⃣</span>
+                    <div class="topic-text">
+                        <strong>Giải Pháp Lưới Chống Đá Rơi và Tường Bó Uốn</strong>
+                        Giới thiệu các giải pháp kỹ thuật bảo vệ công trình giao thông 
+                        khỏi hiện tượng sạt lở, đá rơi tại các khu vực địa hình phức tạp.
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Gallery -->
+        <div class="session-gallery">
+            <h2>📸 Hình Ảnh Buổi Đào Tạo</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="../images/Khóa Đào Tạo Kỹ Thuật/1. báo cáo kỹ thuật nội bộ/1.jpg" alt="Buổi đào tạo 1">
+                    <div class="caption">
+                        <p>Kỹ sư trình bày giải pháp kỹ thuật nâng cầu</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="../images/Khóa Đào Tạo Kỹ Thuật/1. báo cáo kỹ thuật nội bộ/2.jpg" alt="Buổi đào tạo 2">
+                    <div class="caption">
+                        <p>Thảo luận về giải pháp lưới chống đá rơi</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="../images/Khóa Đào Tạo Kỹ Thuật/1. báo cáo kỹ thuật nội bộ/3.jpg" alt="Buổi đào tạo 3">
+                    <div class="caption">
+                        <p>Phân tích chi tiết giải pháp tường bó uốn</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="../images/Khóa Đào Tạo Kỹ Thuật/1. báo cáo kỹ thuật nội bộ/4.jpg" alt="Buổi đào tạo 4">
+                    <div class="caption">
+                        <p>Đội ngũ kỹ sư tham gia đào tạo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Highlight -->
+        <div class="session-highlight">
+            <h2>🎯 Kết Quả Đạt Được</h2>
+            <p>
+                Đội ngũ kỹ sư nâng cao kiến thức về các giải pháp kỹ thuật hiện đại, 
+                trao đổi kinh nghiệm thực tế và khẳng định vị thế tiên phong trong ngành xây dựng.
+            </p>
+        </div>
+
+        <!-- Back Button -->
+        <div style="text-align: center;">
+            <a href="../khoa-dao-tao-ky-thuat.html" class="back-button">
+                ← Quay lại danh sách khóa đào tạo
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <img src="../images/logo-t27.png" alt="T27 Logo" class="footer-logo-image" onerror="this.src='../images/logo-t27.svg'">
+        <p class="footer-tagline" style="color: var(--primary-orange) !important;">Cái tâm mọi công trình</p>
+        <p>&copy; 2025 Công Ty Cổ Phần Tư Vấn T27. All rights reserved.</p>
+        <p>Tư vấn thiết kế | Khảo sát - Địa hình Địa chất | Giám sát thi công | Quản lý dự án</p>
+    </footer>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>

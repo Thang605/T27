@@ -1,0 +1,872 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Công Nghệ Số - T27 Công Ty Cổ Phần Tư Vấn</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Hero Section - Matching tin-tuc.html style */
+        .insights-hero {
+            background: linear-gradient(135deg, #1e5366 0%, #0d4a5f 100%);
+            padding: 140px 20px 70px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .insights-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><path d="M0,300 Q300,200 600,300 T1200,300 L1200,600 L0,600 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+            opacity: 0.2;
+        }
+
+        .insights-hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .insights-hero h1 {
+            font-size: 3.5em;
+            color: white;
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        /* Height Adjustment Slider */
+        .height-adjuster {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 9999;
+            min-width: 250px;
+        }
+
+        .height-adjuster h4 {
+            margin: 0 0 10px 0;
+            color: #0088cc;
+            font-size: 0.9em;
+        }
+
+        .height-adjuster input[type="range"] {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .height-adjuster .value-display {
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #0088cc;
+            margin: 10px 0;
+        }
+
+        .height-adjuster button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .height-adjuster .copy-btn {
+            background: #0088cc;
+            color: white;
+        }
+
+        .height-adjuster .close-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .tech-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 50px 20px 40px 20px;
+        }
+
+        .tech-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .tech-header h1 {
+            font-size: 2.8em;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .tech-header .subtitle {
+            font-size: 1.3em;
+            color: var(--primary-orange);
+            font-style: italic;
+        }
+
+        /* Modern Mindmap Styles */
+        .mindmap-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px;
+            background: radial-gradient(circle at center, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 20px;
+            margin: 40px 0;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .mindmap {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            min-width: 1200px;
+        }
+
+        /* Central Hub */
+        .mindmap-hub {
+            grid-column: 2;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hub-circle {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1e5ba8 100%);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            position: relative;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .hub-circle::before {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-orange), transparent);
+            opacity: 0.3;
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hub-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .hub-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Left and Right Branches */
+        .mindmap-left,
+        .mindmap-right {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .mindmap-branch {
+            position: relative;
+            opacity: 0;
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        .mindmap-branch:nth-child(1) { animation-delay: 0.2s; }
+        .mindmap-branch:nth-child(2) { animation-delay: 0.4s; }
+        .mindmap-branch:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .mindmap-right .mindmap-branch {
+            animation-name: slideInRight;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Branch Node */
+        .branch-node {
+            background: white;
+            padding: 25px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .branch-node::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-orange);
+            transform: translateY(-50%);
+        }
+
+        .mindmap-left .branch-node::before {
+            right: -60px;
+        }
+
+        .mindmap-right .branch-node::before {
+            left: -60px;
+        }
+
+        .branch-node:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-color: var(--primary-blue);
+        }
+
+        .branch-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .branch-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-orange));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            color: white;
+        }
+
+        .branch-node h3 {
+            color: var(--primary-blue);
+            font-size: 1.3em;
+            margin: 0;
+            flex: 1;
+        }
+
+        .branch-node p {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Sub-items */
+        .branch-subitems {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #f0f0f0;
+            display: none;
+        }
+
+        .branch-node:hover .branch-subitems {
+            display: block;
+        }
+
+        .subitem {
+            padding: 8px 15px;
+            margin: 5px 0;
+            background: linear-gradient(90deg, #f8f9fa 0%, transparent 100%);
+            border-left: 3px solid var(--primary-orange);
+            border-radius: 5px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        /* Stats Banner */
+        .stats-banner {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: white;
+            padding: 50px;
+            margin: 40px 0;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stats-banner h3 {
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-box {
+            padding: 20px;
+        }
+
+        .stat-box .number {
+            font-size: 3em;
+            font-weight: bold;
+            color: var(--primary-orange);
+            margin-bottom: 10px;
+        }
+
+        .stat-box .label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* Technology Section */
+        .tech-section {
+            margin: 60px 0;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .tech-section h2 {
+            color: var(--primary-blue);
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            border-bottom: 3px solid var(--primary-orange);
+            padding-bottom: 15px;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .tech-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            border-left-color: var(--primary-orange);
+        }
+
+        .tech-card h4 {
+            color: var(--primary-blue);
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .tech-card .tech-icon {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        .tech-card p {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.8;
+        }
+
+        .tech-card ul {
+            margin-top: 15px;
+            padding-left: 20px;
+            color: #666;
+        }
+
+        .tech-card ul li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1024px) {
+            .mindmap {
+                display: flex;
+                flex-direction: column;
+                min-width: auto;
+            }
+
+            .mindmap-hub {
+                order: 1;
+                margin: 20px 0;
+            }
+
+            .mindmap-left,
+            .mindmap-right {
+                width: 100%;
+            }
+
+            .mindmap-left {
+                order: 2;
+            }
+
+            .mindmap-right {
+                order: 3;
+            }
+
+            .branch-node::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .insights-hero {
+                padding: 80px 20px 40px;
+            }
+
+            .insights-hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hub-circle {
+                width: 150px;
+                height: 150px;
+            }
+
+            .hub-icon {
+                font-size: 2em;
+            }
+
+            .hub-title {
+                font-size: 1.1em;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-container" style="text-decoration: none; color: inherit;">
+                <img src="images/logo-t27.png" alt="T27 Logo" class="logo-image" onerror="this.src='images/logo-t27.svg'">
+                <div class="logo-tagline">Cái tâm mọi công trình</div>
+            </a>
+            
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="gioi-thieu.html">Giới thiệu</a></li>
+                <li><a href="du-an.html">Dự án</a></li>
+                <li><a href="doi-ngu-chuyen-gia.html">Đội ngũ chuyên gia</a></li>
+                <li><a href="cong-nghe-so.html" style="color: var(--primary-orange);">Công nghệ số</a></li>
+                <li><a href="tin-tuc.html">Tin tức</a></li>
+                <li><a href="chinh-sach.html">Chính sách</a></li>
+                <li><a href="lien-he.html">Liên hệ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="insights-hero" id="heroSection">
+        <div class="insights-hero-content">
+            <h1>Công nghệ số</h1>
+        </div>
+    </div>
+
+    <!-- Height Adjustment Slider -->
+    <div class="height-adjuster" id="heightAdjuster">
+        <h4>⚙️ Điều chỉnh chiều cao Hero</h4>
+        <input type="range" id="heroHeightSlider" min="100" max="400" value="100" step="10">
+        <div class="value-display">
+            Padding: <span id="paddingValue">100px 20px 50px</span>
+        </div>
+        <button class="copy-btn" onclick="copyHeightValue()">📋 Copy giá trị</button>
+        <button class="close-btn" onclick="closeAdjuster()">✕ Đóng</button>
+    </div>
+
+    <!-- Main Container -->
+    <div class="tech-container">
+        <!-- Stats Banner -->
+        <div class="stats-banner">
+            <h3>📊 NĂNG LỰC CÔNG NGHỆ SỐ</h3>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="number">100+</div>
+                    <div class="label">Dự án ứng dụng BIM</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">3</div>
+                    <div class="label">Lĩnh vực công nghệ</div>
+                </div>
+                <div class="stat-box>
+                    <div class="number">20+</div>
+                    <div class="label">Chuyên gia BIM & AI</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">100%</div>
+                    <div class="label">Dự án số hóa</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modern Mindmap Diagram -->
+        <div class="mindmap-container">
+            <div class="mindmap">
+                <!-- Left Branches -->
+                <div class="mindmap-left">
+                    <!-- BIM Branch -->
+                    <div class="mindmap-branch">
+                        <div class="branch-node">
+                            <div class="branch-header">
+                                <div class="branch-icon">🏗️</div>
+                                <h3>BIM</h3>
+                            </div>
+                            <p>Mô hình thông tin công trình</p>
+                            <div class="branch-subitems">
+                                <div class="subitem">✓ Nghiên cứu phát triển tự động hóa</div>
+                                <div class="subitem">✓ Đào tạo nhân sự cấp cao</div>
+                                <div class="subitem">✓ Thành quả đạt được</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Công nghệ mới Branch -->
+                    <div class="mindmap-branch">
+                        <div class="branch-node">
+                            <div class="branch-header">
+                                <div class="branch-icon">🚁</div>
+                                <h3>Công nghệ mới</h3>
+                            </div>
+                            <p>Nghiên cứu và ứng dụng</p>
+                            <div class="branch-subitems">
+                                <div class="subitem">✓ Khảo sát UAV</div>
+                                <div class="subitem">✓ Khảo sát địa kỹ thuật</div>
+                                <div class="subitem">✓ Tính toán chuyên sâu</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Central Hub -->
+                <div class="mindmap-hub">
+                    <div class="hub-circle">
+                        <div class="hub-icon">💻</div>
+                        <div class="hub-title">CÔNG NGHỆ<br>SỐ</div>
+                    </div>
+                </div>
+
+                <!-- Right Branches -->
+                <div class="mindmap-right">
+                    <!-- AI Branch -->
+                    <div class="mindmap-branch">
+                        <div class="branch-node">
+                            <div class="branch-header">
+                                <div class="branch-icon">🤖</div>
+                                <h3>Trí tuệ nhân tạo</h3>
+                            </div>
+                            <p>AI trong công việc</p>
+                            <div class="branch-subitems">
+                                <div class="subitem">✓ Google Form tự động</div>
+                                <div class="subitem">✓ Slide AI (ChatGPT, Gamma)</div>
+                                <div class="subitem">✓ Thiết kế kiến trúc AI</div>
+                                <div class="subitem">✓ Video thuyết trình AI</div>
+                                <div class="subitem">✓ GitHub Copilot AI</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tự động hóa Branch -->
+                    <div class="mindmap-branch">
+                        <div class="branch-node">
+                            <div class="branch-header">
+                                <div class="branch-icon">⚙️</div>
+                                <h3>Tự động hóa</h3>
+                            </div>
+                            <p>Quy trình số hóa</p>
+                            <div class="branch-subitems">
+                                <div class="subitem">✓ Quản lý dự án số</div>
+                                <div class="subitem">✓ Báo cáo tự động</div>
+                                <div class="subitem">✓ Tích hợp hệ thống</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BIM Section -->
+        <div class="tech-section">
+            <h2>
+                <span class="section-icon">🏗️</span>
+                BIM - Mô Hình Thông Tin Công Trình
+            </h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">🔬</div>
+                    <h4>Nghiên cứu phát triển tự động hóa</h4>
+                    <p>Phát triển quy trình tự động hóa trong xây dựng mô hình BIM cho các loại công trình:</p>
+                    <ul>
+                        <li>Công trình giao thông (đường, cầu, hầm)</li>
+                        <li>Công trình dân dụng và công nghiệp</li>
+                        <li>Hạ tầng kỹ thuật đô thị</li>
+                        <li>Công trình thủy lợi</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <div class="tech-icon">👨‍🏫</div>
+                    <h4>Đào tạo nhân sự</h4>
+                    <p>Chương trình đào tạo toàn diện về BIM:</p>
+                    <ul>
+                        <li>Đào tạo cấp cao cho chuyên gia BIM</li>
+                        <li>Đào tạo nội bộ cho kỹ sư thiết kế</li>
+                        <li>Chuyển giao công nghệ cho đối tác</li>
+                        <li>Hội thảo và workshop định kỳ</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <div class="tech-icon">🏆</div>
+                    <h4>Thành quả đạt được</h4>
+                    <p>T27 tự hào với những thành tựu trong lĩnh vực BIM:</p>
+                    <ul>
+                        <li>Hơn 100 dự án ứng dụng BIM thành công</li>
+                        <li>Tiết kiệm 20-30% chi phí thiết kế</li>
+                        <li>Giảm 40% thời gian phối hợp thiết kế</li>
+                        <li>Nâng cao độ chính xác thi công</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Công nghệ mới Section -->
+        <div class="tech-section">
+            <h2>
+                <span class="section-icon">🚁</span>
+                Công Nghệ Mới - Nghiên Cứu Và Ứng Dụng
+            </h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">🛸</div>
+                    <h4>Khảo sát bằng UAV</h4>
+                    <p>Sử dụng thiết bị bay không người lái (UAV) cho khảo sát địa hình:</p>
+                    <ul>
+                        <li>Khảo sát địa hình diện rộng</li>
+                        <li>Tạo mô hình 3D địa hình chính xác</li>
+                        <li>Giám sát tiến độ thi công từ trên cao</li>
+                        <li>Tiết kiệm thời gian và chi phí</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <div class="tech-icon">⚙️</div>
+                    <h4>Địa kỹ thuật cho khảo sát địa chất</h4>
+                    <p>Công nghệ tiên tiến trong khảo sát địa chất:</p>
+                    <ul>
+                        <li>Thiết bị khảo sát địa chất hiện đại</li>
+                        <li>Phân tích mẫu đất nâng cao</li>
+                        <li>Đánh giá nền móng chính xác</li>
+                        <li>Dự báo rủi ro địa chất</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <div class="tech-icon">🧮</div>
+                    <h4>Tính toán chuyên sâu</h4>
+                    <p>Ứng dụng phần mềm chuyên dụng cho tính toán:</p>
+                    <ul>
+                        <li>Thủy văn: HEC-RAS, SWMM</li>
+                        <li>Kết cấu: SAP2000, MIDAS</li>
+                        <li>Địa kỹ thuật: PLAXIS, GeoStudio</li>
+                        <li>Mô phỏng và tối ưu hóa thiết kế</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Section -->
+        <div class="tech-section">
+            <h2>
+                <span class="section-icon">🤖</span>
+                AI - Trí Tuệ Nhân Tạo Trong Xây Dựng
+            </h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">📋</div>
+                    <h4>Tạo Google Form tự động</h4>
+                    <p>Sử dụng ChatGPT Agent để tự động hóa:</p>
+                    <ul>
+                        <li>Tạo biểu mẫu khảo sát chuyên nghiệp</li>
+                        <li>Thu thập dữ liệu dự án tự động</li>
+                        <li>Phân tích và báo cáo kết quả</li>
+                        <li>Tối ưu quy trình làm việc</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <div class="tech-icon">📊</div>
+                    <h4>Tạo Slide thuyết trình AI</h4>
+                    <p>Ứng dụng ChatGPT và Gamma AI:</p>
+                    <ul>
+                        <li>Tạo bài thuyết trình từ yêu cầu</li>
+                        <li>Thiết kế slide chuyên nghiệp</li>
+                        <li>Tự động tổng hợp nội dung</li>
+                        <li>Tiết kiệm thời gian chuẩn bị</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <div class="tech-icon">🎨</div>
+                    <h4>Thiết kế kiến trúc với AI</h4>
+                    <p>Hỗ trợ sáng tạo ý tưởng thiết kế:</p>
+                    <ul>
+                        <li>Tạo concept thiết kế nhanh chóng</li>
+                        <li>Phân tích xu hướng kiến trúc</li>
+                        <li>T tối ưu hóa không gian</li>
+                        <li>Đề xuất giải pháp sáng tạo</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <div class="tech-icon">🎥</div>
+                    <h4>Video thuyết trình AI</h4>
+                    <p>Tạo video thuyết trình với giọng nói AI:</p>
+                    <ul>
+                        <li>Tự động tạo kịch bản thuyết trình</li>
+                        <li>Giọng nói AI tự nhiên</li>
+                        <li>Đồ họa và animation chuyên nghiệp</li>
+                        <li>Xuất video chất lượng cao</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <div class="tech-icon">💻</div>
+                    <h4>GitHub Copilot AI</h4>
+                    <p>Hỗ trợ lập trình và tự động hóa:</p>
+                    <ul>
+                        <li>Viết code tự động cho công cụ BIM</li>
+                        <li>Tối ưu hóa quy trình làm việc</li>
+                        <li>Tự động hóa báo cáo và tính toán</li>
+                        <li>Phát triển ứng dụng nội bộ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="stats-banner">
+            <h3>🚀 Cùng T27 Chuyển Đổi Số</h3>
+            <p style="font-size: 1.2em; line-height: 1.8; max-width: 800px; margin: 0 auto;">
+                Chúng tôi cam kết mang đến các giải pháp công nghệ tiên tiến nhất, 
+                giúp tối ưu hóa quy trình thiết kế, thi công và quản lý dự án. 
+                Hãy liên hệ với chúng tôi để được tư vấn chi tiết!
+            </p>
+            <div style="margin-top: 30px;">
+                <a href="lien-he.html" style="display: inline-block; padding: 15px 40px; background: var(--primary-orange); color: white; text-decoration: none; border-radius: 5px; font-size: 1.1em; font-weight: 600;">
+                    Liên hệ ngay
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <img src="images/logo-t27.png" alt="T27 Logo" class="footer-logo-image" onerror="this.src='images/logo-t27.svg'">
+        <p class="footer-tagline" style="color: var(--primary-orange) !important;">Cái tâm mọi công trình</p>
+        <p>&copy; 2025 Công Ty Cổ Phần Tư Vấn T27. All rights reserved.</p>
+        <p>Tư vấn thiết kế | Khảo sát - Địa hình Địa chất | Giám sát thi công | Quản lý dự án</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Height adjuster functionality
+        const slider = document.getElementById('heroHeightSlider');
+        const heroSection = document.getElementById('heroSection');
+        const paddingValue = document.getElementById('paddingValue');
+
+        slider.addEventListener('input', function() {
+            const topPadding = parseInt(this.value);
+            const bottomPadding = Math.round(topPadding / 2);
+            const padding = `${topPadding}px 20px ${bottomPadding}px`;
+            heroSection.style.padding = padding;
+            paddingValue.textContent = padding;
+        });
+
+        // Initialize slider with current padding value
+        window.addEventListener('DOMContentLoaded', function() {
+            const currentPadding = window.getComputedStyle(heroSection).paddingTop;
+            const currentValue = parseInt(currentPadding);
+            slider.value = currentValue;
+            const bottomValue = Math.round(currentValue / 2);
+            document.getElementById('paddingValue').textContent = `${currentValue}px 20px ${bottomValue}px`;
+        });
+
+        function copyHeightValue() {
+            const value = paddingValue.textContent;
+            navigator.clipboard.writeText(value).then(() => {
+                alert('Đã copy giá trị: ' + value);
+            });
+        }
+
+        function closeAdjuster() {
+            document.getElementById('heightAdjuster').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

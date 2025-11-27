@@ -1,0 +1,590 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên hệ - T27 Công Ty Cổ Phần Tư Vấn</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 20px 40px 20px;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .contact-header h1 {
+            font-size: 2.8em;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .contact-header .subtitle {
+            font-size: 1.3em;
+            color: var(--primary-orange);
+            font-style: italic;
+        }
+
+        /* Split Screen Layout */
+        .split-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            margin: 40px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.15);
+        }
+
+        .split-left {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            padding: 60px 40px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .split-left::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .split-left h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info-item {
+            padding: 25px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .contact-info-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-info-item .icon {
+            font-size: 2.5em;
+            min-width: 50px;
+        }
+
+        .contact-info-item .info {
+            flex: 1;
+        }
+
+        .contact-info-item h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .contact-info-item p {
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .contact-info-item a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-info-item a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .split-right {
+            background: white;
+            padding: 60px 40px;
+        }
+
+        .split-right h2 {
+            font-size: 2em;
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52,152,219,0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(52,152,219,0.3);
+        }
+
+        /* Location Cards */
+        .location-section {
+            margin: 60px 0;
+        }
+
+        .location-section h2 {
+            text-align: center;
+            font-size: 2.2em;
+            color: var(--primary-blue);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .location-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #3498db, var(--primary-orange));
+            border-radius: 2px;
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .location-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .location-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+        }
+
+        .location-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .location-header {
+            background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .location-header .location-icon {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+        }
+
+        .location-header h3 {
+            font-size: 1.5em;
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+
+        .location-header .location-type {
+            font-size: 0.95em;
+            color: #666;
+            font-style: italic;
+        }
+
+        .location-body {
+            padding: 30px;
+        }
+
+        .location-detail {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .location-detail:last-child {
+            border-bottom: none;
+        }
+
+        .location-detail .detail-icon {
+            font-size: 1.5em;
+            color: #3498db;
+            min-width: 30px;
+        }
+
+        .location-detail .detail-text {
+            flex: 1;
+        }
+
+        .location-detail strong {
+            color: #3498db;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .location-detail p {
+            color: #666;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .location-detail a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .location-detail a:hover {
+            color: var(--primary-orange);
+            text-decoration: underline;
+        }
+
+        /* Map Section */
+        .map-section {
+            margin: 60px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .map-section iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+        }
+
+        @media (max-width: 1024px) {
+            .split-container {
+                grid-template-columns: 1fr;
+            }
+
+            .split-left,
+            .split-right {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-header h1 {
+                font-size: 2em;
+            }
+
+            .split-left h2,
+            .split-right h2 {
+                font-size: 1.8em;
+            }
+
+            .location-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-container" style="text-decoration: none; color: inherit;">
+                <img src="images/logo-t27.png" alt="T27 Logo" class="logo-image" onerror="this.src='images/logo-t27.svg'">
+                <div class="logo-tagline">Cái tâm mọi công trình</div>
+            </a>
+            
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="gioi-thieu.html">Giới thiệu</a></li>
+                <li><a href="du-an.html">Dự án</a></li>
+                <li><a href="doi-ngu-chuyen-gia.html">Đội ngũ chuyên gia</a></li>
+                <li><a href="cong-nghe-so.html">Công nghệ số</a></li>
+                <li><a href="tin-tuc.html">Tin tức</a></li>
+                <li><a href="chinh-sach.html">Chính sách</a></li>
+                <li><a href="lien-he.html" style="color: var(--primary-orange);">Liên hệ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="contact-container">
+        <!-- Split Screen: Contact Info + Form -->
+        <div class="split-container">
+            <!-- Left: Contact Information -->
+            <div class="split-left">
+                <h2>📞 Thông Tin Liên Hệ</h2>
+                
+                <div class="contact-info-item">
+                    <div class="icon">📍</div>
+                    <div class="info">
+                        <h3>Trụ sở chính - Khánh Hòa</h3>
+                        <p>38A Lý Tự Trọng, Phường Nha Trang<br>TP. Nha Trang, Tỉnh Khánh Hòa</p>
+                    </div>
+                </div>
+
+                <div class="contact-info-item">
+                    <div class="icon">🏢</div>
+                    <div class="info">
+                        <h3>TVGS & Kiểm định</h3>
+                        <p>Đô thị Mỹ Gia, Đường số 4, LK45-10<br>Phường Nam Nha Trang, Khánh Hòa</p>
+                    </div>
+                </div>
+
+                <div class="contact-info-item">
+                    <div class="icon">🏪</div>
+                    <div class="info">
+                        <h3>Chi nhánh Bình Định</h3>
+                        <p>Lô 6 đường N1, Khu đô thị thương mại An Phú<br>Phường Quy Nhơn, Tỉnh Bình Định</p>
+                    </div>
+                </div>
+
+                <div class="contact-info-item">
+                    <div class="icon">📧</div>
+                    <div class="info">
+                        <h3>Email & Điện thoại</h3>
+                        <p>
+                            Email: <a href="mailto:t27_vn@yahoo.com">t27_vn@yahoo.com</a><br>
+                            Hotline: <a href="tel:05822210226">058.2210226</a><br>
+                            Mobile: <a href="tel:0913431515">0913.431.515</a> | <a href="tel:0988112277">0988.112.277</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Contact Form -->
+            <div class="split-right">
+                <h2>✉️ Gửi Tin Nhắn Cho Chúng Tôi</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Họ và tên *</label>
+                        <input type="text" id="name" name="name" required placeholder="Nhập họ và tên của bạn">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="email@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Số điện thoại *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="0123 456 789">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">Dịch vụ quan tâm</label>
+                        <select id="service" name="service">
+                            <option>Tư vấn thiết kế</option>
+                            <option>Khảo sát địa hình - Địa chất</option>
+                            <option>Giám sát thi công</option>
+                            <option>Quản lý dự án</option>
+                            <option>Mô hình BIM</option>
+                            <option>Kiểm định chất lượng</option>
+                            <option>Khác</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Nội dung *</label>
+                        <textarea id="message" name="message" required placeholder="Nhập nội dung tin nhắn của bạn..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Gửi tin nhắn</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Location Cards -->
+        <div class="location-section">
+            <h2>📍 Vị Trí Văn Phòng</h2>
+            <div class="location-grid">
+                <!-- Trụ sở chính -->
+                <div class="location-card">
+                    <div class="location-header">
+                        <div class="location-icon">🏢</div>
+                        <h3>Trụ Sở Chính</h3>
+                        <p class="location-type">Nha Trang, Khánh Hòa</p>
+                    </div>
+                    <div class="location-body">
+                        <div class="location-detail">
+                            <div class="detail-icon">📍</div>
+                            <div class="detail-text">
+                                <strong>Địa chỉ</strong>
+                                <p>38A Lý Tự Trọng, Phường Nha Trang, TP. Nha Trang, Tỉnh Khánh Hòa</p>
+                            </div>
+                        </div>
+                        <div class="location-detail">
+                            <div class="detail-icon">📞</div>
+                            <div class="detail-text">
+                                <strong>Liên hệ</strong>
+                                <p>
+                                    ☎ <a href="tel:05822210226">058.2210226</a><br>
+                                    📱 <a href="tel:0913431515">0913.431.515</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="location-detail">
+                            <div class="detail-icon">✉️</div>
+                            <div class="detail-text">
+                                <strong>Email</strong>
+                                <p><a href="mailto:t27_vn@yahoo.com">t27_vn@yahoo.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TVGS & Kiểm định -->
+                <div class="location-card">
+                    <div class="location-header">
+                        <div class="location-icon">🔬</div>
+                        <h3>TVGS & Kiểm Định</h3>
+                        <p class="location-type">Mỹ Gia, Khánh Hòa</p>
+                    </div>
+                    <div class="location-body">
+                        <div class="location-detail">
+                            <div class="detail-icon">📍</div>
+                            <div class="detail-text">
+                                <strong>Địa chỉ</strong>
+                                <p>Đô thị Mỹ Gia, Đường số 4, LK45-10, Phường Nam Nha Trang, Khánh Hòa</p>
+                            </div>
+                        </div>
+                        <div class="location-detail">
+                            <div class="detail-icon">🔧</div>
+                            <div class="detail-text">
+                                <strong>Chức năng</strong>
+                                <p>Tư vấn giám sát thi công và kiểm định chất lượng công trình</p>
+                            </div>
+                        </div>
+                        <div class="location-detail">
+                            <div class="detail-icon">📞</div>
+                            <div class="detail-text">
+                                <strong>Liên hệ</strong>
+                                <p>📱 <a href="tel:0988112277">0988.112.277</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chi nhánh Bình Định -->
+                <div class="location-card">
+                    <div class="location-header">
+                        <div class="location-icon">🏪</div>
+                        <h3>Chi Nhánh</h3>
+                        <p class="location-type">Quy Nhơn, Bình Định</p>
+                    </div>
+                    <div class="location-body">
+                        <div class="location-detail">
+                            <div class="detail-icon">📍</div>
+                            <div class="detail-text">
+                                <strong>Địa chỉ</strong>
+                                <p>Lô 6 đường N1, Khu đô thị thương mại An Phú, Phường Quy Nhơn, Bình Định</p>
+                            </div>
+                        </div>
+                        <div class="location-detail">
+                            <div class="detail-icon">🎯</div>
+                            <div class="detail-text">
+                                <strong>Chức năng</strong>
+                                <p>Văn phòng đại diện khu vực miền Trung</p>
+                            </div>
+                        </div>
+                        <div class="location-detail">
+                            <div class="detail-icon">📞</div>
+                            <div class="detail-text">
+                                <strong>Liên hệ</strong>
+                                <p>📱 <a href="tel:0988112277">0988.112.277</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <div class="map-section">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3898.913922844755!2d109.18643407583436!3d12.244870887997842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3170677811a8b441%3A0x3c8e5d5e5e5e5e5e!2zVMOieSBOaW5oLCBLaMOhbmggSMOyYSwgVmlldG5hbQ!5e0!3m2!1sen!2s!4v1704067200000!5m2!1sen!2s" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <img src="images/logo-t27.png" alt="T27 Logo" class="footer-logo-image" onerror="this.src='images/logo-t27.svg'">
+        <p class="footer-tagline" style="color: var(--primary-orange) !important;">Cái tâm mọi công trình</p>
+        <p>&copy; 2025 Công Ty Cổ Phần Tư Vấn T27. All rights reserved.</p>
+        <p>Tư vấn thiết kế | Khảo sát - Địa hình Địa chất | Giám sát thi công | Quản lý dự án</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

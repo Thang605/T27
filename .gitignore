@@ -1,0 +1,11 @@
+bin/
+obj/
+.vscode/
+.vs/
+*.user
+*.suo
+*.log
+.DS_Store
+Thumbs.db
+node_modules/
+.firebase/

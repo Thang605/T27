@@ -1,0 +1,705 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Projects - T27 Công Ty Cổ Phần Tư Vấn</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Hero Section - Matching tin-tuc.html style */
+
+        .insights-hero {
+            background: linear-gradient(135deg, #1e5366 0%, #0d4a5f 100%);
+            padding: 100px 20px 50px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .insights-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><path d="M0,300 Q300,200 600,300 T1200,300 L1200,600 L0,600 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+            opacity: 0.2;
+        }
+
+        .insights-hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .insights-hero h1 {
+            font-size: 3.5em;
+            color: white;
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        /* Height Adjustment Slider - HIDDEN */
+
+        .height-adjuster {
+            display: none;
+        }
+
+        /* Filter Section - White Background with Blue Button */
+
+        .filter-section {
+            background: white;
+            /* Changed from #f8f9fa */
+            padding: 30px 20px;
+            /* Reduced from 40px */
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .filter-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 15px;
+            /* Reduced from 20px */
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-select,
+        .search-input {
+            padding: 14px 20px;
+            /* Slightly reduced */
+            border: 1px solid #ddd;
+            /* Thinner border */
+            border-radius: 4px;
+            /* Slightly smaller radius */
+            font-size: 0.95em;
+            /* Slightly smaller */
+            background: white;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .filter-select {
+            min-width: 200px;
+            /* Reduced from 220px */
+            appearance: none;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8"><path fill="%23666" d="M0 0l6 8 6-8z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
+            cursor: pointer;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .filter-select:hover,
+        .search-input:focus {
+            border-color: #0d4a5f;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(13, 74, 95, 0.1);
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .submit-btn,
+        .clear-btn {
+            padding: 14px 28px;
+            /* Slightly reduced */
+            border: none;
+            border-radius: 4px;
+            font-size: 0.95em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: capitalize;
+            font-family: inherit;
+        }
+
+        .submit-btn {
+            background: #0088cc;
+            /* Brighter blue */
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background: #006ba1;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
+        }
+
+        .clear-btn {
+            background: transparent;
+            color: #0088cc;
+            border: none;
+            text-decoration: underline;
+            padding: 14px 20px;
+        }
+
+        .clear-btn:hover {
+            color: #006ba1;
+        }
+
+        /* Projects Grid - 3 Column Layout */
+
+        .projects-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 50px 20px 80px;
+            /* Reduced padding */
+            background: #f8f9fa;
+            /* Light gray background */
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+            /* Slightly reduced from 40px */
+        }
+
+        /* Project Card - Clean Design */
+
+        .project-card {
+            background: white;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
+            /* Lighter shadow */
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            /* Slightly reduced */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .project-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 260px;
+            /* Slightly reduced from 280px */
+            overflow: hidden;
+            background: #f0f0f0;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+            /* Reduced from 1.08 */
+        }
+
+        /* Featured Badge - Bottom Left with Blue Background */
+
+        .featured-badge {
+            position: absolute;
+            bottom: 15px;
+            /* Moved to bottom */
+            left: 15px;
+            background: #0088cc;
+            /* Brighter blue */
+            color: white;
+            padding: 6px 14px;
+            /* Slightly smaller */
+            font-size: 0.7em;
+            /* Slightly smaller */
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 10;
+        }
+
+        /* Project Content */
+
+        .project-content {
+            padding: 28px 24px;
+            /* Slightly reduced */
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-size: 1.25em;
+            /* Slightly smaller */
+            color: #0088cc;
+            /* Brighter blue */
+            margin-bottom: 10px;
+            line-height: 1.4;
+            font-weight: 600;
+            min-height: 55px;
+        }
+
+        .project-location {
+            color: #666;
+            /* Darker gray */
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .project-description {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.6;
+            margin-bottom: 18px;
+            flex: 1;
+        }
+
+        .view-more {
+            color: #0088cc;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+            font-size: 0.9em;
+        }
+
+        .view-more:hover {
+            color: #006ba1;
+            gap: 10px;
+        }
+
+        .view-more::after {
+            content: '→';
+            font-size: 1.2em;
+        }
+
+        /* Results Count - Hidden for cleaner look */
+
+        .results-info {
+            display: none;
+        }
+
+        /* No Results */
+
+        .no-results {
+            text-align: center;
+            padding: 80px 20px;
+            display: none;
+            background: white;
+            border-radius: 8px;
+            margin: 20px;
+        }
+
+        .no-results.show {
+            display: block;
+        }
+
+        .no-results-icon {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            opacity: 0.3;
+        }
+
+        .no-results h3 {
+            font-size: 1.8em;
+            color: #0088cc;
+            margin-bottom: 12px;
+        }
+
+        .no-results p {
+            font-size: 1em;
+            color: #666;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .insights-hero {
+                padding: 80px 20px 40px;
+            }
+
+            .insights-hero h1 {
+                font-size: 2.5em;
+            }
+
+            .filter-container {
+                flex-direction: column;
+            }
+
+            .filter-select,
+            .search-input,
+            .submit-btn,
+            .clear-btn {
+                width: 100%;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-image-wrapper {
+                height: 200px;
+            }
+
+            .project-content {
+                padding: 20px 18px;
+            }
+
+            .project-title {
+                font-size: 1.15em;
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-container" style="text-decoration: none; color: inherit;">
+                <img src="images/logo-t27.png" alt="T27 Logo" class="logo-image" onerror="this.src='images/logo-t27.svg'">
+                <div class="logo-tagline">Cái tâm mọi công trình</div>
+            </a>
+
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="gioi-thieu.html">Giới thiệu</a></li>
+                <li><a href="du-an.html" style="color: var(--primary-orange);">Dự án</a></li>
+                <li><a href="doi-ngu-chuyen-gia.html">Đội ngũ chuyên gia</a></li>
+                <li><a href="cong-nghe-so.html">Công nghệ số</a></li>
+                <li><a href="tin-tuc.html">Tin tức</a></li>
+                <li><a href="chinh-sach.html">Chính sách</a></li>
+                <li><a href="lien-he.html">Liên hệ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contact Bar -->
+    <div class="contact-bar">
+        <div class="contact-bar-content">
+            <div class="contact-item">
+                <strong>📞 Hotline:</strong> 058.2210226 | 0913.431.515
+            </div>
+            <div class="contact-item">
+                <strong>✉ Email:</strong> t27_vn@yahoo.com
+            </div>
+            <div class="contact-item">
+                <strong>📍 Địa chỉ:</strong> Nha Trang, Khánh Hòa | Quy Nhơn, Bình Định
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="insights-hero" id="heroSection">
+        <div class="insights-hero-content">
+            <h1>Dự án</h1>
+        </div>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="filter-section">
+        <div class="filter-container">
+            <select class="filter-select" id="serviceFilter">
+                <option value="">Filter by Service</option>
+                <option value="giao-thong">Giao thông</option>
+                <option value="ha-tang">Hạ tầng kỹ thuật</option>
+                <option value="thuy-loi">Công trình thủy</option>
+                <option value="xay-dung">Xây dựng dân dụng</option>
+                <option value="bim">BIM</option>
+                <option value="giam-sat">Giám sát</option>
+            </select>
+
+            <select class="filter-select" id="projectTypeFilter">
+                <option value="">Filter by Project Type</option>
+                <option value="khao-sat-thiet-ke">Các dự án khảo sát thiết kế</option>
+                <option value="mo-hinh-bim">Các dự án lập mô hình BIM</option>
+                <option value="tvgs">Các dự án TVGS</option>
+                <option value="kiem-dinh">Các dự án kiểm định</option>
+                <option value="kiem-tra-nghiem-thu">Các dự án về kiểm tra nghiệm thu</option>
+                <option value="lua-chon-nha-thau">Các dự án về lựa chọn nhà thầu xây dựng</option>
+                <option value="lap-qui-hoach">Các dự án về lập qui hoạch</option>
+            </select>
+
+            <select class="filter-select" id="locationFilter">
+                <option value="">Filter by Location</option>
+                <option value="nha-trang">Nha Trang</option>
+                <option value="quy-nhon">Quy Nhơn</option>
+                <option value="khanh-hoa">Khánh Hòa</option>
+                <option value="binh-dinh">Bình Định</option>
+                <option value="phu-yen">Phú Yên</option>
+            </select>
+
+            <input type="text" class="search-input" id="searchInput" placeholder="Search Projects ...">
+
+            <button class="submit-btn" onclick="filterProjects()">Submit</button>
+            <button class="clear-btn" onclick="clearFilters()">Clear All</button>
+        </div>
+    </div>
+
+    <!-- Projects Container -->
+    <div class="projects-container">
+        <!-- Results Info - Hidden -->
+        <div class="results-info">
+            <div class="results-count">
+                Showing <span class="number" id="resultsCount">10</span> projects
+            </div>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid" id="projectsGrid">
+            <!-- Project Card 1 - Featured -->
+            <div class="project-card" data-service="giao-thong" data-location="nha-trang" data-project-type="khao-sat-thiet-ke">
+                <div class="project-image-wrapper">
+                    <img src="images/projects/project-1.jpg" alt="METRO Gold Line BRT" class="project-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%231e5366%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EGiao Thông%3C/text%3E%3C/svg%3E'">
+                    <span class="featured-badge">FEATURED</span>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">METRO Gold Line BRT Transit Planning and Corridor Design – Saint Paul</h3>
+                    <p class="project-location">St. Paul, Maplewood, Oakdale, and Woodbury, Minnesota</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Project Card 2 - Nút giao Ngọc Hồi - Featured -->
+            <div class="project-card" data-service="giao-thong" data-location="nha-trang" data-project-type="khao-sat-thiet-ke">
+                <div class="project-image-wrapper">
+                    <img src="images/projects/ngoc-hoi-main.jpg" alt="Nút giao Ngọc Hồi" class="project-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%231e5366%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ENút giao Ngọc Hồi%3C/text%3E%3C/svg%3E'">
+                    <span class="featured-badge">FEATURED</span>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Dự án Nút giao Ngọc Hồi - Công trình giao thông Cấp II</h3>
+                    <p class="project-location">Phường Nha Trang, Khánh Hòa</p>
+                    <a href="project-ngoc-hoi.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Project Card 3 - Featured -->
+            <div class="project-card" data-service="thuy-loi" data-location="binh-dinh" data-project-type="khao-sat-thiet-ke">
+                <div class="project-image-wrapper">
+                    <img src="images/projects/project-2.jpg" alt="Wisconsin River Bridges" class="project-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%232d6a7f%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ECông Trình Thủy%3C/text%3E%3C/svg%3E'">
+                    <span class="featured-badge">FEATURED</span>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">WIS 130 Wisconsin River Bridges Design-Build in Lone Rock, WI</h3>
+                    <p class="project-location">Lone Rock, WI</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Project Card 4 - Featured -->
+            <div class="project-card" data-service="ha-tang" data-location="khanh-hoa" data-project-type="khao-sat-thiet-ke">
+                <div class="project-image-wrapper">
+                    <img src="images/projects/project-3.jpg" alt="Upper Villa Park Stormwater" class="project-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23004E89%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EHạ Tầng KT%3C/text%3E%3C/svg%3E'">
+                    <span class="featured-badge">FEATURED</span>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Upper Villa Park Stormwater Harvesting and Reuse</h3>
+                    <p class="project-location">Roseville, Minnesota</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Project Card 5 -->
+            <div class="project-card" data-service="xay-dung" data-location="nha-trang" data-project-type="khao-sat-thiet-ke">
+                <div class="project-image-wrapper">
+                    <img src="images/projects/project-4.jpg" alt="Commercial Building" class="project-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23FF6B35%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EXây Dựng%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Tổ hợp thương mại và văn phòng cao tầng</h3>
+                    <p class="project-location">Nha Trang, Khánh Hòa</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Project Card 6 -->
+            <div class="project-card" data-service="bim" data-location="quy-nhon" data-project-type="mo-hinh-bim">
+                <div class="project-image-wrapper">
+                    <img src="images/projects/project-5.jpg" alt="BIM Modeling" class="project-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%230077B6%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EBIM 3D%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Mô hình BIM 3D cho khu đô thị thông minh</h3>
+                    <p class="project-location">Quy Nhơn, Bình Định</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Project Card 7 -->
+            <div class="project-card" data-service="giam-sat" data-location="khanh-hoa" data-project-type="tvgs">
+                <div class="project-image-wrapper">
+                    <img src="images/projects/project-6.jpg" alt="Construction Supervision" class="project-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23FFB41F%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EGiám Sát%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Giám sát thi công cầu vượt và nút giao thông</h3>
+                    <p class="project-location">Nha Trang, Khánh Hòa</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Project Card 8 -->
+            <div class="project-card" data-service="giao-thong" data-location="binh-dinh" data-project-type="khao-sat-thiet-ke">
+                <div class="project-image-wrapper">
+                    <img src="images/projects/project-8.jpg" alt="Highway Upgrade" class="project-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%231e5366%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3ECầu Đường%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Nâng cấp và mở rộng quốc lộ khu vực</h3>
+                    <p class="project-location">Quy Nhơn, Bình Định</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Project Card 9 -->
+            <div class="project-card" data-service="ha-tang" data-location="nha-trang" data-project-type="khao-sat-thiet-ke">
+                <div class="project-image-wrapper">
+                    <img src="images/projects/project-9.jpg" alt="Urban Drainage" class="project-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23004E89%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EHạ Tầng%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Hệ thống thoát nước mưa và chống ngập đô thị</h3>
+                    <p class="project-location">Nha Trang, Khánh Hòa</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Project Card 10 -->
+            <div class="project-card" data-service="xay-dung" data-location="phu-yen" data-project-type="kiem-dinh">
+                <div class="project-image-wrapper">
+                    <img src="images/projects/project-7.jpg" alt="Residential Building" class="project-image"
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22280%22%3E%3Crect fill=%22%23002D4D%22 width=%22400%22 height=%22280%22/%3E%3Ctext fill=%22white%22 font-family=%22Arial%22 font-size=%2220%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3EKiểm Định%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Kiểm định chất lượng và an toàn công trình</h3>
+                    <p class="project-location">Tuy Hòa, Phú Yên</p>
+                    <a href="#" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Results Message -->
+        <div class="no-results" id="noResults">
+            <div class="no-results-icon">🔍</div>
+            <h3>No projects found</h3>
+            <p>Try adjusting your filters or search terms</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <img src="images/logo-t27.png" alt="T27 Logo" class="footer-logo-image" onerror="this.src='images/logo-t27.svg'">
+        <p class="footer-tagline" style="color: var(--primary-orange) !important;">Cái tâm mọi công trình</p>
+        <p>&copy; 2025 Công Ty Cổ Phần Tư Vấn T27. All rights reserved.</p>
+        <p>Tư vấn thiết kế | Khảo sát - Địa hình Địa chất | Giám sát thi công | Quản lý dự án</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Filter projects
+        function filterProjects() {
+            const serviceFilter = document.getElementById('serviceFilter').value.toLowerCase();
+            const projectTypeFilter = document.getElementById('projectTypeFilter').value.toLowerCase();
+            const locationFilter = document.getElementById('locationFilter').value.toLowerCase();
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const projectCards = document.querySelectorAll('.project-card');
+            let visibleCount = 0;
+
+            projectCards.forEach(card => {
+                const service = card.dataset.service || '';
+                const projectType = card.dataset.projectType || '';
+                const location = card.dataset.location || '';
+                const title = card.querySelector('.project-title').textContent.toLowerCase();
+
+                const matchesService = !serviceFilter || service === serviceFilter;
+                const matchesProjectType = !projectTypeFilter || projectType === projectTypeFilter;
+                const matchesLocation = !locationFilter || location === locationFilter;
+                const matchesSearch = !searchInput || title.includes(searchInput);
+
+                if (matchesService && matchesProjectType && matchesLocation && matchesSearch) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Update results count
+            document.getElementById('resultsCount').textContent = visibleCount;
+
+            // Show/hide no results message
+            const noResults = document.getElementById('noResults');
+            if (visibleCount === 0) {
+                noResults.classList.add('show');
+            } else {
+                noResults.classList.remove('show');
+            }
+        }
+
+        // Clear all filters
+        function clearFilters() {
+            document.getElementById('serviceFilter').value = '';
+            document.getElementById('projectTypeFilter').value = '';
+            document.getElementById('locationFilter').value = '';
+            document.getElementById('searchInput').value = '';
+            filterProjects();
+        }
+
+        // Search on Enter key
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                filterProjects();
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 100) {
+                    navbar.style.boxShadow = '0 5px 25px rgba(0,0,0,0.2)';
+                } else {
+                    navbar.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

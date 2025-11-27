@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Đội Ngũ Chuyên Gia - T27 Công Ty Cổ Phần Tư Vấn</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Insights-style Hero used for consistency with Tin tức */
+        .insights-hero {
+            background: linear-gradient(135deg, #1e5366 0%, #0d4a5f 100%);
+            padding: 100px 20px 50px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .insights-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><path d="M0,300 Q300,200 600,300 T1200,300 L1200,600 L0,600 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+            opacity: 0.2;
+        }
+
+        .insights-hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .insights-hero h1 {
+            font-size: 3.5em;
+            color: white;
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        /* Height Adjustment Slider */
+        .height-adjuster {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            min-width: 250px;
+        }
+
+        .height-adjuster h4 {
+            margin: 0 0 10px 0;
+            color: #0088cc;
+            font-size: 0.9em;
+        }
+
+        .height-adjuster input[type="range"] {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .height-adjuster .value-display {
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #0088cc;
+            margin: 10px 0;
+        }
+
+        .height-adjuster button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .height-adjuster .copy-btn {
+            background: #0088cc;
+            color: white;
+        }
+
+        .height-adjuster .copy-btn:hover {
+            background: #006ba1;
+        }
+
+        .height-adjuster .close-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .height-adjuster .close-btn:hover {
+            background: #c0392b;
+        }
+
+        /* Filter Section - White Background with Blue Button */
+        .filter-section {
+            background: white;
+            padding: 30px 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .filter-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-select,
+        .search-input {
+            padding: 14px 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.95em;
+            background: white;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .filter-select {
+            min-width: 200px;
+            appearance: none;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8"><path fill="%23666" d="M0 0l6 8 6-8z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
+            cursor: pointer;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .filter-select:hover,
+        .search-input:focus {
+            border-color: #0d4a5f;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(13, 74, 95, 0.1);
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .submit-btn,
+        .clear-btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.95em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: capitalize;
+            font-family: inherit;
+        }
+
+        .submit-btn {
+            background: #0088cc;
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background: #006ba1;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
+        }
+
+        .clear-btn {
+            background: transparent;
+            color: #0088cc;
+            border: none;
+            text-decoration: underline;
+            padding: 14px 20px;
+        }
+
+        .clear-btn:hover {
+            color: #006ba1;
+        }
+
+        /* Experts Grid - 3 Column Layout */
+        .experts-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 50px 20px 80px;
+            background: #f8f9fa;
+        }
+
+        .experts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+        }
+
+        /* Expert Card - Clean Design */
+        .expert-card {
+            background: white;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .expert-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .expert-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 260px;
+            overflow: hidden;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .expert-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .expert-card:hover .expert-image {
+            transform: scale(1.05);
+        }
+
+
+        /* Featured Badge - Bottom Left with Blue Background */
+        .featured-badge {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            background: #0088cc;
+            color: white;
+            padding: 6px 14px;
+            font-size: 0.7em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 10;
+        }
+
+        /* Expert Content */
+        .expert-content {
+            padding: 28px 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .expert-name {
+            font-size: 1.25em;
+            color: #0088cc;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            font-weight: 600;
+            min-height: 55px;
+        }
+
+        .expert-title {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .expert-specialties {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.6;
+            margin-bottom: 18px;
+            flex: 1;
+        }
+
+        .view-more {
+            color: #0088cc;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+            font-size: 0.9em;
+        }
+
+        .view-more:hover {
+            color: #006ba1;
+            gap: 10px;
+        }
+
+        .view-more::after {
+            content: '→';
+            font-size: 1.2em;
+        }
+
+        /* Results Count - Hidden for cleaner look */
+        .results-info {
+            display: none;
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 80px 20px;
+            display: none;
+            background: white;
+            border-radius: 8px;
+            margin: 20px;
+        }
+
+        .no-results.show {
+            display: block;
+        }
+
+        .no-results-icon {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            opacity: 0.3;
+        }
+
+        .no-results h3 {
+            font-size: 1.8em;
+            color: #0088cc;
+            margin-bottom: 12px;
+        }
+
+        .no-results p {
+            font-size: 1em;
+            color: #666;
+            font-weight: 400;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .experts-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .filter-select {
+                min-width: 180px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .insights-hero {
+                padding: 80px 20px 40px;
+            }
+
+            .insights-hero h1 {
+                font-size: 2.5em;
+            }
+
+            .filter-section {
+                padding: 20px 15px;
+            }
+
+            .filter-container {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .filter-select,
+            .search-input,
+            .submit-btn,
+            .clear-btn {
+                width: 100%;
+            }
+
+            .filter-select {
+                min-width: 100%;
+            }
+
+            .experts-container {
+                padding: 30px 15px 60px;
+            }
+
+            .experts-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .expert-image-wrapper {
+                height: 240px;
+            }
+
+            /* Contact bar responsive */
+            .contact-bar-content {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+
+            .contact-item {
+                font-size: 0.85em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .filter-section {
+                padding: 15px 10px;
+            }
+
+            .filter-select,
+            .search-input {
+                padding: 12px 16px;
+                font-size: 0.9em;
+            }
+
+            .submit-btn,
+            .clear-btn {
+                padding: 12px 20px;
+                font-size: 0.9em;
+            }
+
+            .expert-image-wrapper {
+                height: 200px;
+            }
+
+            .expert-content {
+                padding: 20px 18px;
+            }
+
+            .expert-name {
+                font-size: 1.15em;
+                min-height: auto;
+            }
+
+            .expert-title {
+                font-size: 0.85em;
+            }
+
+            .expert-specialties {
+                font-size: 0.85em;
+            }
+
+            .featured-badge {
+                padding: 5px 10px;
+                font-size: 0.65em;
+                bottom: 10px;
+                left: 10px;
+            }
+
+            .no-results {
+                padding: 60px 15px;
+            }
+
+            .no-results-icon {
+                font-size: 2.5em;
+            }
+
+            .no-results h3 {
+                font-size: 1.4em;
+            }
+
+            /* Contact bar for very small screens */
+            .contact-item {
+                font-size: 0.8em;
+                padding: 3px 0;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .expert-name {
+                font-size: 1.1em;
+            }
+
+            .contact-item strong {
+                display: block;
+                margin-bottom: 2px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-container" style="text-decoration: none; color: inherit;">
+                <img src="images/logo-t27.png" alt="T27 Logo" class="logo-image"
+                    onerror="this.src='images/logo-t27.svg'">
+                <div class="logo-tagline">Cái tâm mọi công trình</div>
+            </a>
+
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="gioi-thieu.html">Giới thiệu</a></li>
+                <li><a href="du-an.html">Dự án</a></li>
+                <li><a href="doi-ngu-chuyen-gia.html" style="color: var(--primary-orange);">Đội ngũ chuyên gia</a></li>
+                <li><a href="cong-nghe-so.html">Công nghệ số</a></li>
+                <li><a href="tin-tuc.html">Tin tức</a></li>
+                <li><a href="chinh-sach.html">Chính sách</a></li>
+                <li><a href="lien-he.html">Liên hệ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contact Bar -->
+    <div class="contact-bar">
+        <div class="contact-bar-content">
+            <div class="contact-item">
+                <strong>📞 Hotline:</strong> 058.2210226 | 0913.431.515
+            </div>
+            <div class="contact-item">
+                <strong>✉ Email:</strong> t27_vn@yahoo.com
+            </div>
+            <div class="contact-item">
+                <strong>📍 Địa chỉ:</strong> Nha Trang, Khánh Hòa | Quy Nhơn, Bình Định
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section (use same style as insights) -->
+    <div class="insights-hero" id="heroSection">
+        <div class="insights-hero-content">
+            <h1>Đội ngũ chuyên gia</h1>
+        </div>
+    </div>
+
+    <!-- Height Adjustment Slider - HIDDEN -->
+    <div class="height-adjuster" id="heightAdjuster" style="display: none;">
+        <h4>⚙️ Điều chỉnh chiều cao Hero</h4>
+        <input type="range" id="heroHeightSlider" min="100" max="400" value="240" step="10">
+        <div class="value-display">
+            Padding: <span id="paddingValue">160px 20px 80px</span>
+        </div>
+        <button class="copy-btn" onclick="copyHeightValue()">📋 Copy giá trị</button>
+        <button class="close-btn" onclick="closeAdjuster()">✕ Đóng</button>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="filter-section">
+        <div class="filter-container">
+            <select class="filter-select" id="expertiseFilter">
+                <option value="">Lọc theo chuyên môn</option>
+                <option value="khao-sat-thiet-ke">Khảo sát thiết kế</option>
+                <option value="bim">BIM & Công nghệ số</option>
+                <option value="giam-sat">Tư vấn giám sát</option>
+                <option value="kiem-dinh">Kiểm định</option>
+                <option value="lua-chon-nha-thau">Lựa chọn nhà thầu</option>
+            </select>
+
+            <input type="text" class="search-input" id="searchInput" placeholder="Tìm kiếm chuyên gia...">
+
+            <button class="submit-btn" onclick="filterExperts()">Tìm kiếm</button>
+            <button class="clear-btn" onclick="clearFilters()">Xóa bộ lọc</button>
+        </div>
+    </div>
+
+    <!-- Experts Container -->
+    <div class="experts-container">
+        <!-- Results Info - Hidden -->
+        <div class="results-info">
+            <div class="results-count">
+                Showing <span class="number" id="resultsCount">15</span> experts
+            </div>
+        </div>
+
+        <!-- Experts Grid -->
+        <div class="experts-grid" id="expertsGrid">
+
+            <!-- Expert Card: Bùi Hoàng Quỳnh Lam -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Bùi Hoàng Quỳnh Lam.jpg" alt="Bùi Hoàng Quỳnh Lam"
+                        class="expert-image" onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Bùi Hoàng Quỳnh Lam</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 14 năm kinh nghiệm trong lĩnh vực thiết kế và Chứng chỉ thiết kế
+                        công trình đường bộ hạng 1, bà Bùi Hoàng Quỳnh Lam đảm nhận vai trò Phó phòng thiết kế với
+                        chuyên môn trong thiết kế công trình đường bộ.</p>
+                    <a href="doi-ngu-chuyen-gia/bui-hoang-quynh-lam.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Cái Thế Lân -->
+            <div class="expert-card" data-expertise="kiem-dinh" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Cái Thế Lân.jpg" alt="Cái Thế Lân" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Cái Thế Lân</h3>
+                    <p class="expert-title">Chuyên gia Kiểm định</p>
+                    <p class="expert-specialties">Với 11 năm kinh nghiệm trong lĩnh vực thí nghiệm và Chứng chỉ thí
+                        nghiệm viên, ông Cái Thế Lân có chuyên môn trong thí nghiệm vật liệu xây dựng.</p>
+                    <a href="doi-ngu-chuyen-gia/cai-the-lan.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Dương Hoàng Phương Ly -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Duong Hoang Phuong Ly.jpg" alt="Dương Hoàng Phương Ly"
+                        class="expert-image" onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Dương Hoàng Phương Ly</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 16 năm kinh nghiệm trong lĩnh vực thiết kế và Chứng chỉ thiết kế
+                        giao thông hạng 2, bà Dương Hoàng Phương Ly đảm nhận vai trò Phó phòng thiết kế với chuyên môn
+                        sâu về thiết kế các công trình cầu.</p>
+                    <a href="doi-ngu-chuyen-gia/duong-hoang-phuong-ly.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Hồ Chí Cường -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Hồ Chí Cường.jpg" alt="Hồ Chí Cường" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Hồ Chí Cường</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 5 năm kinh nghiệm trong lĩnh vực thiết kế công trình giao thông và
+                        sở hữu Chứng chỉ thiết kế công trình đường bộ hạng 3 cũng như thiết kế công trình cầu hạng 3,
+                        ông Hồ Chí Cường đã tham gia nhiều dự án cơ sở hạ tầng quan trọng.</p>
+                    <a href="doi-ngu-chuyen-gia/ho-chi-cuong.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Hồ Thị Bích Thảo -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Hồ Thị Bích Thảo.jpg" alt="Hồ Thị Bích Thảo"
+                        class="expert-image" onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Hồ Thị Bích Thảo</h3>
+                    <p class="expert-title"></p>
+                    <p class="expert-specialties">Với Chứng chỉ nghiệp vụ chuyên môn về đấu thầu lựa chọn nhà thầu, bà
+                        Hồ Thị Bích Thảo có chuyên môn trong tư vấn lựa chọn nhà thầu tư vấn và thi công, đóng góp vào
+                        công tác quản lý đấu thầu và lựa chọn nhà thầu cho các dự án.</p>
+                    <a href="doi-ngu-chuyen-gia/ho-thi-bich-thao.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Huỳnh Duy Hùng -->
+            <div class="expert-card" data-expertise="giam-sat" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Huynh Duy Hung.jpg" alt="Huỳnh Duy Hùng" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Huỳnh Duy Hùng</h3>
+                    <p class="expert-title">Chuyên gia Tư vấn Giám sát</p>
+                    <p class="expert-specialties">Với 25 năm kinh nghiệm dày dạn trong lĩnh vực thi công và giám sát
+                        công trình giao thông, cầu, đường, hầm và hạ tầng kỹ thuật, cùng chứng chỉ Giám sát công tác xây
+                        dựng công trình dân dụng - công nghiệp và hạ tầng kỹ thuật hạng II, ông Huỳnh Duy Hùng có chuyên
+                        môn trong giám sát, thi công các công trình giao thông, cầu, đường, hầm và công trình hạ tầng kỹ
+                        thuật.</p>
+                    <a href="doi-ngu-chuyen-gia/huynh-duy-hung.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Huỳnh Ngọc Nam -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/HuynhNgocNam.jpg" alt="Huỳnh Ngọc Nam" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Huỳnh Ngọc Nam</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 5 năm kinh nghiệm trong lĩnh vực thiết kế, ông Huỳnh Ngọc Nam có
+                        chuyên môn trong thiết kế công trình giao thông.</p>
+                    <a href="doi-ngu-chuyen-gia/huynh-ngoc-nam.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Huỳnh Tấn Chánh -->
+            <div class="expert-card" data-expertise="lua-chon-nha-thau" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Huỳnh Tấn Chánh.jpg" alt="Huỳnh Tấn Chánh" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Huỳnh Tấn Chánh</h3>
+                    <p class="expert-title">Chuyên gia Lựa chọn Nhà thầu</p>
+                    <p class="expert-specialties">Là chuyên gia trong lĩnh vực đấu thầu và lựa chọn nhà thầu, ông Huỳnh
+                        Tấn Chánh sở hữu Chứng chỉ nghiệp vụ chuyên môn về đấu thầu lựa chọn nhà thầu và Chứng chỉ định
+                        giá hạng 3.</p>
+                    <a href="doi-ngu-chuyen-gia/huynh-tan-chanh.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Lê Quốc Tĩnh -->
+            <div class="expert-card" data-expertise="giam-sat" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Le Quoc Tinh.jpg" alt="Lê Quốc Tĩnh" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Lê Quốc Tĩnh</h3>
+                    <p class="expert-title">Chuyên gia Tư vấn Giám sát</p>
+                    <p class="expert-specialties">Với 7 năm tham gia hoạt động xây dựng, cùng các chứng chỉ Thiết kế Cơ
+                        - Điện công trình - Hệ thống điện - Hạng II, Giám sát lắp đặt thiết bị - Hạng II và Định giá xây
+                        dựng - Hạng II, ông Lê Quốc Tĩnh có chuyên môn trong giám sát công tác xây dựng.</p>
+                    <a href="doi-ngu-chuyen-gia/le-quoc-tinh.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Lê Thiên Vinh -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Lê Thiên Vinh.jpg" alt="Lê Thiên Vinh" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Lê Thiên Vinh</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 24 năm kinh nghiệm trong khảo sát, thiết kế, giám sát công trình
+                        giao thông và Chứng chỉ thiết kế giao thông hạng II, ông Lê Thiên Vinh có chuyên môn sâu rộng
+                        trong khảo sát, thiết kế, giám sát công trình giao thông đường bộ.</p>
+                    <a href="doi-ngu-chuyen-gia/le-thien-vinh.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Lê Trọng Nhân -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/LE TRONG NHAN P9.jpg" alt="Lê Trọng Nhân" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Lê Trọng Nhân</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 6 năm kinh nghiệm trong lĩnh vực thiết kế và Chứng chỉ thiết kế
+                        công trình đê điều, thủy lợi hạng III, ông Lê Trọng Nhân đảm nhận vai trò Phó phòng thiết kế với
+                        chuyên môn trong tính toán và xử lý địa kỹ thuật, kết cấu các công trình giao thông và thủy lợi.
+                    </p>
+                    <a href="doi-ngu-chuyen-gia/le-trong-nhan.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Lê Trương Kinh Thy -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Le Truong Kinh Thy.jpg" alt="Lê Trương Kinh Thy"
+                        class="expert-image" onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Lê Trương Kinh Thy</h3>
+                    <p class="expert-title"></p>
+                    <p class="expert-specialties">Với 12 năm kinh nghiệm trong lĩnh vực thi công và giám sát công trình
+                        giao thông, cùng Giám sát công trình giao thông hạng I, bà Lê Trương Kinh Thy có chuyên môn
+                        trong giám sát và thi công cầu - đường.</p>
+                    <a href="doi-ngu-chuyen-gia/le-truong-kinh-thy.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Lê Võ Quốc Anh -->
+            <div class="expert-card" data-expertise="giam-sat" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Lê Võ Quốc Anh.jpg" alt="Lê Võ Quốc Anh" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Lê Võ Quốc Anh</h3>
+                    <p class="expert-title">Chuyên gia Tư vấn Giám sát</p>
+                    <p class="expert-specialties">Với 12 năm kinh nghiệm trong lĩnh vực thí nghiệm và giám sát công
+                        trình, ông Lê Võ Quốc Anh sở hữu Chứng chỉ giám sát công tác xây dựng công trình hạng III.</p>
+                    <a href="doi-ngu-chuyen-gia/le-vo-quoc-anh.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Lương Tấn An -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Lương Tấn An.jpg" alt="Lương Tấn An" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Lương Tấn An</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 7 năm kinh nghiệm trong lĩnh vực thiết kế, cùng Chứng chỉ thiết kế
+                        cầu, đường bộ hạng 2 và nhiều chứng chỉ chuyên ngành khác, ông Lương Tấn An đảm nhận vai trò Phó
+                        phòng thiết kế.</p>
+                    <a href="doi-ngu-chuyen-gia/luong-tan-an.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Mai Thanh Đạt -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Mai Thanh Đạt.jpg" alt="Mai Thanh Đạt" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Mai Thanh Đạt</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 2 năm kinh nghiệm trong lĩnh vực thiết kế, cùng Chứng nhận BIM,
+                        ông Mai Thanh Đạt có chuyên môn trong thiết kế các công trình cầu và bến thủy nội địa.</p>
+                    <a href="doi-ngu-chuyen-gia/mai-thanh-dat.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Nguyễn Chiến Thắng -->
+            <div class="expert-card" data-expertise="kiem-dinh" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Nguyen Chien Thang.jpg" alt="Nguyễn Chiến Thắng"
+                        class="expert-image" onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Nguyễn Chiến Thắng</h3>
+                    <p class="expert-title">Chuyên gia Kiểm định</p>
+                    <p class="expert-specialties">Với 10 năm kinh nghiệm trong lĩnh vực thí nghiệm và Chứng chỉ thí
+                        nghiệm viên, ông Nguy ễn Chiến Thắng có chuyên môn trong thí nghiệm vật liệu cầu đường và dân
+                        dụng.</p>
+                    <a href="doi-ngu-chuyen-gia/nguyen-chien-thang.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Nguyễn Công Dũng -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Nguyễn Công Dũng.jpg" alt="Nguyễn Công Dũng"
+                        class="expert-image" onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Nguyễn Công Dũng</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 21 năm kinh nghiệm trong lĩnh vực thiết kế và giám sát, cùng Chứng
+                        chỉ thiết kế, giám sát đường bộ hạng 1 và thiết kế giám sát cầu hạng II, ông Nguyễn Công Dũng
+                        đảm nhận vai trò Phó Giám đốc với chuyên môn sâu về thiết kế các công trình cầu và đường bộ.</p>
+                    <a href="doi-ngu-chuyen-gia/nguyen-cong-dung.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Nguyễn Đình Châu -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Nguyễn Đình Châu.jpg" alt="Nguyễn Đình Châu"
+                        class="expert-image" onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Nguyễn Đình Châu</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 17 năm kinh nghiệm trong lĩnh vực thiết kế và giám sát, cùng Chứng
+                        chỉ thiết kế, giám sát cầu, đường bộ hạng 1, ông Nguyễn Đình Châu đảm nhận vai trò Phó Giám đốc
+                        với chuyên môn trong thiết kế các công trình cầu và đường bộ.</p>
+                    <a href="doi-ngu-chuyen-gia/nguyen-dinh-chau.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Nguyễn Hồ Kim Vinh -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Nguyen Ho Kim Vinh.jpg" alt="Nguyễn Hồ Kim Vinh"
+                        class="expert-image" onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Nguyễn Hồ Kim Vinh</h3>
+                    <p class="expert-title"></p>
+                    <p class="expert-specialties">Với 12 năm kinh nghiệm trong lĩnh vực thi công và giám sát công trình
+                        giao thông, cùng Giám sát xây dựng công trình dân dụng - công nghiệp và hạ tầng kỹ thuật hạng II
+                        và Giám sát xây dựng công trình giao thông hạng II, ông Nguyễn Hồ Kim Vinh có chuyên môn trong
+                        giám sát công trình giao thông, hạ tầng kỹ thuật.</p>
+                    <a href="doi-ngu-chuyen-gia/nguyen-ho-kim-vinh.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Nguyễn Hoàng Phi Điệp -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Nguyen Hoang Phi Diep.jpg" alt="Nguyễn Hoàng Phi Điệp"
+                        class="expert-image" onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Nguyễn Hoàng Phi Điệp</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 7 năm kinh nghiệm trong lĩnh vực khảo sát địa chất và Chứng chỉ
+                        khảo sát địa chất hạng 2, ông Nguyễn Hoàng Phi Điệp có chuyên môn trong khảo sát địa chất công
+                        trình.</p>
+                    <a href="doi-ngu-chuyen-gia/nguyen-hoang-phi-diep.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Nguyễn Ngọc Anh -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Nguyễn Ngọc Anh.jpg" alt="Nguyễn Ngọc Anh" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Nguyễn Ngọc Anh</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 17 năm kinh nghiệm trong lĩnh vực thiết kế, khảo sát và giám sát
+                        công trình giao thông đường bộ, cùng Chứng chỉ khảo sát, thiết kế, giám sát hạng I, ông Nguyễn
+                        Ngọc Anh đảm nhận vai trò Giám đốc với năng lực quản lý và chuyên môn xuất sắc.</p>
+                    <a href="doi-ngu-chuyen-gia/nguyen-ngoc-anh.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Nguyễn Ngọc Kiên -->
+            <div class="expert-card" data-expertise="giam-sat" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Nguyễn Ngọc Kiên.jpg" alt="Nguyễn Ngọc Kiên"
+                        class="expert-image" onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Nguyễn Ngọc Kiên</h3>
+                    <p class="expert-title">Chuyên gia Tư vấn Giám sát</p>
+                    <p class="expert-specialties">Với 26 năm kinh nghiệm dày dạn trong lĩnh vực thi công, thí nghiệm
+                        kiểm định và giám sát công trình giao thông, ông Nguyễn Ngọc Kiên sở hữu Chứng chỉ giám sát xây
+                        dựng công trình giao thông hạng II và quản lý phòng thí nghiệm.</p>
+                    <a href="doi-ngu-chuyen-gia/nguyen-ngoc-kien.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Nguyễn Ngọc Linh -->
+            <div class="expert-card" data-expertise="giam-sat" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Nguyễn Ngọc Linh.jpg" alt="Nguyễn Ngọc Linh"
+                        class="expert-image" onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Nguyễn Ngọc Linh</h3>
+                    <p class="expert-title">Chuyên gia Tư vấn Giám sát</p>
+                    <p class="expert-specialties">Với 20 năm kinh nghiệm trong lĩnh vực giám sát công trình giao thông,
+                        ông Nguyễn Ngọc Linh sở hữu Chứng chỉ thiết kế đường hạng II và giám sát công tác xây dựng công
+                        trình đường bộ hạng II.</p>
+                    <a href="doi-ngu-chuyen-gia/nguyen-ngoc-linh.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Nguyễn Ngọc Miền -->
+            <div class="expert-card" data-expertise="giam-sat" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Nguyễn Ngọc Miền.jpg" alt="Nguyễn Ngọc Miền"
+                        class="expert-image" onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Nguyễn Ngọc Miền</h3>
+                    <p class="expert-title">Chuyên gia Tư vấn Giám sát</p>
+                    <p class="expert-specialties">Với 19 năm kinh nghiệm trong lĩnh vực thí nghiệm và giám sát công
+                        trình, bà Nguyễn Ngọc Miền sở hữu Chứng chỉ giám sát công tác xây dựng công trình hạng II.</p>
+                    <a href="doi-ngu-chuyen-gia/nguyen-ngoc-mien.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Nguyễn Tấn Tiến -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/NguyenTanTien.jpg" alt="Nguyễn Tấn Tiến" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Nguyễn Tấn Tiến</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 3 năm kinh nghiệm trong lĩnh vực thiết kế và Chứng chỉ thiết kế
+                        giao thông hạng III, ông Nguyễn Tấn Tiến có chuyên môn trong thiết kế công trình giao thông.</p>
+                    <a href="doi-ngu-chuyen-gia/nguyen-tan-tien.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Nguyễn Thái Châu -->
+            <div class="expert-card" data-expertise="giam-sat" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Nguyen Thai Chau.jpg" alt="Nguyễn Thái Châu"
+                        class="expert-image" onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Nguyễn Thái Châu</h3>
+                    <p class="expert-title">Chuyên gia Tư vấn Giám sát</p>
+                    <p class="expert-specialties">Với 17 năm kinh nghiệm trong lĩnh vực giám sát và Giám sát công trình
+                        giao thông hạng I, ông Nguyễn Thái Châu có chuyên môn trong giám sát các công trình cầu, đường
+                        bộ.</p>
+                    <a href="doi-ngu-chuyen-gia/nguyen-thai-chau.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Nguyễn Thanh -->
+            <div class="expert-card" data-expertise="giam-sat" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Nguyễn Thanh.jpg" alt="Nguyễn Thanh" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Nguyễn Thanh</h3>
+                    <p class="expert-title">Chuyên gia Tư vấn Giám sát</p>
+                    <p class="expert-specialties">Với 17 năm kinh nghiệm trong lĩnh vực thi công và giám sát công trình
+                        giao thông, ông Nguyễn Thanh sở hữu nhiều chứng chỉ quan trọng bao gồm giám sát xây dựng công
+                        trình dân dụng, công nghiệp, hạ tầng kỹ thuật và giao thông hạng III.</p>
+                    <a href="doi-ngu-chuyen-gia/nguyen-thanh.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Nguyễn Thị Hảo -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Nguyễn Thị Hảo.jpg" alt="Nguyễn Thị Hảo" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Nguyễn Thị Hảo</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 5 năm kinh nghiệm trong lĩnh vực thiết kế công trình giao thông và
+                        sở hữu Chứng chỉ thiết kế giao thông hạng III, bà Nguyễn Thị Hảo chuyên về thiết kế công trình
+                        giao thông và hạ tầng kỹ thuật.</p>
+                    <a href="doi-ngu-chuyen-gia/nguyen-thi-hao.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Nguyễn Thị Hồng Hằng -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Nguyen Thi Hong Hang.jpg" alt="Nguyễn Thị Hồng Hằng"
+                        class="expert-image" onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Nguyễn Thị Hồng Hằng</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 13 năm kinh nghiệm trong lĩnh vực khảo sát địa chất và Chứng chỉ
+                        khảo sát địa chất hạng 1, bà Nguyễn Thị Hồng Hằng đảm nhận vai trò Phó phòng khảo sát với chuyên
+                        môn chuyên sâu về khảo sát địa chất.</p>
+                    <a href="doi-ngu-chuyen-gia/nguyen-thi-hong-hang.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Nguyễn Thị Phúc -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Nguyen Thi Phuc.jpg" alt="Nguyễn Thị Phúc" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Nguyễn Thị Phúc</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 19 năm kinh nghiệm trong lĩnh vực lập dự toán, cùng Chứng chỉ
+                        thiết kế hạng 1 và Chứng chỉ định giá hạng 1, bà Nguyễn Thị Phúc đảm nhận vai trò Trưởng phòng
+                        KD&QLTN với chuyên môn trong lập dự toán công trình.</p>
+                    <a href="doi-ngu-chuyen-gia/nguyen-thi-phuc.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Nguyễn Văn Son -->
+            <div class="expert-card" data-expertise="giam-sat" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Nguyen Van Son.jpg" alt="Nguyễn Văn Son" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Nguyễn Văn Son</h3>
+                    <p class="expert-title">Chuyên gia Tư vấn Giám sát</p>
+                    <p class="expert-specialties">Với 15 năm kinh nghiệm trong lĩnh vực thi công và giám sát công trình
+                        giao thông, cùng Giám sát công trình giao thông hạng I, ông Nguyễn Văn Son có chuyên môn trong
+                        giám sát và thi công cầu đường.</p>
+                    <a href="doi-ngu-chuyen-gia/nguyen-van-son.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Nguyễn Văn Ty -->
+            <div class="expert-card" data-expertise="giam-sat" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Nguyễn Văn Ty.jpg" alt="Nguyễn Văn Ty" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Nguyễn Văn Ty</h3>
+                    <p class="expert-title">Chuyên gia Tư vấn Giám sát</p>
+                    <p class="expert-specialties">Với hơn 15 năm 5 tháng kinh nghiệm trong lĩnh vực thí nghiệm và giám
+                        sát công trình, ông Nguyễn Văn Ty sở hữu nhiều chứng chỉ quan trọng bao gồm giám sát công trình
+                        dân dụng, công nghiệp, hạ tầng kỹ thuật hạng III và giám sát giao thông hạng III, cùng với chứng
+                        nhận huấn luyện an toàn lao động.</p>
+                    <a href="doi-ngu-chuyen-gia/nguyen-van-ty.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Phạm Khắc Hoài Tân -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Phạm Khắc Hoài Tân.jpg" alt="Phạm Khắc Hoài Tân"
+                        class="expert-image" onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Phạm Khắc Hoài Tân</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 17 năm kinh nghiệm phong phú trong lĩnh vực thiết kế và giám sát
+                        công trình giao thông, ông Phạm Khắc Hoài Tân là chuyên gia chuyên sâu về thiết kế an toàn giao
+                        thông và giải phóng mặt bằng.</p>
+                    <a href="doi-ngu-chuyen-gia/pham-khac-hoai-tan.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Phạm Minh Tuấn -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/PHAM MINH TUAN.png" alt="Phạm Minh Tuấn" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Phạm Minh Tuấn</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 5 năm kinh nghiệm trong lĩnh vực thiết kế và Chứng chỉ thiết kế
+                        cầu, đường bộ hạng III cùng Chứng nhận BIM, ông Phạm Minh Tuấn có chuyên môn trong tính toán, xử
+                        lý kết cấu các công trình giao thông, cầu, cảng.</p>
+                    <a href="doi-ngu-chuyen-gia/pham-minh-tuan.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Phan Bá Nguyên -->
+            <div class="expert-card" data-expertise="giam-sat" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Phan Ba Nguyen.jpg" alt="Phan Bá Nguyên" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Phan Bá Nguyên</h3>
+                    <p class="expert-title">Chuyên gia Tư vấn Giám sát</p>
+                    <p class="expert-specialties">Phó giám đốc với 14 năm kinh nghiệm, Giám sát giao thông hạng I, HTKT
+                        hạng II, Thiết kế giao thông hạng III, chuyên Giám sát công trình giao thông, hạ tầng kỹ thuật.
+                    </p>
+                    <a href="doi-ngu-chuyen-gia/phan-ba-nguyen.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Phan Hồng Nhật -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Phan Hong Nhat.jpg" alt="Phan Hồng Nhật" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Phan Hồng Nhật</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 16 năm kinh nghiệm đa dạng trong lĩnh vực thi công, thí nghiệm vật
+                        liệu và thiết kế, cùng Chứng chỉ thiết kế giao thông hạng 2, ông Phan Hồng Nhật có chuyên môn
+                        trong thiết kế công trình đường bộ.</p>
+                    <a href="doi-ngu-chuyen-gia/phan-hong-nhat.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Phan Huỳnh Túy Sơn -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Huynh Phan Tuy Son.jpg" alt="Phan Huỳnh Túy Sơn"
+                        class="expert-image" onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Phan Huỳnh Túy Sơn</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 8 năm kinh nghiệm trong lĩnh vực khảo sát địa hình và Chứng chỉ
+                        khảo sát địa hình hạng 1, ông Phan Huỳnh Túy Sơn đảm nhận vai trò Phó phòng khảo sát.</p>
+                    <a href="doi-ngu-chuyen-gia/phan-huynh-tuy-son.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Thân Thị Thu Hà -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Than Thi Thu Ha.jpg" alt="Thân Thị Thu Hà" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Thân Thị Thu Hà</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 44 năm kinh nghiệm dày dạn trong lĩnh vực khảo sát địa chất và
+                        Chứng chỉ khảo sát địa chất hạng 1, bà Thân Thị Thu Hà là một chuyên gia kỳ cựu với kinh nghiệm
+                        quý báu.</p>
+                    <a href="doi-ngu-chuyen-gia/than-thi-thu-ha.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Tô Minh Hoàng -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/TO MINH HOANG.jpg" alt="Tô Minh Hoàng" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Tô Minh Hoàng</h3>
+                    <p class="expert-title"></p>
+                    <p class="expert-specialties">Với 5 năm kinh nghiệm trong lĩnh vực thiết kế và Chứng chỉ thiết kế
+                        giao thông hạng III cùng Chứng nhận BIM, ông Tô Minh Hoàng là Điều phối viên BIM (BIM
+                        Coordinator) với chuyên môn trong thiết kế công trình giao thông và hạ tầng kỹ thuật.</p>
+                    <a href="doi-ngu-chuyen-gia/to-minh-hoang.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Trần Anh Khoa -->
+            <div class="expert-card" data-expertise="giam-sat" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Trần Anh Khoa.jpg" alt="Trần Anh Khoa" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Trần Anh Khoa</h3>
+                    <p class="expert-title">Chuyên gia Tư vấn Giám sát</p>
+                    <p class="expert-specialties">Với 13 năm kinh nghiệm trong lĩnh vực thi công và giám sát công trình
+                        giao thông, ông Trần Anh Khoa ở vị trí Phó giám đốc sở hữu nhiều chứng chỉ quan trọng.</p>
+                    <a href="doi-ngu-chuyen-gia/tran-anh-khoa.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Trần Duy Tài -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Trần Duy Tài.jpg" alt="Trần Duy Tài" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Trần Duy Tài</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 2 năm kinh nghiệm trong lĩnh vực thiết kế, ông Trần Duy Tài có
+                        chuyên môn trong thiết kế các công trình cầu, đường bộ và mô hình 3D công trình.</p>
+                </div>
+            </div>
+
+            <!-- Expert Card: Trần Nguyên Gia Lâm -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke kiem-dinh" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Trần Nguyên Gia Lâm.png" alt="Trần Nguyên Gia Lâm"
+                        class="expert-image" onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Trần Nguyên Gia Lâm</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế & Kiểm định</p>
+                    <p class="expert-specialties">Với 5 năm kinh nghiệm và Chứng chỉ thiết kế, giám sát công tác xây
+                        dựng công trình giao thông, dân dụng - công nghiệp và Hạ tầng kỹ thuật - Hạng III cùng Chứng chỉ
+                        Thí nghiệm viên và quản lý phòng thí nghiệm, ông Trần Nguyên Gia Lâm đảm nhận vai trò Phó phòng
+                        với chuyên môn trong thiết kế giám sát các công trình giao thông và hạ tầng kỹ thuật.</p>
+                    <a href="doi-ngu-chuyen-gia/tran-nguyen-gia-lam.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Trần Nguyễn Khánh Huy -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Trần Nguyễn Khánh Huy.jpg" alt="Trần Nguyễn Khánh Huy"
+                        class="expert-image" onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Trần Nguyễn Khánh Huy</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với hơn 22 năm kinh nghiệm trong lĩnh vực thiết kế và giám sát công
+                        trình giao thông, cùng Chứng chỉ khảo sát, thiết kế, giám sát hạng I, ông Trần Nguyễn Khánh Huy
+                        là một chuyên gia dày dạn kinh nghiệm trong vai trò Phó Giám đốc.</p>
+                    <a href="doi-ngu-chuyen-gia/tran-nguyen-khanh-huy.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Trần Thái Hà -->
+            <div class="expert-card" data-expertise="giam-sat" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Trần Thái Hà.jpg" alt="Trần Thái Hà" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Trần Thái Hà</h3>
+                    <p class="expert-title">Chuyên gia Tư vấn Giám sát</p>
+                    <p class="expert-specialties">Với 20 năm kinh nghiệm trong lĩnh vực giám sát công trình giao thông
+                        và hạ tầng kỹ thuật, ông Trần Thái Hà hiện đảm nhận vị trí Giám đốc Trung tâm Tư vấn Giám sát và
+                        Kiểm định Chất lượng Công trình.</p>
+                    <a href="doi-ngu-chuyen-gia/tran-thai-ha.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Trần Thế Khang -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/TRAN THE KHANG.jpg" alt="Trần Thế Khang" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Trần Thế Khang</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 10 năm kinh nghiệm trong lĩnh vực thiết kế và Chứng chỉ thiết kế
+                        giao thông hạng 2, giám sát giao thông hạng 3, ông Trần Thế Khang đảm nhận vai trò Phó Giám đốc
+                        với chuyên môn trong thiết kế các công trình cầu, kè, bến cảng.</p>
+                    <a href="doi-ngu-chuyen-gia/tran-the-khang.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Trần Thị Trà Giang -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Trần Thị Trà Giang.jpg" alt="Trần Thị Trà Giang"
+                        class="expert-image" onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Trần Thị Trà Giang</h3>
+                    <p class="expert-title"></p>
+                    <p class="expert-specialties">Với 10 năm kinh nghiệm trong lĩnh vực đấu thầu và Chứng chỉ nghiệp vụ
+                        chuyên môn về đấu thầu lựa chọn nhà thầu, bà Trần Thị Trà Giang đảm nhận vai trò Phó phòng
+                        KD&QLTN với chuyên môn trong tư vấn lựa chọn nhà thầu tư vấn và thi công.</p>
+                    <a href="doi-ngu-chuyen-gia/tran-thi-tra-giang.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Trần Văn Cương -->
+            <div class="expert-card" data-expertise="giam-sat" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Trần Văn Cương.jpg" alt="Trần Văn Cương" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Trần Văn Cương</h3>
+                    <p class="expert-title">Chuyên gia Tư vấn Giám sát</p>
+                    <p class="expert-specialties">Với hơn 32 năm kinh nghiệm dày dạn trong lĩnh vực thi công và giám sát
+                        công trình nông nghiệp và nông thôn, ông Trần Văn Cương là một chuyên gia kỳ cựu trong ngành.
+                    </p>
+                    <a href="doi-ngu-chuyen-gia/tran-van-cuong.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Trương Quang Thắng -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/truong-quang-thang.jpg" alt="Trương Quang Thắng"
+                        class="expert-image" onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Trương Quang Thắng</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 16 năm kinh nghiệm, Chứng chỉ thiết kế giao thông hạng 2, và sự
+                        thành thạo vượt trội các công cụ BIM/Thiết kế giao thông (Civil 3D, Infrawork, Navisworks,
+                        Visual Studio), ông Trương Quang Thắng là một chuyên gia kỹ thuật có năng lực đa dạng, đặc biệt
+                        nổi bật trong việc thiết kế đường, khu dân cư và nút giao thông.</p>
+                    <a href="doi-ngu-chuyen-gia/truong-quang-thang.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Võ Đình Khôi -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/VoDinhKhoi.jpg" alt="Võ Đình Khôi" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Võ Đình Khôi</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 8 năm kinh nghiệm trong lĩnh vực thiết kế và Chứng chỉ thiết kế
+                        giao thông hạng 2, ông Võ Đình Khôi đảm nhận vai trò Phó phòng thiết kế với chuyên môn trong
+                        thiết kế công trình đường bộ.</p>
+                    <a href="doi-ngu-chuyen-gia/vo-dinh-khoi.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Võ Lê Nhã Quyên -->
+            <div class="expert-card" data-expertise="khao-sat-thiet-ke" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Võ Lê Nhã Quyên.jpeg" alt="Võ Lê Nhã Quyên"
+                        class="expert-image" onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Võ Lê Nhã Quyên</h3>
+                    <p class="expert-title">Chuyên gia Khảo sát Thiết kế</p>
+                    <p class="expert-specialties">Với 6 năm kinh nghiệm trong lĩnh vực lập dự toán và Chứng chỉ định giá
+                        hạng 3, bà Võ Lê Nhã Quyên có chuyên môn trong lập dự toán công trình.</p>
+                    <a href="doi-ngu-chuyen-gia/vo-le-nha-quyen.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+            <!-- Expert Card: Võ Văn Phát -->
+            <div class="expert-card" data-expertise="giam-sat" data-specialty="" data-level="">
+                <div class="expert-image-wrapper">
+                    <img src="images/Hinh anh chuyen gia/Vo Van Phat.jpg" alt="Võ Văn Phát" class="expert-image"
+                        onerror="this.src='images/placeholder-avatar.png'">
+                </div>
+                <div class="expert-content">
+                    <h3 class="expert-name">Võ Văn Phát</h3>
+                    <p class="expert-title">Chuyên gia Tư vấn Giám sát</p>
+                    <p class="expert-specialties">Với 13 năm trong lĩnh vực thi công và giám sát công trình giao thông,
+                        Giám sát công trình giao thông hạng I, ông Võ Văn Phát chuyên Giám sát vật liệu.</p>
+                    <a href="doi-ngu-chuyen-gia/vo-van-phat.html" class="view-more">Xem chi tiết</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- No Results Message -->
+        <div class="no-results" id="noResults">
+            <div class="no-results-icon">🔍</div>
+            <h3>No experts found</h3>
+            <p>Try adjusting your filters or search terms</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <img src="images/logo-t27.png" alt="T27 Logo" class="footer-logo-image"
+            onerror="this.src='images/logo-t27.svg'">
+        <p class="footer-tagline" style="color: var(--primary-orange) !important;">Cái tâm mọi công trình</p>
+        <p>&copy; 2025 Công Ty Cổ Phần Tư Vấn T27. All rights reserved.</p>
+        <p>Tư vấn thiết kế | Khảo sát - Địa hình Địa chất | Giám sát thi công | Quản lý dự án</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Height adjuster functionality
+        const slider = document.getElementById('heroHeightSlider');
+        const heroSection = document.getElementById('heroSection');
+        const paddingValue = document.getElementById('paddingValue');
+
+        slider.addEventListener('input', function () {
+            const topPadding = parseInt(this.value);
+            const bottomPadding = Math.round(topPadding / 2);
+            const padding = `${topPadding}px 20px ${bottomPadding}px`;
+            heroSection.style.padding = padding;
+            paddingValue.textContent = padding;
+        });
+
+        // Initialize slider with current padding value
+        window.addEventListener('DOMContentLoaded', function () {
+            const currentPadding = window.getComputedStyle(heroSection).paddingTop;
+            const currentValue = parseInt(currentPadding);
+            slider.value = currentValue;
+            const bottomValue = Math.round(currentValue / 2);
+            document.getElementById('paddingValue').textContent = `${currentValue}px 20px ${bottomValue}px`;
+        });
+
+        function copyHeightValue() {
+            const value = paddingValue.textContent;
+            navigator.clipboard.writeText(value).then(() => {
+                alert('Đã copy giá trị: ' + value);
+            });
+        }
+
+        function closeAdjuster() {
+            document.getElementById('heightAdjuster').style.display = 'none';
+        }
+
+        // Filter experts
+        function filterExperts() {
+            const expertiseFilter = document.getElementById('expertiseFilter').value.toLowerCase();
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const expertCards = document.querySelectorAll('.expert-card');
+            let visibleCount = 0;
+
+            expertCards.forEach(card => {
+                const expertise = card.dataset.expertise || '';
+                const name = card.querySelector('.expert-name').textContent.toLowerCase();
+                const title = card.querySelector('.expert-title').textContent.toLowerCase();
+
+                const matchesExpertise = !expertiseFilter || expertise.includes(expertiseFilter);
+                const matchesSearch = !searchInput || name.includes(searchInput) || title.includes(searchInput);
+
+                if (matchesExpertise && matchesSearch) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Update results count
+            document.getElementById('resultsCount').textContent = visibleCount;
+
+            // Show/hide no results message
+            const noResults = document.getElementById('noResults');
+            if (visibleCount === 0) {
+                noResults.classList.add('show');
+            } else {
+                noResults.classList.remove('show');
+            }
+        }
+
+        // Clear all filters
+        function clearFilters() {
+            document.getElementById('expertiseFilter').value = '';
+            document.getElementById('searchInput').value = '';
+            filterExperts();
+        }
+
+        // Search on Enter key
+        document.getElementById('searchInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                filterExperts();
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function () {
+            const navbar = document.querySelector('.navbar');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 100) {
+                    navbar.style.boxShadow = '0 5px 25px rgba(0,0,0,0.2)';
+                } else {
+                    navbar.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+                }
+            });
+        });
+
+        // Toggle mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('open');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close mobile menu on nav link click
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('open');
+                hamburger.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

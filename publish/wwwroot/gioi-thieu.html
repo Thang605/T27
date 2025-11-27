@@ -1,0 +1,706 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Giới Thiệu - T27 Công Ty Cổ Phần Tư Vấn</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .intro-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 20px 40px 20px;
+        }
+
+        .intro-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .intro-header h1 {
+            font-size: 2.5em;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .intro-header .tagline {
+            font-size: 1.3em;
+            color: var(--primary-orange);
+            font-style: italic;
+        }
+
+        /* Organizational Chart Styles */
+        .org-chart-container {
+            background: white;
+            padding: 40px 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin: 40px 0;
+            overflow-x: auto;
+            overflow-y: visible;
+        }
+
+        .org-chart-title {
+            text-align: center;
+            font-size: 2.2em;
+            color: var(--primary-blue);
+            margin-bottom: 50px;
+            font-weight: bold;
+        }
+
+        /* Image version for mobile */
+        .org-chart-image {
+            display: none;
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .org-chart-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .org-chart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+            max-width: 1400px;
+            padding: 30px 20px 60px;
+            margin: 0 auto;
+        }
+
+        /* Common card styles */
+        .org-person {
+            background: white;
+            border: 2px solid var(--primary-blue);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .org-person:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+            border-color: var(--primary-orange);
+        }
+
+        .org-person-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 10px;
+            border: 2px solid #f0f0f0;
+            display: block;
+        }
+
+        .org-person-image.circular {
+            border-radius: 50%;
+        }
+
+        /* Level 1: Chairman */
+        .org-level-1 {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .chairman-card {
+            width: 240px;
+        }
+
+        .chairman-card .org-person-image {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+        }
+
+        .chairman-card .org-person-name {
+            font-size: 1.3em;
+            color: var(--primary-blue);
+        }
+
+        .chairman-card .org-person-title {
+            font-size: 0.95em;
+        }
+
+        /* Vertical line from chairman to directors */
+        .org-level-1::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 40px;
+            background: var(--primary-blue);
+        }
+
+        /* Level 2: Directors */
+        .org-level-2 {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            width: 100%;
+            position: relative;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* Horizontal line connecting directors */
+        .org-level-2::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 15%;
+            right: 15%;
+            height: 2px;
+            background: var(--primary-blue);
+        }
+
+        .director-card {
+            width: 200px;
+            position: relative;
+        }
+
+        /* Shift first director (Nguyễn Ngọc Anh) to the left by 20% */
+        .director-card:first-child {
+            transform: translateX(-60%);
+        }
+
+        /* Shift third director (Nguyễn Hữu Trung) to the right by 20% */
+        .director-card:last-child {
+            transform: translateX(60%);
+        }
+
+        .director-card .org-person-image {
+            width: 80px;
+            height: 80px;
+        }
+
+        .director-card .org-person-name {
+            color: var(--primary-blue);
+            font-size: 1em;
+        }
+
+        .director-card .org-person-title {
+            font-size: 0.85em;
+        }
+
+        /* Vertical lines from horizontal line to each director */
+        .director-card::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 30px;
+            background: var(--primary-blue);
+        }
+
+        /* Vertical line from each director to their deputies */
+        .director-card::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 30px;
+            background: var(--primary-blue);
+        }
+
+        /* Level 3: Deputy Managers - 3 groups of 2 */
+        .org-level-3 {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            width: 100%;
+            padding-bottom: 20px;
+            flex-wrap: wrap;
+            transform: translateY(-20%);
+        }
+
+        .managers-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            position: relative;
+        }
+
+        /* Horizontal line connecting 2 deputies in same group */
+        .managers-row {
+            display: flex;
+            gap: 20px;
+            position: relative;
+            margin-top: 30px;
+        }
+
+        .managers-row::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 24%;
+            right: 24%;
+            height: 2px;
+            background: var(--primary-blue);
+        }
+
+        .deputy-card {
+            width: 150px;
+            position: relative;
+        }
+
+        .deputy-card .org-person-image {
+            width: 70px;
+            height: 70px;
+        }
+
+        .deputy-card .org-person-name {
+            font-size: 0.9em;
+        }
+
+        .deputy-card .org-person-title {
+            font-size: 0.75em;
+        }
+
+        /* Vertical line from horizontal line to each deputy */
+        .deputy-card::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 30px;
+            background: var(--primary-blue);
+        }
+
+        .org-structure {
+            margin: 60px 0;
+        }
+
+        .branch-section {
+            margin: 40px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 10px;
+        }
+
+        .branch-section h3 {
+            color: var(--primary-blue);
+            font-size: 1.6em;
+            margin-bottom: 20px;
+        }
+
+        .branch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 25px;
+        }
+
+        .branch-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .branch-card h4 {
+            color: var(--primary-orange);
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .branch-card .branch-number {
+            background: var(--primary-blue);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .vision-mission {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .vision-card {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1e5ba8 100%);
+            color: white;
+            padding: 35px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .vision-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .vision-card p {
+            line-height: 1.8;
+            font-size: 1.1em;
+        }
+
+        .mission-card {
+            background: linear-gradient(135deg, var(--primary-orange) 0%, #d67a2e 100%);
+            color: white;
+            padding: 35px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .mission-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .mission-card p {
+            line-height: 1.8;
+            font-size: 1.1em;
+        }
+
+        @media (max-width: 1024px) {
+            .org-level-2 {
+                gap: 40px;
+            }
+            
+            .org-level-3 {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .departments-grid,
+            .branch-grid,
+            .vision-mission {
+                grid-template-columns: 1fr;
+            }
+
+            .intro-header h1 {
+                font-size: 1.8em;
+            }
+
+            /* Hide the HTML org chart on mobile */
+            .org-chart {
+                display: none;
+            }
+
+            /* Show the image version on mobile */
+            .org-chart-image {
+                display: block;
+            }
+
+            .org-chart-container {
+                padding: 20px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-container" style="text-decoration: none;">
+                <img src="images/logo-t27.png" alt="T27 Logo" class="logo-image" onerror="this.src='images/logo-t27.svg'">
+                <div class="logo-tagline">Cái tâm mọi công trình</div>
+            </a>
+            
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="gioi-thieu.html" style="color: var(--primary-orange);">Giới thiệu</a></li>
+                <li><a href="du-an.html">Dự án</a></li>
+                <li><a href="doi-ngu-chuyen-gia.html">Đội ngũ chuyên gia</a></li>
+                <li><a href="cong-nghe-so.html">Công nghệ số</a></li>
+                <li><a href="tin-tuc.html">Tin tức</a></li>
+                <li><a href="chinh-sach.html">Chính sách</a></li>
+                <li><a href="lien-he.html">Liên hệ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Introduction Container -->
+    <div class="intro-container">
+        <!-- Header -->
+        <div class="intro-header">
+            <h1>GIỚI THIỆU CÔNG TY CỔ PHẦN TƯ VẤN T27</h1>
+            <p class="tagline">Cái tâm mọi công trình</p>
+        </div>
+
+        <!-- Vision & Mission -->
+        <div class="vision-mission">
+            <div class="vision-card">
+                <h3>🎯 TẦM NHÌN</h3>
+                <p>Trở thành đơn vị tư vấn thiết kế và giám sát hàng đầu tại Việt Nam, được khách hàng tin tưởng bởi chất lượng dịch vụ xuất sắc và năng lực chuyên môn vượt trội.</p>
+            </div>
+            <div class="mission-card">
+                <h3>🚀 SỨ MỆNH</h3>
+                <p>Cung cấp giải pháp tư vấn toàn diện với tiêu chuẩn chất lượng quốc tế, góp phần phát triển hạ tầng bền vững và nâng cao chất lượng cuộc sống cộng đồng.</p>
+            </div>
+        </div>
+
+        <!-- Company History -->
+        <div class="org-level">
+            <h2>📖 LỊCH SỬ & PHÁT TRIỂN</h2>
+            <p style="font-size: 1.1em; line-height: 1.8; color: #333;">
+                <strong>Công ty Cổ phần Tư vấn T27</strong> được thành lập năm <strong>2006</strong>, với hơn <strong>19 năm</strong> kinh nghiệm trong lĩnh vực tư vấn thiết kế, khảo sát và giám sát thi công. 
+                Qua các giai đoạn phát triển, T27 đã không ngừng mở rộng quy mô và nâng cao năng lực, trở thành đối tác tin cậy của nhiều chủ đầu tư trong và ngoài nước.
+            </p>
+        </div>
+
+        <!-- Organization Structure -->
+        <div class="org-chart-container">
+            <h2 class="org-chart-title">Sơ đồ điều hành công ty</h2>
+            
+            <!-- Image version for mobile devices -->
+            <div class="org-chart-image">
+                <img src="images/leaders/Sơ đồ điều hành công ty.png" alt="Sơ đồ điều hành công ty T27" onerror="this.style.display='none'">
+            </div>
+            
+            <div class="org-chart">
+                <!-- Level 1: Chairman -->
+                <div class="org-level-1">
+                    <div class="org-person chairman-card">
+                        <img src="images/leaders/do-van-phong.jpg" alt="Đỗ Văn Phong" class="org-person-image" onerror="this.src='images/placeholder-avatar.png'">
+                        <div class="org-person-name">Đỗ Văn Phong</div>
+                        <div class="org-person-title">Chủ tịch Hội đồng quản trị<br>Tổng Giám đốc Công ty</div>
+                    </div>
+                </div>
+
+                <!-- Level 2: Directors -->
+                <div class="org-level-2">
+                    <div class="org-person director-card">
+                        <img src="images/leaders/Nguyễn Ngọc Anh.jpg" alt="Nguyễn Ngọc Anh" class="org-person-image" onerror="this.src='images/placeholder-avatar.png'">
+                        <div class="org-person-name">Nguyễn Ngọc Anh</div>
+                        <div class="org-person-title">Giám đốc điều hành Công ty</div>
+                    </div>
+
+                    <div class="org-person director-card">
+                        <img src="images/leaders/Trần Thái Hà.png" alt="Trần Thái Hà" class="org-person-image circular" onerror="this.src='images/placeholder-avatar.png'">
+                        <div class="org-person-name">Trần Thái Hà</div>
+                        <div class="org-person-title">Giám đốc Trung tâm TVGS và KĐCLCT</div>
+                    </div>
+
+                    <div class="org-person director-card">
+                        <img src="images/leaders/Nguyễn Hữu Trung.png" alt="Nguyễn Hữu Trung" class="org-person-image circular" onerror="this.src='images/placeholder-avatar.png'">
+                        <div class="org-person-name">Nguyễn Hữu Trung</div>
+                        <div class="org-person-title">Giám đốc<br>Chi nhánh Bình Định</div>
+                    </div>
+                </div>
+
+                <!-- Level 3: Deputy Managers - 3 groups of 2 -->
+                <div class="org-level-3">
+                    <!-- Group 1: Under Nguyễn Ngọc Anh (Giám đốc điều hành) -->
+                    <div class="managers-group">
+                        <div class="managers-row">
+                            <div class="org-person deputy-card">
+                                <img src="images/leaders/Trần Nguyễn Khánh Huy.jpg" alt="Trần Nguyễn Khánh Huy" class="org-person-image" onerror="this.src='images/placeholder-avatar.png'">
+                                <div class="org-person-name">Trần Nguyễn Khánh Huy</div>
+                                <div class="org-person-title">Phó giám đốc</div>
+                            </div>
+
+                            <div class="org-person deputy-card">
+                                <img src="images/leaders/Trần Thế Khang.jpg" alt="Trần Thế Khang" class="org-person-image" onerror="this.src='images/placeholder-avatar.png'">
+                                <div class="org-person-name">Trần Thế Khang<br>.</div>
+                                <div class="org-person-title">Phó giám đốc</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Group 2: Under Trần Thái Hà (Giám đốc TT TVGS & KĐCLCT) -->
+                    <div class="managers-group">
+                        <div class="managers-row">
+                            <div class="org-person deputy-card">
+                                <img src="images/leaders/Phan Bá Nguyên.png" alt="Phan Bá Nguyên" class="org-person-image circular" onerror="this.src='images/placeholder-avatar.png'">
+                                <div class="org-person-name">Phan Bá Nguyên<br>.</div>
+                                <div class="org-person-title">Phó Giám đốc</div>
+                            </div>
+
+                            <div class="org-person deputy-card">
+                                <img src="images/leaders/Trần Anh Khoa.png" alt="Trần Anh Khoa" class="org-person-image circular" onerror="this.src='images/placeholder-avatar.png'">
+                                <div class="org-person-name">Trần Anh Khoa<br>.</div>
+                                <div class="org-person-title">Phó Giám đốc</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Group 3: Under Nguyễn Hữu Trung (Giám đốc Chi nhánh Bình Định) -->
+                    <div class="managers-group">
+                        <div class="managers-row">
+                            <div class="org-person deputy-card">
+                                <img src="images/leaders/Nguyễn Đình Châu.png" alt="Nguyễn Đình Châu" class="org-person-image circular" onerror="this.src='images/placeholder-avatar.png'">
+                                <div class="org-person-name">Nguyễn Đình Châu<br>.</div>
+                                <div class="org-person-title">Phó Giám đốc</div>
+                            </div>
+
+                            <div class="org-person deputy-card">
+                                <img src="images/leaders/Nguyễn Công Dũng.png" alt="Nguyễn Công Dũng" class="org-person-image circular" onerror="this.src='images/placeholder-avatar.png'">
+                                <div class="org-person-name">Nguyễn Công Dũng</div>
+                                <div class="org-person-title">Phó Giám đốc</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="org-structure">
+            <!-- Ban Lãnh Đạo -->
+            <div class="branch-section">
+                <h3>👔 BAN LÃNH ĐẠO</h3>
+                <div class="branch-grid">
+                    <div class="branch-card">
+                        <h4>Tổng Giám Đốc</h4>
+                        <p><strong>Nhiệm vụ chính:</strong></p>
+                        <p>• Điều hành toàn bộ hoạt động của công ty, quyết định chiến lược phát triển và quản lý nguồn lực tổng thể.</p>
+                    </div>
+                    <div class="branch-card">
+                        <h4>Phó Giám Đốc</h4>
+                        <p><strong>Nhiệm vụ chính:</strong></p>
+                        <p>• Hỗ trợ Tổng Giám Đốc trong việc quản lý và điều hành các hoạt động kinh doanh, kỹ thuật và hành chính.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Các Phòng Ban -->
+            <div class="branch-section">
+                <h3>🏛️ CÁC PHÒNG BAN</h3>
+                <div class="branch-grid">
+                    <!-- Phòng 1 -->
+                    <div class="branch-card">
+                        <span class="branch-number">Phòng 1</span>
+                        <h4>Phòng Quản Lý Tài Nguyên</h4>
+                        <p><strong>Nhiệm vụ chính:</strong></p>
+                        <p>• Quản lý nguồn nhân lực, tuyển dụng và đào tạo</p>
+                        <p>• Quản lý tài chính, kế toán và hành chính</p>
+                        <p>• Lập kế hoạch và phân bổ nguồn lực cho các dự án</p>
+                    </div>
+
+                    <!-- Phòng 2 -->
+                    <div class="branch-card">
+                        <span class="branch-number">Phòng 2</span>
+                        <h4>Phòng Khảo Sát (Địa hình, Địa chất, Thủy văn...)</h4>
+                        <p><strong>Nhiệm vụ chính:</strong></p>
+                        <p>• Khảo sát địa hình, đo đạc bản vẽ</p>
+                        <p>• Khảo sát địa chất nền móng công trình</p>
+                        <p>• Khảo sát thủy văn, thủy lực cho các công trình thủy</p>
+                        <p>• Thu thập dữ liệu hiện trường phục vụ thiết kế</p>
+                    </div>
+
+                    <!-- Phòng 3 -->
+                    <div class="branch-card">
+                        <span class="branch-number">Phòng 3</span>
+                        <h4>Phòng Thiết Kế 1 - Tính toán kết cấu & Kiểm tra chất lượng</h4>
+                        <p><strong>Nhiệm vụ chính:</strong></p>
+                        <p>• Tính toán kết cấu công trình dân dụng và công nghiệp</p>
+                        <p>• Kiểm tra chất lượng bản vẽ và hồ sơ thiết kế</p>
+                        <p>• Thẩm định nội bộ trước khi xuất hồ sơ cho khách hàng</p>
+                        <p>• Ứng dụng phần mềm chuyên dụng (SAP2000, ETABS, SAFE...)</p>
+                    </div>
+
+                    <!-- Phòng 4 -->
+                    <div class="branch-card">
+                        <span class="branch-number">Phòng 4</span>
+                        <h4>Phòng Thiết Kế 2 - Thiết kế HTKT & Đường giao thông</h4>
+                        <p><strong>Nhiệm vụ chính:</strong></p>
+                        <p>• Thiết kế hạ tầng kỹ thuật đô thị</p>
+                        <p>• Thiết kế đường giao thông (đường bộ, cầu, hầm)</p>
+                        <p>• Thiết kế hệ thống cấp thoát nước</p>
+                        <p>• Phối hợp với các phòng khảo sát và tính toán</p>
+                    </div>
+
+                    <!-- Phòng 5 -->
+                    <div class="branch-card">
+                        <span class="branch-number">Phòng 5</span>
+                        <h4>Phòng Thiết Kế 3 - Thiết kế Cầu, Công trình Thủy lợi & Kiến trúc</h4>
+                        <p><strong>Nhiệm vụ chính:</strong></p>
+                        <p>• Thiết kế cầu đường các loại (bê tông, thép, dây văng...)</p>
+                        <p>• Thiết kế công trình thủy lợi (đập, kênh, trạm bơm...)</p>
+                        <p>• Thiết kế kiến trúc công trình dân dụng</p>
+                        <p>• Lập hồ sơ hoàn công và bảo trì công trình</p>
+                    </div>
+
+                    <!-- Phòng 6 -->
+                    <div class="branch-card">
+                        <span class="branch-number">Tổ F&B</span>
+                        <h4>Tổ F&B: Nhà hàng, Cà phê</h4>
+                        <p><strong>Nhiệm vụ chính:</strong></p>
+                        <p>• Phục vụ nhu cầu ăn uống cho nhân viên công ty</p>
+                        <p>• Tổ chức các sự kiện, hội nghị khách hàng</p>
+                        <p>• Tạo không gian nghỉ ngơi, giao lưu cho CBNV</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trung Tâm / Chi Nhánh -->
+            <div class="branch-section">
+                <h3>🏢 TRUNG TÂM & CHI NHÁNH</h3>
+                <div class="branch-grid">
+                    <!-- Trung tâm 1 -->
+                    <div class="branch-card">
+                        <span class="branch-number">Trung Tâm 1</span>
+                        <h4>Trung tâm tư vấn giám sát & kiểm định chất lượng công trình</h4>
+                        <p><strong>Địa chỉ:</strong> Đô thị Mỹ Gia, Đường số 4, LK45-10, Phường Nam Nha Trang, Khánh Hòa</p>
+                        <p><strong>Chức năng:</strong></p>
+                        <p>• Tư vấn giám sát thi công các công trình giao thông, dân dụng</p>
+                        <p>• Tư vấn giám sát chất lượng công trình</p>
+                        <p>• Kiểm định chất lượng công trình xây dựng</p>
+                        <p>• Quản lý phòng Lab XD 1079 (Phòng thí nghiệm vật liệu xây dựng)</p>
+                    </div>
+
+                    <!-- Chi nhánh 2 -->
+                    <div class="branch-card">
+                        <span class="branch-number">Chi Nhánh 2</span>
+                        <h4>Chi nhánh Bình Định - Thực hiện các công việc theo ủy quyền công ty</h4>
+                        <p><strong>Địa chỉ:</strong> Lô 6 đường N1, Khu đô thị thương mại An Phú, Phường Quy Nhơn, Bình Định</p>
+                        <p><strong>Chức năng:</strong></p>
+                        <p>• Triển khai các dự án tại khu vực Bình Định và lân cận</p>
+                        <p>• Tư vấn thiết kế và giám sát thi công theo ủy quyền</p>
+                        <p>• Phối hợp với trụ sở chính trong các dự án lớn</p>
+                        <p>• Phát triển thị trường khu vực miền Trung</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <img src="images/logo-t27.png" alt="T27 Logo" class="footer-logo-image" onerror="this.src='images/logo-t27.svg'">
+        <p class="footer-tagline" style="color: var(--primary-orange) !important;">Cái tâm mọi công trình</p>
+        <p>&copy; 2025 Công Ty Cổ Phần Tư Vấn T27. All rights reserved.</p>
+        <p>Tư vấn thiết kế | Khảo sát - Địa hình Địa chất | Giám sát thi công | Quản lý dự án</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

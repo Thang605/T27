@@ -1,0 +1,11 @@
+<!-- Placeholder SVG Logo for T27 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
+  <!-- Yellow Diamond Background -->
+  <polygon points="100,5 185,40 100,75 15,40" fill="#FFD700" stroke="#FF6B35" stroke-width="3"/>
+  
+  <!-- T27 Text -->
+  <text x="100" y="50" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#004E89" text-anchor="middle">T27</text>
+  
+  <!-- Tagline -->
+  <text x="100" y="95" font-family="Arial, sans-serif" font-size="10" fill="#004E89" text-anchor="middle">CÁI TÂM M?I CÔNG TRÌNH</text>
+</svg>

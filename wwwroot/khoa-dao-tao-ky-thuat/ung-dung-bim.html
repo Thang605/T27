@@ -1,0 +1,403 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ứng dụng BIM – Nâng tầm chất lượng công trình - T27</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .training-hero {
+            padding: 180px 60px 80px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .training-hero h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .training-hero .subtitle {
+            font-size: 1.5em;
+            color: var(--accent-gold);
+            margin-bottom: 30px;
+        }
+
+        .training-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 60px;
+        }
+
+        .session-header {
+            padding: 30px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .session-number {
+            font-size: 3em;
+            font-weight: 700;
+            color: var(--accent-gold);
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .session-header-content h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .session-header-content .session-date {
+            font-size: 1.1em;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .session-description {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+            background: var(--gray-light);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 5px solid var(--primary-orange);
+        }
+
+        .session-topics {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .session-topics h2 {
+            font-size: 2em;
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+        }
+
+        .topic-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .topic-list li {
+            padding: 20px 0;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .topic-list li:last-child {
+            border-bottom: none;
+        }
+
+        .topic-icon {
+            font-size: 1.5em;
+            color: var(--primary-orange);
+        }
+
+        .topic-text {
+            flex: 1;
+        }
+
+        .topic-text strong {
+            color: var(--primary-blue);
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .session-gallery {
+            margin-top: 40px;
+        }
+
+        .session-gallery h2 {
+            font-size: 2em;
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,45,77,0.95), transparent);
+            color: var(--white);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .caption {
+            transform: translateY(0);
+        }
+
+        .session-highlight {
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--accent-gold) 100%);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .session-highlight h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .session-highlight p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--primary-orange);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 40px;
+        }
+
+        .back-button:hover {
+            background: var(--primary-blue);
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .session-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .training-hero h1 {
+                font-size: 2em;
+            }
+
+            .training-content {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo-container" style="text-decoration: none; color: inherit;">
+                <img src="../images/logo-t27.png" alt="T27 Logo" class="logo-image" onerror="this.src='../images/logo-t27.svg'">
+                <div class="logo-tagline">Cái tâm mọi công trình</div>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../index.html#home">Trang chủ</a></li>
+                <li><a href="../index.html#about">Giới thiệu</a></li>
+                <li><a href="../index.html#projects">Dự án</a></li>
+                <li><a href="../index.html#experts">Đội ngũ chuyên gia</a></li>
+                <li><a href="../cong-nghe-so.html">Công nghệ số</a></li>
+                <li><a href="../index.html#events">Sự kiện</a></li>
+                <li><a href="../index.html#recruitment">Tuyển dụng</a></li>
+                <li><a href="../index.html#contact">Liên hệ</a></li>
+                <li><a href="../index-en.html" style="background: var(--primary-orange); border-radius: 5px;">🇬🇧 EN</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contact Bar -->
+    <div class="contact-bar">
+        <div class="contact-bar-content">
+            <div class="contact-item">
+                <strong>📞 Hotline:</strong> 058.2210226 | 0913.431.515
+            </div>
+            <div class="contact-item">
+                <strong>✉ Email:</strong> t27_vn@yahoo.com
+            </div>
+            <div class="contact-item">
+                <strong>📍 Địa chỉ:</strong> Nha Trang, Khánh Hòa | Quy Nhơn, Bình Định
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="training-content">
+        <div class="session-header">
+            <div class="session-number">03</div>
+            <div class="session-header-content">
+                <h1>Ứng dụng BIM – Nâng tầm chất lượng công trình</h1>
+                <div class="session-date">
+                    <span>📅</span>
+                    <span>Năm 2025</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="session-description">
+            Công ty Cổ phần Tư vấn T27 đã tổ chức buổi giao lưu và báo cáo kết quả triển khai BIM 
+            trong các hợp đồng tư vấn mà T27 đã và đang thực hiện.
+        </div>
+
+        <!-- Topics -->
+        <div class="session-topics">
+            <h2>📋 Nội Dung Chính</h2>
+            <ul class="topic-list">
+                <li>
+                    <span class="topic-icon">📊</span>
+                    <div class="topic-text">
+                        <strong>Báo cáo Kết quả Triển khai BIM</strong>
+                        Tổng kết và chia sẻ kết quả áp dụng công nghệ BIM trong các dự án 
+                        tư vấn thiết kế, giám sát và quản lý dự án.
+                    </div>
+                </li>
+                <li>
+                    <span class="topic-icon">📖</span>
+                    <div class="topic-text">
+                        <strong>Trao tặng "Sổ tay Áp dụng BIM 2025"</strong>
+                        Ban tổ chức đã trao tặng cuốn "Sổ tay Áp dụng BIM 2025" (do Tạp chí Xây dựng biên soạn) 
+                        – một tài liệu hữu ích, góp phần thúc đẩy việc ứng dụng công nghệ BIM.
+                    </div>
+                </li>
+                <li>
+                    <span class="topic-icon">💡</span>
+                    <div class="topic-text">
+                        <strong>Chia sẻ Kinh nghiệm Thực tiễn</strong>
+                        Trao đổi kinh nghiệm, cập nhật tri thức mới về BIM trong hoạt động 
+                        thiết kế, giám sát và quản lý dự án.
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Gallery -->
+        <div class="session-gallery">
+            <h2>📸 Hình Ảnh Sự Kiện</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="../images/Khóa Đào Tạo Kỹ Thuật/3.Ứng dụng BIM – Nâng tầm chất lượng công trình/1.jpg" alt="Ứng dụng BIM 1">
+                    <div class="caption">
+                        <p>Buổi giao lưu và báo cáo triển khai BIM</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="../images/Khóa Đào Tạo Kỹ Thuật/3.Ứng dụng BIM – Nâng tầm chất lượng công trình/2.jpg" alt="Ứng dụng BIM 2">
+                    <div class="caption">
+                        <p>Trao tặng Sổ tay Áp dụng BIM 2025</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="../images/Khóa Đào Tạo Kỹ Thuật/3.Ứng dụng BIM – Nâng tầm chất lượng công trình/3.jpg" alt="Ứng dụng BIM 3">
+                    <div class="caption">
+                        <p>Đội ngũ kỹ sư tham gia sự kiện</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="../images/Khóa Đào Tạo Kỹ Thuật/3.Ứng dụng BIM – Nâng tầm chất lượng công trình/4.jpg" alt="Ứng dụng BIM 4">
+                    <div class="caption">
+                        <p>Chia sẻ kết quả triển khai BIM</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="../images/Khóa Đào Tạo Kỹ Thuật/3.Ứng dụng BIM – Nâng tầm chất lượng công trình/5.jpg" alt="Ứng dụng BIM 5">
+                    <div class="caption">
+                        <p>Trao đổi kinh nghiệm ứng dụng BIM</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="../images/Khóa Đào Tạo Kỹ Thuật/3.Ứng dụng BIM – Nâng tầm chất lượng công trình/6.jpg" alt="Ứng dụng BIM 6">
+                    <div class="caption">
+                        <p>Cam kết nâng cao chất lượng tư vấn</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Highlight -->
+        <div class="session-highlight">
+            <h2>🎯 Ý Nghĩa Sự Kiện</h2>
+            <p>
+                Đây không chỉ là dịp tổng kết, chia sẻ kinh nghiệm mà còn là cơ hội để đội ngũ T27 
+                tiếp tục cập nhật tri thức mới, khẳng định cam kết mang đến giải pháp tư vấn kỹ thuật 
+                <strong>tiên tiến – bền vững – hiệu quả</strong>.
+            </p>
+        </div>
+
+        <!-- Back Button -->
+        <div style="text-align: center;">
+            <a href="../khoa-dao-tao-ky-thuat.html" class="back-button">
+                ← Quay lại danh sách khóa đào tạo
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <img src="../images/logo-t27.png" alt="T27 Logo" class="footer-logo-image" onerror="this.src='../images/logo-t27.svg'">
+        <p class="footer-tagline" style="color: var(--primary-orange) !important;">Cái tâm mọi công trình</p>
+        <p>&copy; 2025 Công Ty Cổ Phần Tư Vấn T27. All rights reserved.</p>
+        <p>Tư vấn thiết kế | Khảo sát - Địa hình Địa chất | Giám sát thi công | Quản lý dự án</p>
+    </footer>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>

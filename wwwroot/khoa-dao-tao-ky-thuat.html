@@ -1,0 +1,475 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khóa Đào Tạo Kỹ Thuật - T27</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .training-hero {
+            padding: 180px 60px 80px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .training-hero h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .training-hero .subtitle {
+            font-size: 1.5em;
+            color: var(--accent-gold);
+            margin-bottom: 30px;
+        }
+
+        .training-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 60px;
+        }
+
+        .training-list-intro {
+            background: var(--gray-light);
+            padding: 50px;
+            border-radius: 10px;
+            margin-bottom: 60px;
+            text-align: center;
+            border-left: 5px solid var(--primary-orange);
+        }
+
+        .training-list-intro h2 {
+            font-size: 2.5em;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .training-list-intro p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        .training-sessions {
+            display: grid;
+            gap: 30px;
+        }
+
+        .training-session-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .training-session-card:hover {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .session-header {
+            padding: 30px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .session-number {
+            font-size: 3em;
+            font-weight: 700;
+            color: var(--accent-gold);
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .session-header-content h3 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .session-header-content .session-date {
+            font-size: 1.1em;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .session-body {
+            padding: 40px;
+        }
+
+        .session-description {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+        }
+
+        .session-preview {
+            background: var(--gray-light);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .session-preview h4 {
+            font-size: 1.3em;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .preview-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .preview-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .preview-list li:last-child {
+            border-bottom: none;
+        }
+
+        .preview-icon {
+            color: var(--primary-orange);
+            font-size: 1.2em;
+        }
+
+        .read-more-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: var(--primary-orange);
+            color: var(--white);
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .training-session-card:hover .read-more-btn {
+            background: var(--primary-blue);
+            transform: translateX(5px);
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--primary-orange);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 40px;
+        }
+
+        .back-button:hover {
+            background: var(--primary-blue);
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .session-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .training-hero h1 {
+                font-size: 2em;
+            }
+
+            .training-content {
+                padding: 40px 20px;
+            }
+
+            /* Navigation styles for mobile */
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                background: var(--white);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                border-top: 1px solid #ddd;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 30px;
+                height: 30px;
+                background: transparent;
+                border: none;
+                cursor: pointer;
+            }
+
+            .hamburger span {
+                display: block;
+                width: 100%;
+                height: 3px;
+                background: var(--primary-blue);
+                margin-bottom: 5px;
+                transition: all 0.3s ease;
+            }
+
+            .hamburger:hover span {
+                background: var(--accent-gold);
+            }
+
+            .hamburger:focus {
+                outline: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-container" style="text-decoration: none; color: inherit;">
+                <img src="images/logo-t27.png" alt="T27 Logo" class="logo-image"
+                    onerror="this.src='images/logo-t27.svg'">
+                <div class="logo-tagline">Cái tâm mọi công trình</div>
+            </a>
+
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html#home">Trang chủ</a></li>
+                <li><a href="index.html#about">Giới thiệu</a></li>
+                <li><a href="index.html#projects">Dự án</a></li>
+                <li><a href="doi-ngu-chuyen-gia.html">Đội ngũ chuyên gia</a></li>
+                <li><a href="cong-nghe-so.html">Công nghệ số</a></li>
+                <li><a href="index.html#events">Sự kiện</a></li>
+                <li><a href="index.html#recruitment">Tuyển dụng</a></li>
+                <li><a href="index.html#contact">Liên hệ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contact Bar -->
+    <div class="contact-bar">
+        <div class="contact-bar-content">
+            <div class="contact-item">
+                <strong>📞 Hotline:</strong> 058.2210226 | 0913.431.515
+            </div>
+            <div class="contact-item">
+                <strong>✉ Email:</strong> t27_vn@yahoo.com
+            </div>
+            <div class="contact-item">
+                <strong>📍 Địa chỉ:</strong> Nha Trang, Khánh Hòa | Quy Nhơn, Bình Định
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="training-hero">
+        <h1>🎓 Chương Trình Đào Tạo Kỹ Thuật</h1>
+        <p class="subtitle">Nâng Cao Năng Lực Chuyên Môn - Công Ty Cổ Phần Tư Vấn T27</p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="training-content">
+
+        <!-- Introduction -->
+        <div class="training-list-intro">
+            <h2>💼 Về Chương Trình Đào Tạo</h2>
+            <p>
+                Công ty Cổ phần Tư vấn T27 thường xuyên tổ chức các buổi đào tạo, báo cáo kỹ thuật nội bộ
+                nhằm nâng cao năng lực chuyên môn và chia sẻ kiến thức kỹ thuật tiên tiến cho đội ngũ kỹ sư.
+            </p>
+            <p style="margin-top: 15px;">
+                <strong style="color: var(--primary-orange);">Tinh thần học hỏi – đổi mới không ngừng</strong>
+                là nền tảng giúp T27 luôn đi đầu trong việc áp dụng công nghệ và giải pháp kỹ thuật hiện đại.
+            </p>
+        </div>
+
+        <!-- Training Sessions List -->
+        <div class="training-sessions">
+
+            <!-- Session 1: Báo Cáo Kỹ Thuật Nội Bộ -->
+            <a href="khoa-dao-tao-ky-thuat/bao-cao-ky-thuat-noi-bo.html" class="training-session-card">
+                <div class="session-header">
+                    <div class="session-number">01</div>
+                    <div class="session-header-content">
+                        <h3>Báo Cáo Kỹ Thuật Nội Bộ</h3>
+                        <div class="session-date">
+                            <span>📅</span>
+                            <span>Năm 2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-body">
+                    <div class="session-description">
+                        Buổi làm việc diễn ra trong không khí nghiêm túc, tập trung và sáng tạo,
+                        thể hiện tinh thần học hỏi – đổi mới không ngừng của đội ngũ kỹ sư T27.
+                    </div>
+
+                    <div class="session-preview">
+                        <h4>📋 Nội Dung Trọng Tâm</h4>
+                        <ul class="preview-list">
+                            <li>
+                                <span class="preview-icon">✓</span>
+                                Giới thiệu giải pháp nâng cầu hiện đại
+                            </li>
+                            <li>
+                                <span class="preview-icon">✓</span>
+                                Giải pháp lưới chống đá rơi và tường bó uốn
+                            </li>
+                            <li>
+                                <span class="preview-icon">✓</span>
+                                Trao đổi kinh nghiệm thực tế
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="read-more-btn">
+                        Xem chi tiết →
+                    </div>
+                </div>
+            </a>
+
+            <!-- Session 2: Hội thảo STSC 2025 -->
+            <a href="khoa-dao-tao-ky-thuat/hoi-thao-stsc-2025.html" class="training-session-card">
+                <div class="session-header">
+                    <div class="session-number">02</div>
+                    <div class="session-header-content">
+                        <h3>Hội thảo Ứng dụng Khoa học, Kỹ thuật và Công nghệ STSC 2025</h3>
+                        <div class="session-date">
+                            <span>📅</span>
+                            <span>Năm 2025 - Nha Trang</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-body">
+                    <div class="session-description">
+                        Công ty Cổ phần Tư vấn T27 đồng hành cùng Hội thảo Ứng dụng Khoa học, Kỹ thuật và Công nghệ
+                        trong Phát triển bền vững ngành Xây dựng lần thứ 4 – STSC 2025 tại Nha Trang.
+                    </div>
+
+                    <div class="session-preview">
+                        <h4>📋 Nội Dung Chính</h4>
+                        <ul class="preview-list">
+                            <li>
+                                <span class="preview-icon">✓</span>
+                                Ứng dụng khoa học - kỹ thuật tiên tiến
+                            </li>
+                            <li>
+                                <span class="preview-icon">✓</span>
+                                Phát triển bền vững ngành xây dựng
+                            </li>
+                            <li>
+                                <span class="preview-icon">✓</span>
+                                Kết nối chuyên gia - doanh nghiệp
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="read-more-btn">
+                        Xem chi tiết →
+                    </div>
+                </div>
+            </a>
+
+            <!-- Session 3: Ứng dụng BIM -->
+            <a href="khoa-dao-tao-ky-thuat/ung-dung-bim.html" class="training-session-card">
+                <div class="session-header">
+                    <div class="session-number">03</div>
+                    <div class="session-header-content">
+                        <h3>Ứng dụng BIM – Nâng tầm chất lượng công trình</h3>
+                        <div class="session-date">
+                            <span>📅</span>
+                            <span>Năm 2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="session-body">
+                    <div class="session-description">
+                        Công ty Cổ phần Tư vấn T27 đã tổ chức buổi giao lưu và báo cáo kết quả triển khai BIM
+                        trong các hợp đồng tư vấn mà T27 đã và đang thực hiện.
+                    </div>
+
+                    <div class="session-preview">
+                        <h4>📋 Nội Dung Chính</h4>
+                        <ul class="preview-list">
+                            <li>
+                                <span class="preview-icon">✓</span>
+                                Báo cáo kết quả triển khai BIM
+                            </li>
+                            <li>
+                                <span class="preview-icon">✓</span>
+                                Trao tặng "Sổ tay Áp dụng BIM 2025"
+                            </li>
+                            <li>
+                                <span class="preview-icon">✓</span>
+                                Chia sẻ kinh nghiệm thực tiễn
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="read-more-btn">
+                        Xem chi tiết →
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Back Button -->
+        <div style="text-align: center;">
+            <a href="index.html#events" class="back-button">
+                ← Quay lại trang chủ
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <img src="images/logo-t27.png" alt="T27 Logo" class="footer-logo-image"
+            onerror="this.src='images/logo-t27.svg'">
+        <p class="footer-tagline" style="color: var(--primary-orange) !important;">Cái tâm mọi công trình</p>
+        <p>&copy; 2025 Công Ty Cổ Phần Tư Vấn T27. All rights reserved.</p>
+        <p>Tư vấn thiết kế | Khảo sát - Địa hình Địa chất | Giám sát thi công | Quản lý dự án</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

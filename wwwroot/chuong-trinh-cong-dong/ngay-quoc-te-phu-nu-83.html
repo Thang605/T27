@@ -1,0 +1,410 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NgÃ y Quá»‘c táº¿ Phá»¥ ná»¯ 8/3 - T27</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .training-hero {
+            padding: 180px 60px 80px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .training-hero h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .training-hero .subtitle {
+            font-size: 1.5em;
+            color: var(--accent-gold);
+            margin-bottom: 30px;
+        }
+
+        .training-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 60px;
+        }
+
+        .session-header {
+            padding: 30px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .session-number {
+            font-size: 3em;
+            font-weight: 700;
+            color: var(--accent-gold);
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .session-header-content h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .session-header-content .session-date {
+            font-size: 1.1em;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .session-description {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+            background: var(--gray-light);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 5px solid var(--primary-orange);
+        }
+
+        .session-topics {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .session-topics h2 {
+            font-size: 2em;
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+        }
+
+        .topic-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .topic-list li {
+            padding: 20px 0;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .topic-list li:last-child {
+            border-bottom: none;
+        }
+
+        .topic-icon {
+            font-size: 1.5em;
+            color: var(--primary-orange);
+        }
+
+        .topic-text {
+            flex: 1;
+        }
+
+        .topic-text strong {
+            color: var(--primary-blue);
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .session-gallery {
+            margin-top: 40px;
+        }
+
+        .session-gallery h2 {
+            font-size: 2em;
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,45,77,0.95), transparent);
+            color: var(--white);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .caption {
+            transform: translateY(0);
+        }
+
+        .session-highlight {
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--accent-gold) 100%);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .session-highlight h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .session-highlight p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--primary-orange);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 40px;
+        }
+
+        .back-button:hover {
+            background: var(--primary-blue);
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .session-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .training-hero h1 {
+                font-size: 2em;
+            }
+
+            .training-content {
+                padding: 40px 20px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-container">
+                <img src="../images/logo-t27.png" alt="T27 Logo" class="logo-image" onerror="this.src='../images/logo-t27.svg'">
+                <div class="logo-tagline">Cáº£i tiáº¿n má»i cÃ´ng trÃ¬nh</div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html#home">Trang chá»§</a></li>
+                <li><a href="../index.html#about">Giá»›i thiá»‡u</a></li>
+                <li><a href="../index.html#projects">Dá»± Ã¡n</a></li>
+                <li><a href="../index.html#experts">Äá»™i ngÅ© chuyÃªn gia</a></li>
+                <li><a href="../index.html#bim">BIM</a></li>
+                <li><a href="../index.html#events">Sá»± kiá»‡n</a></li>
+                <li><a href="../index.html#recruitment">Tuyá»ƒn dá»¥ng</a></li>
+                <li><a href="../index.html#contact">LiÃªn há»‡</a></li>
+                <li><a href="../index-en.html" style="background: var(--primary-orange); border-radius: 5px;">ðŸŒ EN</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contact Bar -->
+    <div class="contact-bar">
+        <div class="contact-bar-content">
+            <div class="contact-item">
+                <strong>ðŸ“ž Hotline:</strong> 058.2210226 | 0913.431.515
+            </div>
+            <div class="contact-item">
+                <strong>ðŸ“§ Email:</strong> t27_vn@yahoo.com
+            </div>
+            <div class="contact-item">
+                <strong>ðŸ“ Äá»‹a chá»‰:</strong> Nha Trang, KhÃ¡nh HÃ²a | Quy NhÆ¡n, BÃ¬nh Äá»‹nh
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="training-content">
+        <div class="session-header">
+            <div class="session-number">02</div>
+            <div class="session-header-content">
+                <h1>Ká»· niá»‡m NgÃ y Quá»‘c táº¿ Phá»¥ ná»¯ 8/3 nÄƒm 2025</h1>
+                <div class="session-date">
+                    <span>ðŸ“…</span>
+                    <span>08/03/2025</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="session-description">
+            <p style="font-size: 1.3em; margin-bottom: 20px; color: var(--primary-orange); font-weight: 600;">
+                Ká»· niá»‡m NgÃ y Quá»‘c táº¿ Phá»¥ ná»¯ 8/3 ðŸ’
+            </p>
+            <p style="margin-bottom: 15px;">
+                CÃ´ng Ä‘oÃ n cÆ¡ sá»Ÿ T27 Ä‘Ã£ tá»• chá»©c chuyáº¿n tham quan táº¡i <strong>Khu du lá»‹ch 3 Há»“</strong>, 
+                mang Ä‘áº¿n nhá»¯ng phÃºt giÃ¢y thÆ° giÃ£n, gáº¯n káº¿t vÃ  trÃ n Ä‘áº§y niá»m vui cho táº­p thá»ƒ cÃ¡n bá»™ â€“ nhÃ¢n viÃªn.
+            </p>
+            <p style="font-style: italic; color: var(--primary-blue);">
+                ðŸ’ Xin gá»­i nhá»¯ng lá»i chÃºc tá»‘t Ä‘áº¹p nháº¥t Ä‘áº¿n toÃ n thá»ƒ chá»‹ em phá»¥ ná»¯ T27 vÃ  chÃºc má»™t nÄƒm má»›i rá»±c rá»¡, háº¡nh phÃºc!
+            </p>
+        </div>
+
+        <!-- Topics -->
+        <div class="session-topics">
+            <h2>ðŸŽ¯ Hoáº¡t Äá»™ng ChÃ­nh</h2>
+            <ul class="topic-list">
+                <li>
+                    <span class="topic-icon">ðŸžï¸</span>
+                    <div class="topic-text">
+                        <strong>Tham Quan Khu Du Lá»‹ch 3 Há»“</strong>
+                        Chuyáº¿n tham quan táº¡i Khu du lá»‹ch 3 Há»“ vá»›i phong cáº£nh thiÃªn nhiÃªn tÆ°Æ¡i Ä‘áº¹p, 
+                        mang Ä‘áº¿n khÃ´ng gian thÆ° giÃ£n lÃ½ tÆ°á»Ÿng cho cÃ¡c chá»‹ em.
+                    </div>
+                </li>
+                <li>
+                    <span class="topic-icon">ðŸŽ</span>
+                    <div class="topic-text">
+                        <strong>Táº·ng Hoa vÃ  QuÃ </strong>
+                        Má»—i chá»‹ em Ä‘á»u nháº­n Ä‘Æ°á»£c bÃ³ hoa tÆ°Æ¡i tháº¯m vÃ  pháº§n quÃ  Ã½ nghÄ©a, 
+                        thá»ƒ hiá»‡n sá»± trÃ¢n trá»ng vÃ  lÃ²ng biáº¿t Æ¡n tá»« Ban lÃ£nh Ä‘áº¡o cÃ´ng ty.
+                    </div>
+                </li>
+                <li>
+                    <span class="topic-icon">ðŸ¤</span>
+                    <div class="topic-text">
+                        <strong>Gáº¯n Káº¿t Ná»™i Bá»™</strong>
+                        Táº¡o cÆ¡ há»™i Ä‘á»ƒ CBNV giao lÆ°u, trÃ² chuyá»‡n vÃ  gáº¯n káº¿t vá»›i nhau 
+                        trong khÃ´ng gian thoáº£i mÃ¡i, thÃ¢n thiá»‡n.
+                    </div>
+                </li>
+                <li>
+                    <span class="topic-icon">ðŸ˜Š</span>
+                    <div class="topic-text">
+                        <strong>ThÆ° GiÃ£n vÃ  Vui ChÆ¡i</strong>
+                        CÃ¡c hoáº¡t Ä‘á»™ng vui chÆ¡i, giáº£i trÃ­ táº¡i khu du lá»‹ch, 
+                        giÃºp má»i ngÆ°á»i thÆ° giÃ£n sau nhá»¯ng ngÃ y lÃ m viá»‡c cÄƒng tháº³ng.
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Gallery -->
+        <div class="session-gallery">
+            <h2>ðŸ“· HÃ¬nh áº¢nh ChÆ°Æ¡ng TrÃ¬nh</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="../images/chuong-trinh-cong-dong/2.Ká»· niá»‡m NgÃ y Quá»‘c táº¿ Phá»¥ ná»¯ 83/1.jpg" alt="NgÃ y 8/3 táº¡i Khu du lá»‹ch 3 Há»“" 
+                         onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=400&fit=crop'">
+                    <div class="caption">
+                        <p>Chuyáº¿n tham quan táº¡i Khu du lá»‹ch 3 Há»“</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="../images/chuong-trinh-cong-dong/2.Ká»· niá»‡m NgÃ y Quá»‘c táº¿ Phá»¥ ná»¯ 83/1.jpg" alt="Tiá»‡c tri Ã¢n 8/3" 
+                         onerror="this.src='https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&h=400&fit=crop'">
+                    <div class="caption">
+                        <p>Nhá»¯ng khoáº£nh kháº¯c vui váº» vÃ  thÆ° giÃ£n</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="../images/chuong-trinh-cong-dong/2.Ká»· niá»‡m NgÃ y Quá»‘c táº¿ Phá»¥ ná»¯ 83/1.jpg" alt="CBNV T27 táº¡i 3 Há»“" 
+                         onerror="this.src='https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600&h=400&fit=crop'">
+                    <div class="caption">
+                        <p>CBNV T27 gáº¯n káº¿t táº¡i Khu du lá»‹ch 3 Há»“</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="../images/chuong-trinh-cong-dong/2.Ká»· niá»‡m NgÃ y Quá»‘c táº¿ Phá»¥ ná»¯ 83/1.jpg" alt="Ká»· niá»‡m 8/3 T27" 
+                         onerror="this.src='https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop'">
+                    <div class="caption">
+                        <p>Niá»m vui vÃ  háº¡nh phÃºc trong ngÃ y 8/3</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Highlight -->
+        <div class="session-highlight">
+            <h2>ðŸ’– Ã NghÄ©a ChÆ°Æ¡ng TrÃ¬nh</h2>
+            <p>
+                ChÆ°Æ¡ng trÃ¬nh ká»· niá»‡m NgÃ y Quá»‘c táº¿ Phá»¥ ná»¯ 8/3 táº¡i Khu du lá»‹ch 3 Há»“ thá»ƒ hiá»‡n sá»± quan tÃ¢m, 
+                chÄƒm lo cá»§a T27 Ä‘áº¿n Ä‘á»i sá»‘ng tinh tháº§n cá»§a CBNV. ÄÃ¢y khÃ´ng chá»‰ lÃ  dá»‹p Ä‘á»ƒ tri Ã¢n cÃ¡c chá»‹ em phá»¥ ná»¯ 
+                mÃ  cÃ²n táº¡o nÃªn khÃ´ng gian giao lÆ°u, gáº¯n káº¿t, mang Ä‘áº¿n niá»m vui vÃ  Ä‘á»™ng lá»±c lÃ m viá»‡c cho toÃ n thá»ƒ 
+                Ä‘áº¡i gia Ä‘Ã¬nh T27.
+            </p>
+        </div>
+
+        <!-- Back Button -->
+        <div style="text-align: center;">
+            <a href="../chuong-trinh-cong-dong.html" class="back-button">
+                â† Quay láº¡i danh sÃ¡ch chÆ°Æ¡ng trÃ¬nh
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <img src="../images/logo-t27.png" alt="T27 Logo" class="footer-logo-image" onerror="this.src='../images/logo-t27.svg'">
+        <p class="footer-tagline" style="color: var(--primary-orange) !important;">Cáº£i tiáº¿n má»i cÃ´ng trÃ¬nh</p>
+        <p>&copy; 2025 CÃ´ng Ty Cá»• Pháº§n TÆ° Váº¥n T27. All rights reserved.</p>
+        <p>TÆ° váº¥n thiáº¿t káº¿ | Kháº£o sÃ¡t - Äá»‹a hÃ¬nh Ä‘á»‹a cháº¥t | GiÃ¡m sÃ¡t thi cÃ´ng | Quáº£n lÃ½ dá»± Ã¡n</p>
+    </footer>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>
