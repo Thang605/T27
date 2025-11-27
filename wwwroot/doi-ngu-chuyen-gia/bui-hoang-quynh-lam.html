@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
     <style>
         :root {
             --primary-blue: #004E89;
@@ -20,11 +21,50 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-light);
             margin: 0;
-            padding: 40px;
+            padding: 0;
+            min-height: 100vh
+        }
+
+        .profile-wrapper {
+            padding: 120px 40px 40px;
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            min-height: 100vh
+        }
+
+        /* Back Button Section */
+        .back-button-section {
+            background: white;
+            padding: 30px 40px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: var(--primary-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background: #003d6b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 78, 137, 0.3);
+        }
+
+        .back-button::before {
+            content: '←';
+            font-size: 1.3em;
         }
 
         .profile-card-horizontal {
@@ -118,6 +158,10 @@
         }
 
         @media (max-width:768px) {
+            .profile-wrapper {
+                padding: 120px 20px 20px;
+            }
+
             .profile-card-horizontal {
                 flex-direction: column
             }
@@ -142,49 +186,95 @@
 </head>
 
 <body>
-    <div class="profile-card-horizontal">
-        <div class="profile-image-section">
-            <img src="../images/Hinh anh chuyen gia/Bùi Hoàng Quỳnh Lam.jpg" alt="Bùi Hoàng Quỳnh Lam"
-                class="profile-image"
-                onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22350%22 height=%22500%22%3E%3Crect fill=%22%23D0E1F9%22 width=%22350%22 height=%22500%22/%3E%3Ctext fill=%22%23004E89%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EẢnh Chuyên Gia%3C/text%3E%3C/svg%3E'">
-        </div>
-        <div class="profile-content-section">
-            <h2 class="profile-name">Bùi Hoàng Quỳnh Lam</h2>
-            <span class="profile-title">Chuyên gia Khảo sát Thiết kế</span>
-            <p class="profile-description">
-                Với 14 năm kinh nghiệm trong lĩnh vực thiết kế và Chứng chỉ thiết kế công trình đường bộ hạng 1, bà Bùi
-                Hoàng Quỳnh Lam đảm nhận vai trò Phó phòng thiết kế với chuyên môn trong thiết kế công trình đường bộ.
-                Bà thành thạo các công cụ BIM và phần mềm thiết kế hiện đại như Autocad, Civil 3D, Navisworks, Infrawork
-                và Anddesgin, đã tham gia các dự án cao tốc lớn như Cao tốc Hoài Nhơn - Quy Nhơn và Cao tốc Khánh Hòa -
-                Buôn Ma Thuột.
-            </p>
-            <ul class="profile-details-list">
-                <li class="profile-detail-item"><span class="detail-bullet">•</span>
-                    <div class="detail-content"><span class="detail-label">Chức vụ:</span> Phó phòng thiết kế</div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo-container" style="text-decoration: none;">
+                <img src="../images/logo-t27.png" alt="T27 Logo" class="logo-image"
+                    onerror="this.src='../images/logo-t27.svg'">
+                <div class="logo-tagline">Cái tâm mọi công trình</div>
+            </a>
+
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html">Trang chủ</a></li>
+                <li><a href="../gioi-thieu.html">Giới thiệu</a></li>
+                <li><a href="../du-an.html">Dự án</a></li>
+                <li><a href="../doi-ngu-chuyen-gia.html" style="color: var(--primary-orange);">Đội ngũ chuyên gia</a>
                 </li>
-                <li class="profile-detail-item"><span class="detail-bullet">•</span>
-                    <div class="detail-content"><span class="detail-label">Kinh nghiệm:</span> 14 năm trong lĩnh vực
-                        thiết kế</div>
-                </li>
-                <li class="profile-detail-item"><span class="detail-bullet">•</span>
-                    <div class="detail-content"><span class="detail-label">Chuyên môn:</span> Thiết kế công trình đường
-                        bộ</div>
-                </li>
-                <li class="profile-detail-item"><span class="detail-bullet">•</span>
-                    <div class="detail-content"><span class="detail-label">Chứng chỉ:</span><br>- Chứng chỉ thiết kế
-                        công trình đường bộ hạng 1</div>
-                </li>
-                <li class="profile-detail-item"><span class="detail-bullet">•</span>
-                    <div class="detail-content"><span class="detail-label">Kỹ năng phần mềm:</span> Autocad, Civil 3D,
-                        Navisworks, Infrawork, Anddesgin</div>
-                </li>
-                <li class="profile-detail-item"><span class="detail-bullet">•</span>
-                    <div class="detail-content"><span class="detail-label">Dự án tiêu biểu:</span><br>- Cao tốc Hoài
-                        Nhơn - Quy Nhơn<br>- Cao tốc Khánh Hòa - Buôn Ma Thuột</div>
-                </li>
+                <li><a href="../cong-nghe-so.html">Công nghệ số</a></li>
+                <li><a href="../tin-tuc.html">Tin tức</a></li>
+                <li><a href="../chinh-sach.html">Chính sách</a></li>
+                <li><a href="../lien-he.html">Liên hệ</a></li>
             </ul>
         </div>
+    </nav>
+
+    <!-- Profile Content -->
+    <div class="profile-wrapper">
+        <div class="profile-card-horizontal">
+            <div class="profile-image-section">
+                <img src="../images/Hinh anh chuyen gia/Bùi Hoàng Quỳnh Lam.jpg" alt="Bùi Hoàng Quỳnh Lam"
+                    class="profile-image"
+                    onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22350%22 height=%22500%22%3E%3Crect fill=%22%23D0E1F9%22 width=%22350%22 height=%22500%22/%3E%3Ctext fill=%22%23004E89%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EẢnh Chuyên Gia%3C/text%3E%3C/svg%3E'">
+            </div>
+            <div class="profile-content-section">
+                <h2 class="profile-name">Bùi Hoàng Quỳnh Lam</h2>
+                <span class="profile-title">Chuyên gia Khảo sát Thiết kế</span>
+                <p class="profile-description">
+                    Với 14 năm kinh nghiệm trong lĩnh vực thiết kế và Chứng chỉ thiết kế công trình đường bộ hạng 1, bà
+                    Bùi
+                    Hoàng Quỳnh Lam đảm nhận vai trò Phó phòng thiết kế với chuyên môn trong thiết kế công trình đường
+                    bộ.
+                    Bà thành thạo các công cụ BIM và phần mềm thiết kế hiện đại như Autocad, Civil 3D, Navisworks,
+                    Infrawork
+                    và Anddesgin, đã tham gia các dự án cao tốc lớn như Cao tốc Hoài Nhơn - Quy Nhơn và Cao tốc Khánh
+                    Hòa -
+                    Buôn Ma Thuột.
+                </p>
+                <ul class="profile-details-list">
+                    <li class="profile-detail-item"><span class="detail-bullet">•</span>
+                        <div class="detail-content"><span class="detail-label">Chức vụ:</span> Phó phòng thiết kế</div>
+                    </li>
+                    <li class="profile-detail-item"><span class="detail-bullet">•</span>
+                        <div class="detail-content"><span class="detail-label">Kinh nghiệm:</span> 14 năm trong lĩnh vực
+                            thiết kế</div>
+                    </li>
+                    <li class="profile-detail-item"><span class="detail-bullet">•</span>
+                        <div class="detail-content"><span class="detail-label">Chuyên môn:</span> Thiết kế công trình
+                            đường
+                            bộ</div>
+                    </li>
+                    <li class="profile-detail-item"><span class="detail-bullet">•</span>
+                        <div class="detail-content"><span class="detail-label">Chứng chỉ:</span><br>- Chứng chỉ thiết kế
+                            công trình đường bộ hạng 1</div>
+                    </li>
+                    <li class="profile-detail-item"><span class="detail-bullet">•</span>
+                        <div class="detail-content"><span class="detail-label">Kỹ năng phần mềm:</span> Autocad, Civil
+                            3D,
+                            Navisworks, Infrawork, Anddesgin</div>
+                    </li>
+                    <li class="profile-detail-item"><span class="detail-bullet">•</span>
+                        <div class="detail-content"><span class="detail-label">Dự án tiêu biểu:</span><br>- Cao tốc Hoài
+                            Nhơn - Quy Nhơn<br>- Cao tốc Khánh Hòa - Buôn Ma Thuột</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
+
+    <!-- Back Button Section -->
+    <div class="back-button-section">
+        <a href="../doi-ngu-chuyen-gia.html" class="back-button">Quay lại danh sách chuyên gia</a>
+    </div>
+
+    <script src="../js/app.js"></script>
 </body>
 
 </html>
