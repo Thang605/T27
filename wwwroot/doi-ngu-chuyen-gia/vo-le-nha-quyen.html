@@ -16,14 +16,11 @@
             --bg-light: #f8f9fa
         }
 
-        body {
+                body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-light);
             margin: 0;
-            padding: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
+            padding: 0;
             min-height: 100vh
         }
 
@@ -138,11 +135,60 @@
                 font-size: 1.8em
             }
         }
-    </style>
+    
+        .profile-wrapper {
+            padding: 40px 40px 40px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* Back Button Section */
+        .back-button-section {
+            background: white;
+            padding: 30px 40px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: var(--primary-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background: #003d6b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 78, 137, 0.3);
+        }
+
+        .back-button::before {
+            content: '←';
+            font-size: 1.3em;
+        }
+        
+        @media (max-width:768px) {
+            .profile-wrapper {
+                padding: 20px 20px 20px;
+            }
+        }
+</style>
 </head>
 
 <body>
-    <div class="profile-card-horizontal">
+    <div class="profile-wrapper">
+        <div class="profile-card-horizontal">
         <div class="profile-image-section">
             <img src="../images/Hinh anh chuyen gia/Võ Lê Nhã Quyên.jpeg" alt="Võ Lê Nhã Quyên" class="profile-image"
                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22350%22 height=%22500%22%3E%3Crect fill=%22%23D0E1F9%22 width=%22350%22 height=%22500%22/%3E%3Ctext fill=%22%23004E89%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EẢnh Chuyên Gia%3C/text%3E%3C/svg%3E'">
@@ -178,6 +224,14 @@
             </ul>
         </div>
     </div>
+    </div>
+
+    <!-- Back Button Section -->
+    <div class="back-button-section">
+        <a href="../doi-ngu-chuyen-gia.html" class="back-button">Quay lại danh sách chuyên gia</a>
+    </div>
+
+    <script src="../js/app.js"></script>
 </body>
 
 </html>

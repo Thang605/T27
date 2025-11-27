@@ -20,11 +20,50 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-light);
             margin: 0;
-            padding: 40px;
+            padding: 0;
+            min-height: 100vh
+        }
+
+        .profile-wrapper {
+            padding: 40px 40px 40px;
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            min-height: 100vh
+        }
+
+        /* Back Button Section */
+        .back-button-section {
+            background: white;
+            padding: 30px 40px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: var(--primary-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background: #003d6b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 78, 137, 0.3);
+        }
+
+        .back-button::before {
+            content: '←';
+            font-size: 1.3em;
         }
 
         .profile-card-horizontal {
@@ -118,6 +157,10 @@
         }
 
         @media (max-width:768px) {
+            .profile-wrapper {
+                padding: 20px 20px 20px;
+            }
+
             .profile-card-horizontal {
                 flex-direction: column
             }
@@ -142,43 +185,55 @@
 </head>
 
 <body>
-    <div class="profile-card-horizontal">
-        <div class="profile-image-section">
-            <img src="../images/Hinh anh chuyen gia/Duong Hoang Phuong Ly.jpg" alt="Dương Hoàng Phương Ly"
-                class="profile-image"
-                onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22350%22 height=%22500%22%3E%3Crect fill=%22%23D0E1F9%22 width=%22350%22 height=%22500%22/%3E%3Ctext fill=%22%23004E89%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EẢnh Chuyên Gia%3C/text%3E%3C/svg%3E'">
+    <!-- Profile Content -->
+    <div class="profile-wrapper">
+        <div class="profile-card-horizontal">
+            <div class="profile-image-section">
+                <img src="../images/Hinh anh chuyen gia/Duong Hoang Phuong Ly.jpg" alt="Dương Hoàng Phương Ly"
+                    class="profile-image"
+                    onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22350%22 height=%22500%22%3E%3Crect fill=%22%23D0E1F9%22 width=%22350%22 height=%22500%22/%3E%3Ctext fill=%22%23004E89%22 font-family=%22Arial%22 font-size=%2224%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EẢnh Chuyên Gia%3C/text%3E%3C/svg%3E'">
+            </div>
+            <div class="profile-content-section">
+                <h2 class="profile-name">Dương Hoàng Phương Ly</h2>
+                <span class="profile-title">Chuyên gia Khảo sát Thiết kế</span>
+                <p class="profile-description">
+                    Với 16 năm kinh nghiệm trong lĩnh vực thiết kế và Chứng chỉ thiết kế giao thông hạng 2, bà Dương
+                    Hoàng
+                    Phương Ly đảm nhận vai trò Phó phòng thiết kế với chuyên môn sâu về thiết kế các công trình cầu. Bà
+                    có
+                    kỹ năng điều phối và quản lý dự án tốt, đóng góp quan trọng vào việc phát triển các giải pháp kỹ
+                    thuật
+                    cho công trình cầu trong nhiều dự án hạ tầng giao thông.
+                </p>
+                <ul class="profile-details-list">
+                    <li class="profile-detail-item"><span class="detail-bullet">•</span>
+                        <div class="detail-content"><span class="detail-label">Chức vụ:</span> Phó phòng thiết kế</div>
+                    </li>
+                    <li class="profile-detail-item"><span class="detail-bullet">•</span>
+                        <div class="detail-content"><span class="detail-label">Kinh nghiệm:</span> 16 năm trong lĩnh vực
+                            thiết kế</div>
+                    </li>
+                    <li class="profile-detail-item"><span class="detail-bullet">•</span>
+                        <div class="detail-content"><span class="detail-label">Chuyên môn:</span> Thiết kế các công
+                            trình
+                            cầu</div>
+                    </li>
+                    <li class="profile-detail-item"><span class="detail-bullet">•</span>
+                        <div class="detail-content"><span class="detail-label">Chứng chỉ:</span><br>- Chứng chỉ thiết kế
+                            giao thông hạng 2</div>
+                    </li>
+                    <li class="profile-detail-item"><span class="detail-bullet">•</span>
+                        <div class="detail-content"><span class="detail-label">Kỹ năng phần mềm:</span> Autocad, Office
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="profile-content-section">
-            <h2 class="profile-name">Dương Hoàng Phương Ly</h2>
-            <span class="profile-title">Chuyên gia Khảo sát Thiết kế</span>
-            <p class="profile-description">
-                Với 16 năm kinh nghiệm trong lĩnh vực thiết kế và Chứng chỉ thiết kế giao thông hạng 2, bà Dương Hoàng
-                Phương Ly đảm nhận vai trò Phó phòng thiết kế với chuyên môn sâu về thiết kế các công trình cầu. Bà có
-                kỹ năng điều phối và quản lý dự án tốt, đóng góp quan trọng vào việc phát triển các giải pháp kỹ thuật
-                cho công trình cầu trong nhiều dự án hạ tầng giao thông.
-            </p>
-            <ul class="profile-details-list">
-                <li class="profile-detail-item"><span class="detail-bullet">•</span>
-                    <div class="detail-content"><span class="detail-label">Chức vụ:</span> Phó phòng thiết kế</div>
-                </li>
-                <li class="profile-detail-item"><span class="detail-bullet">•</span>
-                    <div class="detail-content"><span class="detail-label">Kinh nghiệm:</span> 16 năm trong lĩnh vực
-                        thiết kế</div>
-                </li>
-                <li class="profile-detail-item"><span class="detail-bullet">•</span>
-                    <div class="detail-content"><span class="detail-label">Chuyên môn:</span> Thiết kế các công trình
-                        cầu</div>
-                </li>
-                <li class="profile-detail-item"><span class="detail-bullet">•</span>
-                    <div class="detail-content"><span class="detail-label">Chứng chỉ:</span><br>- Chứng chỉ thiết kế
-                        giao thông hạng 2</div>
-                </li>
-                <li class="profile-detail-item"><span class="detail-bullet">•</span>
-                    <div class="detail-content"><span class="detail-label">Kỹ năng phần mềm:</span> Autocad, Office
-                    </div>
-                </li>
-            </ul>
-        </div>
+    </div>
+
+    <!-- Back Button Section -->
+    <div class="back-button-section">
+        <a href="../doi-ngu-chuyen-gia.html" class="back-button">Quay lại danh sách chuyên gia</a>
     </div>
 </body>
 
