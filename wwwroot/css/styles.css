@@ -998,6 +998,7 @@ body {
     }
 }
 
+
 @media (max-width: 768px) {
     .company-history .timeline-wrapper {
         height: auto;
@@ -1055,14 +1056,13 @@ body {
 .nav-menu .lang-btn {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 3px;
     cursor: pointer;
     background: var(--primary-orange);
-    padding: 8px 16px;
+    padding: 4px 8px;
     border-radius: 4px;
     font-weight: 600;
     transition: all 0.3s ease;
-
 }
 
 .nav-menu .lang-btn:hover {
