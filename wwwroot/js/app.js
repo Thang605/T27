@@ -15,7 +15,7 @@ function nextSlide() {
 setInterval(nextSlide, 5000);
 
 // Navbar scroll effect
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
         navbar.style.background = 'rgba(0, 45, 77, 0.98)';
@@ -25,92 +25,92 @@ window.addEventListener('scroll', function() {
 });
 
 // Hamburger Menu Toggle - IMPROVED VERSION WITH DEBOUNCE
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('navMenu');
-    
+
     if (!hamburger || !navMenu) {
         return; // Exit if elements don't exist
     }
-    
+
     // Debounce flag to prevent rapid clicks
     let isAnimating = false;
-    
+
     // Toggle menu function with debounce
     function toggleMenu(e) {
         e.stopPropagation(); // Prevent event bubbling
-        
+
         // Prevent rapid clicking during animation
         if (isAnimating) return;
-        
+
         isAnimating = true;
-        
+
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('open');
-        
+
         // Reset debounce after animation completes
         setTimeout(() => {
             isAnimating = false;
         }, 400); // Match CSS transition duration
     }
-    
+
     // Close menu function
     function closeMenu() {
         if (isAnimating) return;
-        
+
         isAnimating = true;
-        
+
         hamburger.classList.remove('active');
         navMenu.classList.remove('open');
-        
+
         setTimeout(() => {
             isAnimating = false;
         }, 400);
     }
-    
+
     // Hamburger click handler
     hamburger.addEventListener('click', toggleMenu);
-    
+
     // Close menu when clicking on a link
     const navLinks = navMenu.querySelectorAll('a');
     navLinks.forEach(link => {
         link.addEventListener('click', closeMenu);
     });
-    
+
     // Close menu when clicking outside
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', function (event) {
         // Check if menu is open
         if (!navMenu.classList.contains('open')) {
             return;
         }
-        
+
         // Check if click is outside both menu and hamburger
         if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
             closeMenu();
         }
     });
-    
+
     // Close menu on window resize to desktop size
     let resizeTimer;
-    window.addEventListener('resize', function() {
+    window.addEventListener('resize', function () {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() {
+        resizeTimer = setTimeout(function () {
             if (window.innerWidth > 1024 && navMenu.classList.contains('open')) {
                 closeMenu();
             }
         }, 250);
     });
-    
+
     // Close menu on ESC key
-    document.addEventListener('keydown', function(event) {
+    document.addEventListener('keydown', function (event) {
         if (event.key === 'Escape' && navMenu.classList.contains('open')) {
             closeMenu();
         }
     });
-    
+
     // Prevent body scroll when menu is open
-    const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
+    const observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
             if (mutation.attributeName === 'class') {
                 if (navMenu.classList.contains('open')) {
                     document.body.style.overflow = 'hidden';
@@ -120,12 +120,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     observer.observe(navMenu, { attributes: true });
 });
 
 // Set default opacity to 50% (0.5)
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Set default overlay opacity to 50%
     document.documentElement.style.setProperty('--hero-overlay-opacity', 0.5);
 });
@@ -231,14 +231,14 @@ document.addEventListener('DOMContentLoaded', function() {
 END OF OPACITY CONTROL PANEL */
 
 // Language Switcher
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const langBtn = document.querySelector('.lang-btn');
     const langDropdown = document.querySelector('.language-dropdown');
     const currentLangSpan = document.querySelector('.current-lang');
     const langLinks = document.querySelectorAll('.lang-menu a');
 
     if (langBtn) {
-        langBtn.addEventListener('click', function(e) {
+        langBtn.addEventListener('click', function (e) {
             // Only for mobile or click interaction
             if (window.innerWidth <= 1024) {
                 e.preventDefault();
@@ -248,23 +248,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     langLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const lang = this.getAttribute('data-lang');
-            const text = this.textContent;
-            
-            // Update current language text
-            if (currentLangSpan) {
-                currentLangSpan.textContent = text;
-            }
-            
+        link.addEventListener('click', function (e) {
+            // Allow default navigation to href
+
             // Close dropdown on mobile
             if (langDropdown) {
                 langDropdown.classList.remove('active');
             }
-
-            // Here you would add actual translation logic
-            console.log('Switched to ' + lang);
         });
     });
 });
