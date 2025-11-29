@@ -1048,112 +1048,23 @@ body {
 }
 
 /* Language Switcher */
-.language-dropdown {
-    position: relative;
-    margin-left: 0;
-}
-
 .nav-menu .lang-btn {
-    display: flex;
-    align-items: center;
-    gap: 3px;
+    display: inline-block;
     cursor: pointer;
     background: var(--primary-orange);
     padding: 4px 8px;
     border-radius: 4px;
     font-weight: 600;
     transition: all 0.3s ease;
+    color: white !important;
+    /* Force white color */
+    text-decoration: none;
+    min-width: 40px;
+    text-align: center;
 }
 
 .nav-menu .lang-btn:hover {
     background: #e05e2b;
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(255, 107, 53, 0.3);
-}
-
-.arrow-down {
-    font-size: 0.8em;
-    transition: transform 0.3s ease;
-}
-
-.language-dropdown:hover .arrow-down {
-    transform: rotate(180deg);
-}
-
-.lang-menu {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: rgba(0, 45, 77, 0.95);
-    backdrop-filter: blur(10px);
-    list-style: none;
-    padding: 10px 0;
-    min-width: 80px;
-    border-radius: 4px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
-    display: block !important;
-    /* Override flex from nav-menu if needed */
-    z-index: 1002;
-}
-
-.language-dropdown:hover .lang-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.lang-menu li {
-    width: 100%;
-    display: block !important;
-    /* Ensure list items stack */
-}
-
-.lang-menu a {
-    display: block;
-    padding: 8px 20px;
-    color: white;
-    text-decoration: none;
-    transition: background 0.3s;
-    text-align: center;
-    white-space: nowrap;
-}
-
-.lang-menu a:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--primary-orange);
-}
-
-/* Mobile adjustments */
-@media (max-width: 1024px) {
-    .language-dropdown {
-        margin-left: 0;
-        width: 100%;
-    }
-
-    .lang-menu {
-        position: static;
-        background: transparent;
-        box-shadow: none;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        display: none !important;
-        /* Hidden by default on mobile */
-        padding-left: 20px;
-        border-left: 2px solid rgba(255, 255, 255, 0.1);
-        margin-left: 20px;
-        margin-top: 10px;
-    }
-
-    .language-dropdown.active .lang-menu {
-        display: block !important;
-    }
-
-    .language-dropdown.active .arrow-down {
-        transform: rotate(180deg);
-    }
 }

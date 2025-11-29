@@ -230,31 +230,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
 END OF OPACITY CONTROL PANEL */
 
-// Language Switcher
-document.addEventListener('DOMContentLoaded', function () {
-    const langBtn = document.querySelector('.lang-btn');
-    const langDropdown = document.querySelector('.language-dropdown');
-    const currentLangSpan = document.querySelector('.current-lang');
-    const langLinks = document.querySelectorAll('.lang-menu a');
 
-    if (langBtn) {
-        langBtn.addEventListener('click', function (e) {
-            // Only for mobile or click interaction
-            if (window.innerWidth <= 1024) {
-                e.preventDefault();
-                langDropdown.classList.toggle('active');
-            }
-        });
-    }
-
-    langLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
-            // Allow default navigation to href
-
-            // Close dropdown on mobile
-            if (langDropdown) {
-                langDropdown.classList.remove('active');
-            }
-        });
-    });
-});
